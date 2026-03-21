@@ -30,16 +30,15 @@ MIT — see [LICENSE](LICENSE)
 - Power at **3.3V only**. I2S data line runs SD → MCU DIN (mic output → MCU input).
 - If there is no audio or the clock is unstable, try changing Philips to `I2S_STD_MSB_SLOT_DEFAULT_CONFIG` in `main.c`.
 
-## Environment
+## Prerequisites
 
-- **ESP-IDF**: `~/esp/esp-idf` (v5.3.2)
-- Load environment in a new terminal: `get_idf` (alias in `~/.bashrc`), or run `. ~/esp/esp-idf/export.sh`
-- **CMake / Ninja**: installed via `pip install --user` at `~/.local/bin` (added to `PATH` in `~/.bashrc`)
+- **ESP-IDF v5.x** — follow the [official installation guide](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/get-started/index.html)
+- After installing, source the environment before building: `. $IDF_PATH/export.sh`
 
 ## Build & Flash
 
 ```bash
-get_idf
+. $IDF_PATH/export.sh
 idf.py set-target esp32s3
 idf.py build flash monitor
 ```
