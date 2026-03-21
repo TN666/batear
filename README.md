@@ -61,6 +61,15 @@ idf.py build flash monitor
 | `SUSTAIN_FRAMES_OFF` | 8 | Consecutive frames to clear alarm |
 | `RMS_MIN` | 0.0003 | Minimum RMS — frames below this are skipped |
 
+## Current Status & Limitations
+This project is currently a **Hardware Proof-of-Concept (PoC)**. 
+The DSP logic has been validated indoors using recorded drone audio signatures. It successfully detects rotor harmonics and triggers within the ESP32's resource limits.
+
+**Real-world outdoor challenges to be addressed:**
+* **Wind Noise:** Direct wind on the ICS-43434 mic can cause clipping and false positives. (A physical wind muff is highly recommended).
+* **Mechanical Noise:** Lawnmowers, leaf blowers, or certain vehicle engines may share similar harmonic frequencies and require threshold tuning (`FREQ_RATIO_ON`).
+* **Next Steps:** Gathering IRL outdoor data to refine the detection logic and potentially train a lightweight ESP-NN model.
+
 ## Project Structure
 
 ```
