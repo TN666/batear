@@ -69,7 +69,7 @@ idf.py build flash monitor
 ## Project Structure
 
 ```
-project_batear/
+batear/
 ├── CMakeLists.txt
 ├── sdkconfig.defaults
 ├── README.md
