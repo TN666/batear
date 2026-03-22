@@ -1,5 +1,9 @@
 # batear
 
+<p align="center">
+  <img src="icon.png" alt="batear logo" width="200"/>
+</p>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Drones are an increasing threat to homes, farms, and communities — and effective detection has traditionally required expensive radar or camera systems. **batear** changes that.
