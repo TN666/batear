@@ -1,7 +1,6 @@
 # batear
 
 ESP32-S3 + ICS-43434 acoustic drone detection project using ESP-IDF 5.x.
-Target board: **LilyGo T-Display-S3**.
 
 ## Build & Flash
 
