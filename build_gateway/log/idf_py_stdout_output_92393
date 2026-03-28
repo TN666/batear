@@ -1,0 +1,1775 @@
+Command: ninja all
+[1/1135] Generating project_elf_src_esp32s3.c
+[2/1135] Preprocessing linker script /Users/tn/esp/esp-idf/components/esp_system/ld/esp32s3/memory.ld.in -> /Users/tn/batear/build_gateway/esp-idf/esp_system/ld/memory.ld
+[3/1135] Preprocessing linker script /Users/tn/esp/esp-idf/components/esp_system/ld/esp32s3/sections.ld.in -> /Users/tn/batear/build_gateway/esp-idf/esp_system/ld/sections.ld.in
+[4/1135] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/lib/http_header.c.obj
+[5/1135] Generating ../../partition_table/partition-table.bin
+Partition table binary generated. Contents:
+*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,24K,
+phy_init,data,phy,0xf000,4K,
+factory,app,factory,0x10000,1M,
+*******************************************************************************
+[6/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/util/ctrl_sock.c.obj
+[7/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_uri.c.obj
+[8/1135] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/lib/http_utils.c.obj
+[9/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_ws.c.obj
+[10/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_sess.c.obj
+[11/1135] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/lib/http_auth.c.obj
+[12/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_txrx.c.obj
+[13/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_main.c.obj
+[14/1135] Building C object esp-idf/esp_https_ota/CMakeFiles/__idf_esp_https_ota.dir/src/esp_https_ota.c.obj
+[15/1135] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_parse.c.obj
+[16/1135] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_socks_proxy.c.obj
+[17/1135] Linking C static library esp-idf/esp_https_ota/libesp_https_ota.a
+[18/1135] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_internal.c.obj
+[19/1135] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport.c.obj
+[20/1135] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_platform.c.obj
+[21/1135] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_std.c.obj
+[22/1135] Linking C static library esp-idf/esp_http_server/libesp_http_server.a
+[23/1135] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_tdm.c.obj
+[24/1135] Building C object esp-idf/esp_hal_i2s/CMakeFiles/__idf_esp_hal_i2s.dir/esp32s3/i2s_periph.c.obj
+[25/1135] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_ssl.c.obj
+[26/1135] Building C object esp-idf/esp_hal_i2s/CMakeFiles/__idf_esp_hal_i2s.dir/i2s_hal.c.obj
+[27/1135] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_pdm.c.obj
+[28/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_cali.c.obj
+[29/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_cali_curve_fitting.c.obj
+[30/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_common.c.obj
+[31/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/esp32s3/curve_fitting_coefficients.c.obj
+[32/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_oneshot.c.obj
+[33/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/gdma/adc_dma.c.obj
+[34/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_monitor.c.obj
+[35/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_continuous.c.obj
+[36/1135] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls_platform_port.c.obj
+[37/1135] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp-tls-crypto/esp_tls_crypto.c.obj
+[38/1135] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_filter.c.obj
+[39/1135] Building C object esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_common.c.obj
+[40/1135] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls_error_capture.c.obj
+[41/1135] Building C object esp-idf/esp_hal_i2c/CMakeFiles/__idf_esp_hal_i2c.dir/esp32s3/i2c_periph.c.obj
+[42/1135] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_ws.c.obj
+[43/1135] Building C object esp-idf/esp_hal_i2c/CMakeFiles/__idf_esp_hal_i2c.dir/i2c_hal_iram.c.obj
+[44/1135] Building C object esp-idf/esp_hal_i2c/CMakeFiles/__idf_esp_hal_i2c.dir/i2c_hal.c.obj
+[45/1135] Building ASM object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/port/xtensa/gdbstub-entry.S.obj
+[46/1135] Building ASM object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/port/xtensa/xt_debugexception.S.obj
+[47/1135] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/packet.c.obj
+[48/1135] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/gdbstub_transport.c.obj
+[49/1135] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/port/xtensa/gdbstub_xtensa.c.obj
+[50/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/lib_printf.c.obj
+[51/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/mesh_event.c.obj
+[52/1135] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/gdbstub.c.obj
+[53/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/smartconfig.c.obj
+[54/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_default_ap.c.obj
+[55/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_init.c.obj
+[56/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_netif.c.obj
+[57/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_default.c.obj
+[58/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/regulatory/esp_wifi_regulatory.c.obj
+[59/1135] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/esp_http_client.c.obj
+[60/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/remote/esp_eap_client_remote_weak.c.obj
+[61/1135] Building C object esp-idf/esp_coex/CMakeFiles/__idf_esp_coex.dir/src/coexist_debug_diagram.c.obj
+[62/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/esp32s3/esp_adapter.c.obj
+[63/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/smartconfig_ack.c.obj
+[64/1135] Building C object esp-idf/esp_coex/CMakeFiles/__idf_esp_coex.dir/src/coexist_debug.c.obj
+[65/1135] Linking C static library esp-idf/esp_http_client/libesp_http_client.a
+[66/1135] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls.c.obj
+[67/1135] Building C object esp-idf/esp_coex/CMakeFiles/__idf_esp_coex.dir/esp32s3/esp_coex_adapter.c.obj
+[68/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/remote/esp_wifi_remote_net2.c.obj
+[69/1135] Linking C static library esp-idf/tcp_transport/libtcp_transport.a
+[70/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/port/os_xtensa.c.obj
+[71/1135] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/remote/esp_wifi_remote_weak.c.obj
+[72/1135] Linking C static library esp-idf/esp_driver_i2s/libesp_driver_i2s.a
+[73/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ieee802_1x.c.obj
+[74/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ap_config.c.obj
+[75/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/sta_info.c.obj
+[76/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/port/eloop.c.obj
+[77/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/pmksa_cache_auth.c.obj
+[78/1135] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls_mbedtls.c.obj
+[79/1135] Linking C static library esp-idf/esp_hal_i2s/libesp_hal_i2s.a
+[80/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/wpa_auth_ie.c.obj
+[81/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/comeback_token.c.obj
+[82/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ieee802_11.c.obj
+[83/1135] Linking C static library esp-idf/esp_adc/libesp_adc.a
+[84/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/bitfield.c.obj
+[85/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/dragonfly.c.obj
+[86/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-kdf.c.obj
+[87/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-siv.c.obj
+[88/1135] Linking C static library esp-idf/esp-tls/libesp-tls.a
+[89/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-gcm.c.obj
+[90/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/crypto_ops.c.obj
+[91/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/ccmp.c.obj
+[92/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/dh_group5.c.obj
+[93/1135] Building C object esp-idf/http_parser/CMakeFiles/__idf_http_parser.dir/http_parser.c.obj
+[94/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/dh_groups.c.obj
+[95/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-tlsprf.c.obj
+[96/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-tlsprf.c.obj
+[97/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha384-tlsprf.c.obj
+[98/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/wpa_common.c.obj
+[99/1135] Linking C static library esp-idf/http_parser/libhttp_parser.a
+[100/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/ms_funcs.c.obj
+[101/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-prf.c.obj
+[102/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-prf.c.obj
+[103/1135] Linking C static library esp-idf/esp_hal_i2c/libesp_hal_i2c.a
+[104/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha384-prf.c.obj
+[105/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/chap.c.obj
+[106/1135] Linking C static library esp-idf/esp_gdbstub/libesp_gdbstub.a
+[107/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/md4-internal.c.obj
+[108/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-tprf.c.obj
+[109/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_common/eap_wsc_common.c.obj
+[110/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/ieee802_11_common.c.obj
+[111/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_common.c.obj
+[112/1135] Linking C static library esp-idf/esp_wifi/libesp_wifi.a
+[113/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_mschapv2.c.obj
+[114/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_peap_common.c.obj
+[115/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_tls.c.obj
+[116/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/wpa_auth.c.obj
+[117/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/mschapv2.c.obj
+[118/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_fast_common.c.obj
+[119/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_tls_common.c.obj
+[120/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap.c.obj
+[121/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/sae.c.obj
+[122/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/rsn_supp/pmksa_cache.c.obj
+[123/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/base64.c.obj
+[124/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_peap.c.obj
+[125/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/ext_password.c.obj
+[126/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/rsn_supp/wpa_ie.c.obj
+[127/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_ttls.c.obj
+[128/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_fast_pac.c.obj
+[129/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/uuid.c.obj
+[130/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/common.c.obj
+[131/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/wpa_debug.c.obj
+[132/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/wpabuf.c.obj
+[133/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_attr_parse.c.obj
+[134/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/json.c.obj
+[135/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_attr_process.c.obj
+[136/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_attr_build.c.obj
+[137/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps.c.obj
+[138/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_dev_attr.c.obj
+[139/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpa2_api_port.c.obj
+[140/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_common.c.obj
+[141/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/sae_pk.c.obj
+[142/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_fast.c.obj
+[143/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpas_glue.c.obj
+[144/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_common.c.obj
+[145/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_enrollee.c.obj
+[146/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_owe.c.obj
+[147/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpa_main.c.obj
+[148/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpa3.c.obj
+[149/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_hostap.c.obj
+[150/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/fastpsk.c.obj
+[151/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_eap_client.c.obj
+[152/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/rsn_supp/wpa.c.obj
+[153/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/rc4.c.obj
+[154/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls-bignum.c.obj
+[155/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-unwrap.c.obj
+[156/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-wrap.c.obj
+[157/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls-rsa.c.obj
+[158/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wps.c.obj
+[159/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls.c.obj
+[160/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/des-internal.c.obj
+[161/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/tls_mbedtls.c.obj
+[162/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/fastpbkdf2.c.obj
+[163/1135] Linking C static library esp-idf/esp_coex/libesp_coex.a
+[164/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-ccm.c.obj
+[165/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_defaults.c.obj
+[166/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_objects.c.obj
+[167/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_handlers.c.obj
+[168/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/netif/wlanif.c.obj
+[169/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/netif/esp_pbuf_ref.c.obj
+[170/1135] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls-ec.c.obj
+[171/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_sntp.c.obj
+[172/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_lwip_defaults.c.obj
+[173/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/netif/ethernetif.c.obj
+[174/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/err.c.obj
+[175/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/apps/sntp/sntp.c.obj
+[176/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/if_api.c.obj
+[177/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/netbuf.c.obj
+[178/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/netifapi.c.obj
+[179/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/tcpip.c.obj
+[180/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/apps/netbiosns/netbiosns.c.obj
+[181/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/def.c.obj
+[182/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/netdb.c.obj
+[183/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/apps/sntp/sntp.c.obj
+[184/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/api_lib.c.obj
+[185/1135] Linking C static library esp-idf/wpa_supplicant/libwpa_supplicant.a
+[186/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/inet_chksum.c.obj
+[187/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ip.c.obj
+[188/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/init.c.obj
+[189/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/mem.c.obj
+[190/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/memp.c.obj
+[191/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/dns.c.obj
+[192/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/pbuf.c.obj
+[193/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/sys.c.obj
+[194/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/stats.c.obj
+[195/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/api_msg.c.obj
+[196/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/raw.c.obj
+[197/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/netif.c.obj
+[198/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/autoip.c.obj
+[199/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/timeouts.c.obj
+[200/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/icmp.c.obj
+[201/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/tcp_out.c.obj
+[202/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/igmp.c.obj
+[203/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/tcp.c.obj
+[204/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/etharp.c.obj
+[205/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_napt.c.obj
+[206/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/tcp_in.c.obj
+[207/1135] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_lwip.c.obj
+[208/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/udp.c.obj
+[209/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4.c.obj
+[210/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_addr.c.obj
+[211/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_frag.c.obj
+[212/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/dhcp6.c.obj
+[213/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ethip6.c.obj
+[214/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/dhcp.c.obj
+[215/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/icmp6.c.obj
+[216/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/inet6.c.obj
+[217/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/bridgeif.c.obj
+[218/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ethernet.c.obj
+[219/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ip6_frag.c.obj
+[220/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ip6_addr.c.obj
+[221/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/bridgeif_fdb.c.obj
+[222/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/auth.c.obj
+[223/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/slipif.c.obj
+[224/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/mld6.c.obj
+[225/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ccp.c.obj
+[226/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/chap-md5.c.obj
+[227/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/chap_ms.c.obj
+[228/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/demand.c.obj
+[229/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/chap-new.c.obj
+[230/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/eap.c.obj
+[231/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ecp.c.obj
+[232/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/eui64.c.obj
+[233/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/fsm.c.obj
+[234/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ipcp.c.obj
+[235/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ip6.c.obj
+[236/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/multilink.c.obj
+[237/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/magic.c.obj
+[238/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/lcp.c.obj
+[239/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ipv6cp.c.obj
+[240/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/mppe.c.obj
+[241/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ppp.c.obj
+[242/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/pppapi.c.obj
+[243/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/pppcrypt.c.obj
+[244/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/pppoe.c.obj
+[245/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/pppol2tp.c.obj
+[246/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/sockets.c.obj
+[247/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/utils.c.obj
+[248/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/upap.c.obj
+[249/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/pppos.c.obj
+[250/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/vj.c.obj
+[251/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/hooks/tcp_isn_default.c.obj
+[252/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/hooks/lwip_default_hooks.c.obj
+[253/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/sockets_ext.c.obj
+[254/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/if_index.c.obj
+[255/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/acd_dhcp_check.c.obj
+[256/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/polarssl/arc4.c.obj
+[257/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/polarssl/des.c.obj
+[258/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/freertos/sys_arch.c.obj
+[259/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/debug/lwip_debug.c.obj
+[260/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/polarssl/md4.c.obj
+[261/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/esp32xx/vfs_lwip.c.obj
+[262/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/polarssl/md5.c.obj
+[263/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/polarssl/sha1.c.obj
+[264/1135] Linking C static library esp-idf/esp_netif/libesp_netif.a
+[265/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/apps/ping/ping_sock.c.obj
+[266/1135] Building C object esp-idf/esp_driver_usb_serial_jtag/CMakeFiles/__idf_esp_driver_usb_serial_jtag.dir/src/usb_serial_jtag_connection_monitor.c.obj
+[267/1135] Building C object esp-idf/vfs/CMakeFiles/__idf_vfs.dir/nullfs.c.obj
+[268/1135] Building C object esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/src/phy_override.c.obj
+[269/1135] Building C object esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/src/lib_printf.c.obj
+[270/1135] Building C object esp-idf/esp_driver_usb_serial_jtag/CMakeFiles/__idf_esp_driver_usb_serial_jtag.dir/src/usb_serial_jtag.c.obj
+[271/1135] Building C object esp-idf/esp_driver_usb_serial_jtag/CMakeFiles/__idf_esp_driver_usb_serial_jtag.dir/src/usb_serial_jtag_vfs.c.obj
+[272/1135] Building C object esp-idf/vfs/CMakeFiles/__idf_vfs.dir/vfs_eventfd.c.obj
+[273/1135] Building C object esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/esp32s3/phy_init_data.c.obj
+[274/1135] Building C object esp-idf/vfs/CMakeFiles/__idf_vfs.dir/vfs.c.obj
+[275/1135] Building C object esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/src/phy_common.c.obj
+[276/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/nd6.c.obj
+[277/1135] Building C object esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/src/btbb_init.c.obj
+[278/1135] Building C object esp-idf/vfs/CMakeFiles/__idf_vfs.dir/vfs_semihost.c.obj
+[279/1135] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/apps/dhcpserver/dhcpserver.c.obj
+[280/1135] Building C object esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/src/phy_init.c.obj
+[281/1135] Building C object esp-idf/vfs/CMakeFiles/__idf_vfs.dir/vfs_calls.c.obj
+[282/1135] Linking C static library esp-idf/lwip/liblwip.a
+[283/1135] Linking C static library esp-idf/vfs/libvfs.a
+[284/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition.cpp.obj
+[285/1135] Linking C static library esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a
+[286/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition_lookup.cpp.obj
+[287/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_platform.cpp.obj
+[288/1135] Building C object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_bootloader.c.obj
+[289/1135] Building C object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_bootloader_aes.c.obj
+[290/1135] Building C object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_bootloader_xts_aes.c.obj
+[291/1135] Linking C static library esp-idf/esp_phy/libesp_phy.a
+[292/1135] Building C object esp-idf/nvs_sec_provider/CMakeFiles/__idf_nvs_sec_provider.dir/nvs_sec_provider.c.obj
+[293/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_item_hash_list.cpp.obj
+[294/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_handle_simple.cpp.obj
+[295/1135] Building C object esp-idf/esp_event/CMakeFiles/__idf_esp_event.dir/default_event_loop.c.obj
+[296/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_handle_locked.cpp.obj
+[297/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_cxx_api.cpp.obj
+[298/1135] Building C object esp-idf/esp_event/CMakeFiles/__idf_esp_event.dir/esp_event_private.c.obj
+[299/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_pagemanager.cpp.obj
+[300/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition_manager.cpp.obj
+[301/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_encrypted_partition.cpp.obj
+[302/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_types.cpp.obj
+[303/1135] Building C object esp-idf/esp_event/CMakeFiles/__idf_esp_event.dir/esp_event.c.obj
+[304/1135] Building C object esp-idf/esp_driver_uart/CMakeFiles/__idf_esp_driver_uart.dir/src/uart_wakeup.c.obj
+[305/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_page.cpp.obj
+[306/1135] Building C object esp-idf/esp_psram/CMakeFiles/__idf_esp_psram.dir/system_layer/esp_psram_mspi.c.obj
+[307/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_storage.cpp.obj
+[308/1135] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_init.c.obj
+[309/1135] Building CXX object esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_api.cpp.obj
+[310/1135] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/system_time.c.obj
+[311/1135] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/ets_timer_legacy.c.obj
+[312/1135] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_impl_common.c.obj
+[313/1135] Building C object esp-idf/esp_driver_uart/CMakeFiles/__idf_esp_driver_uart.dir/src/uhci.c.obj
+[314/1135] Building C object esp-idf/esp_driver_uart/CMakeFiles/__idf_esp_driver_uart.dir/src/uart_vfs.c.obj
+[315/1135] Linking C static library esp-idf/nvs_flash/libnvs_flash.a
+[316/1135] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer.c.obj
+[317/1135] Building CXX object esp-idf/cxx/CMakeFiles/__idf_cxx.dir/cxx_init.cpp.obj
+[318/1135] Building C object esp-idf/esp_ringbuf/CMakeFiles/__idf_esp_ringbuf.dir/ringbuf.c.obj
+[319/1135] Linking C static library esp-idf/nvs_sec_provider/libnvs_sec_provider.a
+[320/1135] Building C object esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_impl_systimer.c.obj
+[321/1135] Building CXX object esp-idf/cxx/CMakeFiles/__idf_cxx.dir/cxx_exception_stubs.cpp.obj
+[322/1135] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_local_storage.c.obj
+[323/1135] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_cond_var.c.obj
+[324/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/init.c.obj
+[325/1135] Linking C static library esp-idf/esp_event/libesp_event.a
+[326/1135] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_semaphore.c.obj
+[327/1135] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_rwlock.c.obj
+[328/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/abort.c.obj
+[329/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/assert.c.obj
+[330/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/heap.c.obj
+[331/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/poll.c.obj
+[332/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/termios.c.obj
+[333/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/getentropy.c.obj
+[334/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/pthread.c.obj
+[335/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/random.c.obj
+[336/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/locks.c.obj
+[337/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/sysconf.c.obj
+[338/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/scandir.c.obj
+[339/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/reent_syscalls.c.obj
+[340/1135] Building C object esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread.c.obj
+[341/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/realpath.c.obj
+[342/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/port/esp_time_impl.c.obj
+[343/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/picolibc/picolibc_init.c.obj
+[344/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/time.c.obj
+[345/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/stdatomic.c.obj
+[346/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/picolibc/rand.c.obj
+[347/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/syscalls.c.obj
+[348/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/picolibc/errno.c.obj
+[349/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/picolibc/fopencookie.c.obj
+[350/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/picolibc/open_memstream.c.obj
+[351/1135] Building C object esp-idf/esp_libc/CMakeFiles/__idf_esp_libc.dir/src/picolibc/getreent.c.obj
+[352/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/port_common.c.obj
+[353/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/heap_idf.c.obj
+[354/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/list.c.obj
+[355/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/app_startup.c.obj
+[356/1135] Building ASM object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/portasm.S.obj
+[357/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/port_systick.c.obj
+[358/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/xtensa_init.c.obj
+[359/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/timers.c.obj
+[360/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/event_groups.c.obj
+[361/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/xtensa_overlay_os_hook.c.obj
+[362/1135] Building C object esp-idf/esp_driver_uart/CMakeFiles/__idf_esp_driver_uart.dir/src/uart.c.obj
+[363/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/port.c.obj
+[364/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/esp_additions/idf_additions_event_groups.c.obj
+[365/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/cpu_region_protect.c.obj
+[366/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/stream_buffer.c.obj
+[367/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/esp_cpu_intr.c.obj
+[368/1135] Linking C static library esp-idf/esp_driver_uart/libesp_driver_uart.a
+[369/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu.c.obj
+[370/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_memory_utils.c.obj
+[371/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/queue.c.obj
+[372/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/esp_additions/idf_additions.c.obj
+[373/1135] Building CXX object esp-idf/cxx/CMakeFiles/__idf_cxx.dir/cxx_guards.cpp.obj
+[374/1135] Linking C static library esp-idf/esp_psram/libesp_psram.a
+[375/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_clk.c.obj
+[376/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/revision.c.obj
+[377/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/clk_ctrl_os.c.obj
+[378/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/hw_random.c.obj
+[379/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mac_addr.c.obj
+[380/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_gpio_reserve.c.obj
+[381/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/regi2c_ctrl.c.obj
+[382/1135] Linking C static library esp-idf/esp_ringbuf/libesp_ringbuf.a
+[383/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/rtc_module.c.obj
+[384/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/periph_ctrl.c.obj
+[385/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sar_periph_ctrl_common.c.obj
+[386/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/intr_alloc.c.obj
+[387/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/esp_clk_tree.c.obj
+[388/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sar_tsens_ctrl.c.obj
+[389/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/io_mux.c.obj
+[390/1135] Linking C static library esp-idf/esp_timer/libesp_timer.a
+[391/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/heap_align_hw.c.obj
+[392/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp_clk_tree_common.c.obj
+[393/1135] Linking C static library esp-idf/cxx/libcxx.a
+[394/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/clk_utils.c.obj
+[395/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_modem.c.obj
+[396/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_mspi.c.obj
+[397/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_uart.c.obj
+[398/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/spi_share_hw_ctrl.c.obj
+[399/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_console.c.obj
+[400/1135] Building C object esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/tasks.c.obj
+[401/1135] Linking C static library esp-idf/pthread/libpthread.a
+[402/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_usb.c.obj
+[403/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/adc_share_hw_ctrl.c.obj
+[404/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/systimer.c.obj
+[405/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/spi_bus_lock.c.obj
+[406/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_event.c.obj
+[407/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mspi/mspi_intr/mspi_intr.c.obj
+[408/1135] Linking C static library esp-idf/esp_libc/libesp_libc.a
+[409/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mspi/mspi_timing_tuning/mspi_timing_tuning.c.obj
+[410/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/usb_phy/usb_phy.c.obj
+[411/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_clk_init.c.obj
+[412/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_gpio.c.obj
+[413/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_wake_stub.c.obj
+[414/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/chip_info.c.obj
+[415/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_clock_output.c.obj
+[416/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp_memprot_conv.c.obj
+[417/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_time.c.obj
+[418/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/power_supply/brownout.c.obj
+[419/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_sleep.c.obj
+[420/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mspi/mspi_timing_tuning/port/esp32s3/mspi_timing_config.c.obj
+[421/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_clk.c.obj
+[422/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_init.c.obj
+[423/1135] Building C object esp-idf/esp_hal_touch_sens/CMakeFiles/__idf_esp_hal_touch_sens.dir/esp32s3/touch_sensor_periph.c.obj
+[424/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/sar_periph_ctrl.c.obj
+[425/1135] Linking C static library esp-idf/freertos/libfreertos.a
+[426/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/mspi/mspi_timing_tuning/port/esp32s3/mspi_timing_by_mspi_delay.c.obj
+[427/1135] Building C object esp-idf/esp_hal_touch_sens/CMakeFiles/__idf_esp_hal_touch_sens.dir/touch_sensor_legacy_hal.c.obj
+[428/1135] Building C object esp-idf/esp_hal_touch_sens/CMakeFiles/__idf_esp_hal_touch_sens.dir/touch_sens_hal.c.obj
+[429/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/lowpower/port/esp32s3/sleep_cpu.c.obj
+[430/1135] Building C object esp-idf/esp_hal_touch_sens/CMakeFiles/__idf_esp_hal_touch_sens.dir/esp32s3/touch_sensor_legacy_hal.c.obj
+[431/1135] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/esp32s3/usb_dwc_periph.c.obj
+[432/1135] Building C object esp-idf/esp_hal_pmu/CMakeFiles/__idf_esp_hal_pmu.dir/esp32s3/rtc_cntl_hal.c.obj
+[433/1135] Building C object esp-idf/esp_hal_pmu/CMakeFiles/__idf_esp_hal_pmu.dir/brownout_hal.c.obj
+[434/1135] Building C object esp-idf/esp_hal_systimer/CMakeFiles/__idf_esp_hal_systimer.dir/systimer_hal.c.obj
+[435/1135] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/usb_wrap_hal.c.obj
+[436/1135] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32s3/dedic_gpio_periph.c.obj
+[437/1135] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/usb_serial_jtag_hal.c.obj
+[438/1135] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32s3/rtc_io_periph.c.obj
+[439/1135] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/sdm_hal.c.obj
+[440/1135] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32s3/sdm_periph.c.obj
+[441/1135] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/gpio_hal.c.obj
+[442/1135] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/rtc_io_hal.c.obj
+[443/1135] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/lldesc.c.obj
+[444/1135] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/interrupts.c.obj
+[445/1135] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/dport_access_common.c.obj
+[446/1135] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/mpi_periph.c.obj
+[447/1135] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/power_supply_periph.c.obj
+[448/1135] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/gpio_periph.c.obj
+[449/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/port/esp32s3/memory_layout.c.obj
+[450/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/log_timestamp.c.obj
+[451/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps_base.c.obj
+[452/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/port/memory_layout_utils.c.obj
+[453/1135] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/usb_dwc_hal.c.obj
+[454/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps_init.c.obj
+[455/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_timestamp_common.c.obj
+[456/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/util.c.obj
+[457/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_print.c.obj
+[458/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_format_text.c.obj
+[459/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/buffer/log_buffers.c.obj
+[460/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/log_lock.c.obj
+[461/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/multi_heap.c.obj
+[462/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/util.c.obj
+[463/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log.c.obj
+[464/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/log_level.c.obj
+[465/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/os/log_write.c.obj
+[466/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/tag_log_level/tag_log_level.c.obj
+[467/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/tag_log_level/linked_list/log_linked_list.c.obj
+[468/1135] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/hal_utils.c.obj
+[469/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps.c.obj
+[470/1135] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_level/tag_log_level/cache/log_binary_heap.c.obj
+[471/1135] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj
+[472/1135] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/color_hal.c.obj
+[473/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj
+[474/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj
+[475/1135] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32s3/efuse_hal.c.obj
+[476/1135] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mmu_hal.c.obj
+[477/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_serial_output.c.obj
+[478/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_spiflash.c.obj
+[479/1135] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/cache_hal.c.obj
+[480/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_gpio.c.obj
+[481/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_print.c.obj
+[482/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj
+[483/1135] Building ASM object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_longjmp.S.obj
+[484/1135] Building ASM object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_cache_writeback_esp32s3.S.obj
+[485/1135] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_cache_esp32s2_esp32s3.c.obj
+[486/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/sleep_modes.c.obj
+[487/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj
+[488/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_system.c.obj
+[489/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_ipc.c.obj
+[490/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/crosscore_int.c.obj
+[491/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/startup.c.obj
+[492/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/freertos_hooks.c.obj
+[493/1135] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/esp_memprot.c.obj
+[494/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/int_wdt.c.obj
+[495/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/stack_check.c.obj
+[496/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/system_time.c.obj
+[497/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/panic.c.obj
+[498/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/ubsan.c.obj
+[499/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/xt_wdt.c.obj
+[500/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/startup_funcs.c.obj
+[501/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/esp_system_chip.c.obj
+[502/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr_port.c.obj
+[503/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/task_wdt/task_wdt_impl_timergroup.c.obj
+[504/1135] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr_handler.S.obj
+[505/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/panic_handler.c.obj
+[506/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/image_process.c.obj
+[507/1135] Linking C static library esp-idf/esp_hw_support/libesp_hw_support.a
+[508/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/esp_ipc_isr.c.obj
+[509/1135] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr_routines.S.obj
+[510/1135] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/panic_handler_asm.S.obj
+[511/1135] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/expression_with_stack_asm.S.obj
+[512/1135] Building C object esp-idf/heap/CMakeFiles/__idf_heap.dir/tlsf/tlsf.c.obj
+[513/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/task_wdt/task_wdt.c.obj
+[514/1135] Linking C static library esp-idf/esp_hal_touch_sens/libesp_hal_touch_sens.a
+[515/1135] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/debug_helpers_asm.S.obj
+[516/1135] Building ASM object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/highint_hdl.S.obj
+[517/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/debug_stubs.c.obj
+[518/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/panic_arch.c.obj
+[519/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/expression_with_stack.c.obj
+[520/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/trax.c.obj
+[521/1135] Linking C static library esp-idf/esp_hal_systimer/libesp_hal_systimer.a
+[522/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/reset_reason.c.obj
+[523/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/debug_helpers.c.obj
+[524/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/cpu_start.c.obj
+[525/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_brownout_hook.c.obj
+[526/1135] Linking C static library esp-idf/esp_hal_pmu/libesp_hal_pmu.a
+[527/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/cache_err_int.c.obj
+[528/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/apb_backup_dma.c.obj
+[529/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_hpm_enable.c.obj
+[530/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_drivers.c.obj
+[531/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_issi.c.obj
+[532/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/esp32s3/spi_flash_oct_flash_init.c.obj
+[533/1135] Linking C static library esp-idf/esp_hal_usb/libesp_hal_usb.a
+[534/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/system_internal.c.obj
+[535/1135] Building C object esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj
+[536/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_mxic.c.obj
+[537/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_gd.c.obj
+[538/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_boya.c.obj
+[539/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_th.c.obj
+[540/1135] Linking C static library esp-idf/esp_hal_gpio/libesp_hal_gpio.a
+[541/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_blockdev.c.obj
+[542/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_winbond.c.obj
+[543/1135] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/clk.c.obj
+[544/1135] Linking C static library esp-idf/soc/libsoc.a
+[545/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_wrap.c.obj
+[546/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_mxic_opi.c.obj
+[547/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/memspi_host_driver.c.obj
+[548/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_mmap.c.obj
+[549/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_os_func_noos.c.obj
+[550/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_ops.c.obj
+[551/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/cache_utils.c.obj
+[552/1135] Linking C static library esp-idf/heap/libheap.a
+[553/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_generic.c.obj
+[554/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj
+[555/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj
+[556/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj
+[557/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj
+[558/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_os_func_app.c.obj
+[559/1135] Linking C static library esp-idf/log/liblog.a
+[560/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj
+[561/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj
+[562/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj
+[563/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/esp_flash_spi_init.c.obj
+[564/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj
+[565/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32s3.c.obj
+[566/1135] Linking C static library esp-idf/hal/libhal.a
+[567/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj
+[568/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj
+[569/1135] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/esp32s3/adc_periph.c.obj
+[570/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32s3.c.obj
+[571/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32s3/secure_boot_secure_features.c.obj
+[572/1135] Linking C static library esp-idf/esp_rom/libesp_rom.a
+[573/1135] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/esp32s3/mwdt_periph.c.obj
+[574/1135] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/esp32s3/temperature_sensor_periph.c.obj
+[575/1135] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/temperature_sensor_hal.c.obj
+[576/1135] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_oneshot_hal.c.obj
+[577/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj
+[578/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_sha.c.obj
+[579/1135] Linking C static library esp-idf/esp_common/libesp_common.a
+[580/1135] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_hal_common.c.obj
+[581/1135] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/rom_patch.c.obj
+[582/1135] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/xt_wdt_hal.c.obj
+[583/1135] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_hal.c.obj
+[584/1135] Building C object esp-idf/esp_hal_timg/CMakeFiles/__idf_esp_hal_timg.dir/esp32s3/timer_periph.c.obj
+[585/1135] Building C object esp-idf/esp_hal_timg/CMakeFiles/__idf_esp_hal_timg.dir/timer_hal.c.obj
+[586/1135] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/esp_flash_api.c.obj
+[587/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/psa_its_file.c.obj
+[588/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/psa_crypto_client.c.obj
+[589/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/tf_psa_crypto_version.c.obj
+[590/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/psa_crypto_driver_wrappers_no_static.c.obj
+[591/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj
+[592/1135] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj
+[593/1135] Linking C static library esp-idf/esp_system/libesp_system.a
+[594/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/tf_psa_crypto_config.c.obj
+[595/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/sha/core/esp_sha_gdma_impl.c.obj
+[596/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/aes/dma/esp_aes_gdma_impl.c.obj
+[597/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/esp_mem.c.obj
+[598/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/psa_crypto_storage.c.obj
+[599/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/esp_hardware.c.obj
+[600/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/aes/esp_aes_xts.c.obj
+[601/1135] Linking C static library esp-idf/spi_flash/libspi_flash.a
+[602/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_crypto_storage/esp_psa_its.c.obj
+[603/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/crypto_shared_gdma/esp_crypto_shared_gdma.c.obj
+[604/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/aes/esp_aes_common.c.obj
+[605/1135] Linking C static library esp-idf/bootloader_support/libbootloader_support.a
+[606/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_sha/core/psa_crypto_driver_esp_sha256.c.obj
+[607/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/sha/esp_sha.c.obj
+[608/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_sha/core/psa_crypto_driver_esp_sha512.c.obj
+[609/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_sha/psa_crypto_driver_esp_sha.c.obj
+[610/1135] Linking C static library esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
+[611/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/psa_crypto_slot_management.c.obj
+[612/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/aes/dma/esp_aes_dma_core.c.obj
+[613/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/aes/esp_aes.c.obj
+[614/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_sha/core/psa_crypto_driver_esp_sha1.c.obj
+[615/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_mac/psa_crypto_driver_esp_hmac_transparent.c.obj
+[616/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_md/psa_crypto_driver_esp_md5.c.obj
+[617/1135] Linking C static library esp-idf/esp_hal_wdt/libesp_hal_wdt.a
+[618/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/aes/esp_aes_gcm.c.obj
+[619/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/bignum/bignum_alt.c.obj
+[620/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_mac/psa_crypto_driver_esp_hmac_opaque.c.obj
+[621/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/esp_hmac_pbkdf2.c.obj
+[622/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_rsa_ds/psa_crypto_driver_esp_rsa_ds_utilities.c.obj
+[623/1135] Linking C static library esp-idf/esp_hal_timg/libesp_hal_timg.a
+[624/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_aes/psa_crypto_driver_esp_aes_gcm.c.obj
+[625/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/sha/core/sha.c.obj
+[626/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_mac/psa_crypto_driver_esp_cmac.c.obj
+[627/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/debug.c.obj
+[628/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_reader.c.obj
+[629/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/bignum/esp_bignum.c.obj
+[630/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_trace.c.obj
+[631/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ciphersuites.c.obj
+[632/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_cookie.c.obj
+[633/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_cache.c.obj
+[634/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_debug_helpers_generated.c.obj
+[635/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_rsa_ds/psa_crypto_driver_esp_rsa_ds.c.obj
+[636/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/Users/tn/esp/esp-idf/components/mbedtls/port/psa_driver/esp_aes/psa_crypto_driver_esp_aes.c.obj
+[637/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ticket.c.obj
+[638/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_keys.c.obj
+[639/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_client.c.obj
+[640/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_server.c.obj
+[641/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_client.c.obj
+[642/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_generic.c.obj
+[643/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/timing.c.obj
+[644/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/Users/tn/esp/esp-idf/components/mbedtls/port/esp_platform_time.c.obj
+[645/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/version_features.c.obj
+[646/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/version.c.obj
+[647/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/Users/tn/esp/esp-idf/components/mbedtls/port/esp_timing.c.obj
+[648/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/Users/tn/esp/esp-idf/components/mbedtls/port/mbedtls_debug.c.obj
+[649/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/Users/tn/esp/esp-idf/components/mbedtls/port/esp_psa_crypto_init.c.obj
+[650/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/mbedtls_config.c.obj
+[651/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_create.c.obj
+[652/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/error.c.obj
+[653/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/Users/tn/esp/esp-idf/components/mbedtls/port/net_sockets.c.obj
+[654/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_client.c.obj
+[655/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/pkcs7.c.obj
+[656/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crl.c.obj
+[657/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_crt.c.obj
+[658/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_csr.c.obj
+[659/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write.c.obj
+[660/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_csr.c.obj
+[661/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_oid.c.obj
+[662/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/aesce.c.obj
+[663/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/aesni.c.obj
+[664/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/aria.c.obj
+[665/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_server.c.obj
+[666/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/asn1write.c.obj
+[667/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_msg.c.obj
+[668/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/bignum_mod.c.obj
+[669/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/asn1parse.c.obj
+[670/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/base64.c.obj
+[671/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/bignum_mod_raw.c.obj
+[672/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/block_cipher.c.obj
+[673/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/camellia.c.obj
+[674/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/chacha20.c.obj
+[675/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/chachapoly.c.obj
+[676/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509.c.obj
+[677/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/bignum_core.c.obj
+[678/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ccm.c.obj
+[679/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/cipher_wrap.c.obj
+[680/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/constant_time.c.obj
+[681/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/aes.c.obj
+[682/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/cipher.c.obj
+[683/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ecdh.c.obj
+[684/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/cmac.c.obj
+[685/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crt.c.obj
+[686/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ctr_drbg.c.obj
+[687/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ecp_curves_new.c.obj
+[688/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ecdsa.c.obj
+[689/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/entropy.c.obj
+[690/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/entropy_poll.c.obj
+[691/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/lms.c.obj
+[692/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ecjpake.c.obj
+[693/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/lmots.c.obj
+[694/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/md5.c.obj
+[695/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/hmac_drbg.c.obj
+[696/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/memory_buffer_alloc.c.obj
+[697/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/nist_kw.c.obj
+[698/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/md.c.obj
+[699/1135] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls.c.obj
+[700/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/oid.c.obj
+[701/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ecp_curves.c.obj
+[702/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pem.c.obj
+[703/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pk_rsa.c.obj
+[704/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/gcm.c.obj
+[705/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pk_ecc.c.obj
+[706/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/poly1305.c.obj
+[707/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/platform.c.obj
+[708/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/platform_util.c.obj
+[709/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pkcs5.c.obj
+[710/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/bignum.c.obj
+[711/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pk_wrap.c.obj
+[712/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_aead.c.obj
+[713/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pkwrite.c.obj
+[714/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_hash.c.obj
+[715/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_ffdh.c.obj
+[716/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_mac.c.obj
+[717/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_ecp.c.obj
+[718/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_cipher.c.obj
+[719/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ripemd160.c.obj
+[720/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_pake.c.obj
+[721/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/sha1.c.obj
+[722/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/sha3.c.obj
+[723/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pkparse.c.obj
+[724/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_util.c.obj
+[725/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/sha512.c.obj
+[726/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/rsa_alt_helpers.c.obj
+[727/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/p256-m/CMakeFiles/p256m.dir/p256-m_driver_entrypoints.c.obj
+[728/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/pk.c.obj
+[729/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/p256-m/CMakeFiles/p256m.dir/p256-m/p256-m.c.obj
+[730/1135] Creating directories for 'bootloader'
+[731/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/CMakeFiles/everest.dir/library/x25519.c.obj
+[732/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/threading.c.obj
+[733/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/CMakeFiles/everest.dir/library/everest.c.obj
+[734/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/psa_crypto_rsa.c.obj
+[735/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/CMakeFiles/everest.dir/library/Hacl_Curve25519_joined.c.obj
+[736/1135] No download step for 'bootloader'
+[737/1135] No update step for 'bootloader'
+[738/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/ecp.c.obj
+[739/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/sha256.c.obj
+[740/1135] No patch step for 'bootloader'
+[741/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/CMakeFiles/builtin.dir/src/rsa.c.obj
+[742/1135] Building C object esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/CMakeFiles/tfpsacrypto.dir/psa_crypto.c.obj
+[743/1135] Linking CXX static library esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/libtfpsacrypto.a
+[744/1135] Linking CXX static library esp-idf/mbedtls/mbedtls/library/libmbedtls.a
+[745/1135] Linking CXX static library esp-idf/mbedtls/mbedtls/library/libmbedx509.a
+[746/1135] Linking CXX static library esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/libmbed-builtin.a
+[747/1135] Linking CXX static library esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/p256-m/libp256m.a
+[748/1135] Linking CXX static library esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/libeverest.a
+[749/1135] Generating x509_crt_bundle
+[750/1135] Generating ../../x509_crt_bundle.S
+[751/1135] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/port/esp32s3/ext_mem_layout.c.obj
+[752/1135] Building ASM object esp-idf/mbedtls/CMakeFiles/__idf_mbedtls.dir/__/__/x509_crt_bundle.S.obj
+[753/1135] Building C object esp-idf/esp_driver_dma/CMakeFiles/__idf_esp_driver_dma.dir/src/esp_async_memcpy.c.obj
+[754/1135] Building C object esp-idf/esp_driver_dma/CMakeFiles/__idf_esp_driver_dma.dir/src/esp_dma_utils.c.obj
+[755/1135] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/esp_cache_utils.c.obj
+[756/1135] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/esp_cache_msync.c.obj
+[757/1135] Building C object esp-idf/esp_pm/CMakeFiles/__idf_esp_pm.dir/pm_locks.c.obj
+[758/1135] Building C object esp-idf/esp_pm/CMakeFiles/__idf_esp_pm.dir/pm_trace.c.obj
+[759/1135] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/esp32s3/uart_periph.c.obj
+[760/1135] Building C object esp-idf/esp_driver_dma/CMakeFiles/__idf_esp_driver_dma.dir/src/gdma_link.c.obj
+[761/1135] Building C object esp-idf/esp_driver_dma/CMakeFiles/__idf_esp_driver_dma.dir/src/async_memcpy_gdma.c.obj
+[762/1135] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uhci_hal.c.obj
+[763/1135] Building C object esp-idf/esp_pm/CMakeFiles/__idf_esp_pm.dir/pm_impl.c.obj
+[764/1135] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uart_hal_iram.c.obj
+[765/1135] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uart_hal.c.obj
+[766/1135] Building C object esp-idf/esp_mm/CMakeFiles/__idf_esp_mm.dir/esp_mmu_map.c.obj
+[767/1135] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/gpio_glitch_filter_ops.c.obj
+[768/1135] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/init.c.obj
+[769/1135] Building C object esp-idf/mbedtls/CMakeFiles/__idf_mbedtls.dir/esp_crt_bundle/esp_crt_bundle.c.obj
+[770/1135] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_lock.c.obj
+[771/1135] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_hmac.c.obj
+[772/1135] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/gpio_pin_glitch_filter.c.obj
+[773/1135] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_ds.c.obj
+[774/1135] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_periph_clk.c.obj
+[775/1135] Linking C static library esp-idf/mbedtls/libmbedtls.a
+[776/1135] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/dedic_gpio.c.obj
+[777/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_table.c.obj
+[778/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_fields.c.obj
+[779/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_rtc_calib.c.obj
+[780/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_utility.c.obj
+[781/1135] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/rtc_io.c.obj
+[782/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj
+[783/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_startup.c.obj
+[784/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c.obj
+[785/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj
+[786/1135] Building C object esp-idf/esp_bootloader_format/CMakeFiles/__idf_esp_bootloader_format.dir/esp_bootloader_desc.c.obj
+[787/1135] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj
+[788/1135] Building C object esp-idf/esp_driver_dma/CMakeFiles/__idf_esp_driver_dma.dir/src/gdma.c.obj
+[789/1135] Building C object esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj
+[790/1135] Building C object esp-idf/esp_partition/CMakeFiles/__idf_esp_partition.dir/partition_target.c.obj
+[791/1135] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/mpi_hal.c.obj
+[792/1135] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/sha_hal.c.obj
+[793/1135] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/ds_hal.c.obj
+[794/1135] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/aes_hal.c.obj
+[795/1135] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/hmac_hal.c.obj
+[796/1135] Linking C static library esp-idf/esp_driver_dma/libesp_driver_dma.a
+[797/1135] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/mpu_hal.c.obj
+[798/1135] Building C object esp-idf/esp_partition/CMakeFiles/__idf_esp_partition.dir/partition.c.obj
+[799/1135] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/spi_flash_encrypt_hal_iram.c.obj
+[800/1135] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/esp32s3/mspi_periph.c.obj
+[801/1135] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/esp32s3/spi_periph.c.obj
+[802/1135] Building C object esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_ota_ops.c.obj
+[803/1135] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/spi_flash_hal.c.obj
+[804/1135] Linking C static library esp-idf/esp_mm/libesp_mm.a
+[805/1135] Building C object esp-idf/esp_hal_clock/CMakeFiles/__idf_esp_hal_clock.dir/esp32s3/clk_tree_hal.c.obj
+[806/1135] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/spi_flash_hal_gpspi.c.obj
+[807/1135] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_hal.c.obj
+[808/1135] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/spi_flash_hal_iram.c.obj
+[809/1135] Building C object esp-idf/esp_hal_dma/CMakeFiles/__idf_esp_hal_dma.dir/gdma_hal_top.c.obj
+[810/1135] Linking C static library esp-idf/esp_pm/libesp_pm.a
+[811/1135] Building C object esp-idf/esp_hal_dma/CMakeFiles/__idf_esp_hal_dma.dir/esp32s3/gdma_periph.c.obj
+[812/1135] Building C object esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir/src/gpio.c.obj
+[813/1135] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hal.c.obj
+[814/1135] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hal_iram.c.obj
+[815/1135] Building C object esp-idf/esp_stdio/CMakeFiles/__idf_esp_stdio.dir/stdio_simple.c.obj
+[816/1135] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hd_hal.c.obj
+[817/1135] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/eri.c.obj
+[818/1135] Building ASM object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_intr_asm.S.obj
+[819/1135] Linking C static library esp-idf/esp_hal_uart/libesp_hal_uart.a
+[820/1135] Building ASM object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_context.S.obj
+[821/1135] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xt_trax.c.obj
+[822/1135] Building ASM object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_vectors.S.obj
+[823/1135] Building C object esp-idf/esp_stdio/CMakeFiles/__idf_esp_stdio.dir/stdio_syscalls_simple.c.obj
+[824/1135] Building C object esp-idf/esp_hal_sd/CMakeFiles/__idf_esp_hal_sd.dir/esp32s3/sdmmc_periph.c.obj
+[825/1135] Building C object esp-idf/esp_hal_sd/CMakeFiles/__idf_esp_hal_sd.dir/sdmmc_hal.c.obj
+[826/1135] Building C object esp-idf/esp_stdio/CMakeFiles/__idf_esp_stdio.dir/stdio_vfs.c.obj
+[827/1135] Building C object esp-idf/esp_hal_dma/CMakeFiles/__idf_esp_hal_dma.dir/gdma_hal_ahb_v1.c.obj
+[828/1135] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xtensa_intr.c.obj
+[829/1135] Linking C static library esp-idf/esp_driver_gpio/libesp_driver_gpio.a
+[830/1135] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_hal_iram.c.obj
+[831/1135] Linking C static library esp-idf/esp_security/libesp_security.a
+[832/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sd_pwr_ctrl/sd_pwr_ctrl.c.obj
+[833/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_init.c.obj
+[834/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_blockdev.c.obj
+[835/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_mmc.c.obj
+[836/1135] Linking C static library esp-idf/efuse/libefuse.a
+[837/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_common.c.obj
+[838/1135] Linking C static library esp-idf/esp_partition/libesp_partition.a
+[839/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_io.c.obj
+[840/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/esp_console_common.c.obj
+[841/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/split_argv.c.obj
+[842/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/commands.c.obj
+[843/1135] Linking C static library esp-idf/app_update/libapp_update.a
+[844/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_cmd.c.obj
+[845/1135] Building C object esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_sd.c.obj
+[846/1135] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_slave.c.obj
+[847/1135] Linking C static library esp-idf/esp_bootloader_format/libesp_bootloader_format.a
+[848/1135] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_slave_hd.c.obj
+[849/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_cmd.c.obj
+[850/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/esp_console_repl_internal.c.obj
+[851/1135] Linking C static library esp-idf/esp_app_format/libesp_app_format.a
+[852/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_dbl.c.obj
+[853/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/esp_console_repl_chip.c.obj
+[854/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_dstr.c.obj
+[855/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_end.c.obj
+[856/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_date.c.obj
+[857/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_file.c.obj
+[858/1135] Linking C static library esp-idf/esp_hal_security/libesp_hal_security.a
+[859/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_rem.c.obj
+[860/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_int.c.obj
+[861/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_lit.c.obj
+[862/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_hashtable.c.obj
+[863/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_str.c.obj
+[864/1135] Linking C static library esp-idf/esp_hal_mspi/libesp_hal_mspi.a
+[865/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/linenoise/linenoise.c.obj
+[866/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_utils.c.obj
+[867/1135] Building C object esp-idf/esp_driver_sd_intf/CMakeFiles/__idf_esp_driver_sd_intf.dir/sd_host.c.obj
+[868/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_compat.c.obj
+[869/1135] Linking C static library esp-idf/esp_hal_clock/libesp_hal_clock.a
+[870/1135] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_common.c.obj
+[871/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/argtable3.c.obj
+[872/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_freertos.c.obj
+[873/1135] Building C object esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_rex.c.obj
+[874/1135] Linking C static library esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
+[875/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_memory.c.obj
+[876/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_runner.c.obj
+[877/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_cache.c.obj
+[878/1135] Building C object esp-idf/esp_driver_spi/CMakeFiles/__idf_esp_driver_spi.dir/src/gpspi/spi_master.c.obj
+[879/1135] Linking C static library esp-idf/esp_hal_dma/libesp_hal_dma.a
+[880/1135] Building C object esp-idf/esp_hal_twai/CMakeFiles/__idf_esp_hal_twai.dir/esp32s3/twai_periph.c.obj
+[881/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_port_esp32.c.obj
+[882/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/port/esp/unity_utils_memory_esp.c.obj
+[883/1135] Building C object esp-idf/esp_hal_cam/CMakeFiles/__idf_esp_hal_cam.dir/esp32s3/cam_periph.c.obj
+[884/1135] Building C object esp-idf/esp_hal_cam/CMakeFiles/__idf_esp_hal_cam.dir/cam_hal.c.obj
+[885/1135] Linking C static library esp-idf/esp_stdio/libesp_stdio.a
+[886/1135] Building C object esp-idf/esp_hal_ledc/CMakeFiles/__idf_esp_hal_ledc.dir/esp32s3/ledc_periph.c.obj
+[887/1135] Building C object esp-idf/esp_hal_ledc/CMakeFiles/__idf_esp_hal_ledc.dir/ledc_hal_iram.c.obj
+[888/1135] Building C object esp-idf/esp_hal_ledc/CMakeFiles/__idf_esp_hal_ledc.dir/ledc_hal.c.obj
+[889/1135] Building C object esp-idf/esp_hal_mcpwm/CMakeFiles/__idf_esp_hal_mcpwm.dir/mcpwm_hal.c.obj
+[890/1135] Linking C static library esp-idf/xtensa/libxtensa.a
+[891/1135] Building C object esp-idf/esp_hal_mcpwm/CMakeFiles/__idf_esp_hal_mcpwm.dir/esp32s3/mcpwm_periph.c.obj
+[892/1135] Building C object esp-idf/esp_driver_i2c/CMakeFiles/__idf_esp_driver_i2c.dir/i2c_common.c.obj
+[893/1135] Building C object esp-idf/esp_hal_twai/CMakeFiles/__idf_esp_hal_twai.dir/twai_hal_v1.c.obj
+[894/1135] Building C object esp-idf/esp_hal_pcnt/CMakeFiles/__idf_esp_hal_pcnt.dir/pcnt_hal.c.obj
+[895/1135] Building C object esp-idf/esp_hal_pcnt/CMakeFiles/__idf_esp_hal_pcnt.dir/esp32s3/pcnt_periph.c.obj
+[896/1135] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity/src/unity.c.obj
+[897/1135] Building C object esp-idf/esp_driver_i2c/CMakeFiles/__idf_esp_driver_i2c.dir/i2c_slave.c.obj
+[898/1135] Linking C static library esp-idf/esp_hal_sd/libesp_hal_sd.a
+[899/1135] Building C object esp-idf/esp_hal_rmt/CMakeFiles/__idf_esp_hal_rmt.dir/rmt_hal.c.obj
+[900/1135] Linking C static library esp-idf/esp_driver_spi/libesp_driver_spi.a
+[901/1135] Building C object esp-idf/esp_hal_rmt/CMakeFiles/__idf_esp_hal_rmt.dir/esp32s3/rmt_periph.c.obj
+[902/1135] Linking C static library esp-idf/console/libconsole.a
+[903/1135] Linking C static library esp-idf/sdmmc/libsdmmc.a
+[904/1135] Building C object esp-idf/esp_driver_sdmmc/CMakeFiles/__idf_esp_driver_sdmmc.dir/legacy/src/sdmmc_transaction.c.obj
+[905/1135] Building C object esp-idf/esp_driver_sdspi/CMakeFiles/__idf_esp_driver_sdspi.dir/src/sdspi_crc.c.obj
+[906/1135] Linking C static library esp-idf/esp_driver_sd_intf/libesp_driver_sd_intf.a
+[907/1135] Building C object esp-idf/esp_driver_sdmmc/CMakeFiles/__idf_esp_driver_sdmmc.dir/legacy/src/sdmmc_host.c.obj
+[908/1135] Building C object esp-idf/protobuf-c/CMakeFiles/__idf_protobuf-c.dir/protobuf-c/protobuf-c/protobuf-c.c.obj
+[909/1135] Building C object esp-idf/esp_hal_lcd/CMakeFiles/__idf_esp_hal_lcd.dir/lcd_hal.c.obj
+[910/1135] Building C object esp-idf/esp_hal_lcd/CMakeFiles/__idf_esp_hal_lcd.dir/esp32s3/lcd_periph.c.obj
+[911/1135] Building C object esp-idf/esp_driver_sdspi/CMakeFiles/__idf_esp_driver_sdspi.dir/src/sdspi_transaction.c.obj
+[912/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/constants.pb-c.c.obj
+[913/1135] Linking C static library esp-idf/protobuf-c/libprotobuf-c.a
+[914/1135] Building C object esp-idf/esp_driver_sdmmc/CMakeFiles/__idf_esp_driver_sdmmc.dir/src/sd_trans_sdmmc.c.obj
+[915/1135] Building C object esp-idf/esp_driver_i2c/CMakeFiles/__idf_esp_driver_i2c.dir/i2c_master.c.obj
+[916/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/sec1.pb-c.c.obj
+[917/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/sec0.pb-c.c.obj
+[918/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/session.pb-c.c.obj
+[919/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/sec2.pb-c.c.obj
+[920/1135] Building C object esp-idf/esp_https_server/CMakeFiles/__idf_esp_https_server.dir/src/https_server.c.obj
+[921/1135] Building C object esp-idf/esp_driver_sdspi/CMakeFiles/__idf_esp_driver_sdspi.dir/src/sdspi_host.c.obj
+[922/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/common/protocomm.c.obj
+[923/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/transports/protocomm_console.c.obj
+[924/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/crypto/srp6a/esp_srp_mpi.c.obj
+[925/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/Partition.cpp.obj
+[926/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/crc32.cpp.obj
+[927/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/WL_Ext_Perf.cpp.obj
+[928/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/SPI_Flash.cpp.obj
+[929/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/WL_Ext_Safe.cpp.obj
+[930/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/transports/protocomm_httpd.c.obj
+[931/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/Hal.cpp.obj
+[932/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/wear_levelling.cpp.obj
+[933/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LLCC68/LLCC68.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LLCC68/../SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LLCC68/../SX126x/SX1262.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LLCC68/LLCC68.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LLCC68/LLCC68.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LLCC68/../SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LLCC68/../SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[934/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR1121.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR1121.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR1121.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[935/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR1110.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR1110.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR1110.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[936/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR1120.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR1120.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR1120.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[937/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/Module.cpp.obj
+[938/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/crypto/srp6a/esp_srp.c.obj
+[939/1135] Building CXX object esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/WL_Flash.cpp.obj
+[940/1135] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/security/security2.c.obj
+[941/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR11x0_crypto.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0_crypto.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[942/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/CC1101/CC1101.cpp.obj
+[943/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR_common.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR_common.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[944/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR11x0_wifi.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0_wifi.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[945/1135] Building C object esp-idf/esp_driver_sdmmc/CMakeFiles/__idf_esp_driver_sdmmc.dir/src/sd_host_sdmmc.c.obj
+[946/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_flrc.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_flrc.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[947/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_chip_control.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_chip_control.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[948/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_misc.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_misc.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[949/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_gfsk.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_gfsk.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[950/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_oqpsk.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_oqpsk.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[951/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_lora.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_lora.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[952/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_ook.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_ook.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[953/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR11x0_commands.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0_commands.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[954/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_ranging.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_ranging.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[955/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[956/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR11x0_gnss.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0_gnss.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[957/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_cmds_radio.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_cmds_radio.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[958/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/STM32WLx_Module.cpp.obj
+[959/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/STM32WLx.cpp.obj
+[960/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX123x/SX1233.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/RF69.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/SX1233.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/SX1233.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/../../protocols/PhysicalLayer/PhysicalLayer.h:515:21: warning: 'virtual int16_t PhysicalLayer::setSyncWord(uint8_t*, size_t)' was hidden [-Woverloaded-virtual=]
+  515 |     virtual int16_t setSyncWord(uint8_t* sync, size_t len);
+      |                     ^~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/RF69.h:800:13: note:   by 'int16_t RF69::setSyncWord(const uint8_t*, size_t, uint8_t)'
+  800 |     int16_t setSyncWord(const uint8_t* syncWord, size_t len, uint8_t maxErrBits = 0);
+      |             ^~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/RF69.h:792:13: note:   by 'int16_t RF69::setOutputPower(int8_t, bool)'
+  792 |     int16_t setOutputPower(int8_t pwr, bool highPower = false);
+      |             ^~~~~~~~~~~~~~
+[961/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX1261.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX1261.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX1261.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[962/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX123x/SX1231.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/RF69.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/SX1231.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/SX1231.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/../../protocols/PhysicalLayer/PhysicalLayer.h:515:21: warning: 'virtual int16_t PhysicalLayer::setSyncWord(uint8_t*, size_t)' was hidden [-Woverloaded-virtual=]
+  515 |     virtual int16_t setSyncWord(uint8_t* sync, size_t len);
+      |                     ^~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/RF69.h:800:13: note:   by 'int16_t RF69::setSyncWord(const uint8_t*, size_t, uint8_t)'
+  800 |     int16_t setSyncWord(const uint8_t* syncWord, size_t len, uint8_t maxErrBits = 0);
+      |             ^~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX123x/../RF69/RF69.h:792:13: note:   by 'int16_t RF69::setOutputPower(int8_t, bool)'
+  792 |     int16_t setOutputPower(int8_t pwr, bool highPower = false);
+      |             ^~~~~~~~~~~~~~
+[963/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX1268.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX1268.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX1268.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[964/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX1262.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX1262.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX1262.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[965/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX126x_commands.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x_commands.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[966/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX126x_LR_FHSS.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x_LR_FHSS.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[967/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX1273.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1272.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1273.h:8,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1273.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[968/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX1276.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1278.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1276.h:8,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1276.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[969/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX1277.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1278.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1277.h:8,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1277.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[970/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX1272.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1272.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1272.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[971/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX126x_config.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x_config.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[972/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX1279.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1278.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1279.h:8,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1279.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[973/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/RF69/RF69.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/RF69/RF69.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/RF69/RF69.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/RF69/../../protocols/PhysicalLayer/PhysicalLayer.h:515:21: warning: 'virtual int16_t PhysicalLayer::setSyncWord(uint8_t*, size_t)' was hidden [-Woverloaded-virtual=]
+  515 |     virtual int16_t setSyncWord(uint8_t* sync, size_t len);
+      |                     ^~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/RF69/RF69.h:800:13: note:   by 'int16_t RF69::setSyncWord(const uint8_t*, size_t, uint8_t)'
+  800 |     int16_t setSyncWord(const uint8_t* syncWord, size_t len, uint8_t maxErrBits = 0);
+      |             ^~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/RF69/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/RF69/RF69.h:792:13: note:   by 'int16_t RF69::setOutputPower(int8_t, bool)'
+  792 |     int16_t setOutputPower(int8_t pwr, bool highPower = false);
+      |             ^~~~~~~~~~~~~~
+[974/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX128x/SX1281.cpp.obj
+[975/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR11x0/LR11x0.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:5,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/../LR11x0/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR11x0/LR11x0.h:549:13: note:   by 'int16_t LR11x0::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)'
+  549 |     int16_t setOutputPower(int8_t power, uint8_t paSel, uint8_t regPaSupply, uint8_t paDutyCycle, uint8_t paHpSel, uint8_t rampTime);
+      |             ^~~~~~~~~~~~~~
+[976/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX128x/SX1280.cpp.obj
+[977/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/LR2021/LR2021_config.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021_config.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../../protocols/PhysicalLayer/PhysicalLayer.h:576:28: warning: 'virtual RadioLibTime_t PhysicalLayer::getTimeOnAir(size_t)' was hidden [-Woverloaded-virtual=]
+  576 |     virtual RadioLibTime_t getTimeOnAir(size_t len);
+      |                            ^~~~~~~~~~~~
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/LR2021.h:11:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/LR2021/../LR11x0/LR_common.h:193:20: note:   by 'RadioLibTime_t LRxxxx::getTimeOnAir(size_t, ModemType_t)'
+  193 |     RadioLibTime_t getTimeOnAir(size_t len, ModemType_t modem);
+      |                    ^~~~~~~~~~~~
+[978/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX128x/SX1282.cpp.obj
+[979/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/Si443x/Si4431.cpp.obj
+[980/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/Si443x/Si4432.cpp.obj
+[981/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/Si443x/Si4430.cpp.obj
+[982/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX1278.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1278.h:9,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX1278.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[983/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/AFSK/AFSK.cpp.obj
+[984/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/ADSB/ADSB.cpp.obj
+[985/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/BellModem/BellModem.cpp.obj
+[986/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/nRF24/nRF24.cpp.obj
+[987/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/ExternalRadio/ExternalRadio.cpp.obj
+[988/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/FSK4/FSK4.cpp.obj
+[989/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/APRS/APRS.cpp.obj
+[990/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/AX25/AX25.cpp.obj
+[991/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/Si443x/Si443x.cpp.obj
+[992/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/Hellschreiber/Hellschreiber.cpp.obj
+[993/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/LoRaWAN/LoRaWANBands.cpp.obj
+[994/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/Print/ITA2String.cpp.obj
+[995/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/RTTY/RTTY.cpp.obj
+[996/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/Morse/Morse.cpp.obj
+[997/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/Print/Print.cpp.obj
+[998/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX126x/SX126x.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/../../protocols/PhysicalLayer/PhysicalLayer.h:499:21: warning: 'virtual int16_t PhysicalLayer::setOutputPower(int8_t)' was hidden [-Woverloaded-virtual=]
+  499 |     virtual int16_t setOutputPower(int8_t power);
+      |                     ^~~~~~~~~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX126x/SX126x.h:824:13: note:   by 'int16_t SX126x::setOutputPower(int8_t, uint8_t, uint8_t, uint8_t)'
+  824 |     int16_t setOutputPower(int8_t power, uint8_t paDutyCycle, uint8_t hpMax, uint8_t deviceSel);
+      |             ^~~~~~~~~~~~~~
+[999/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/PhysicalLayer/PhysicalLayer.cpp.obj
+[1000/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/SSTV/SSTV.cpp.obj
+[1001/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/Pager/Pager.cpp.obj
+[1002/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/utils/CRC.cpp.obj
+[1003/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/utils/Utils.cpp.obj
+[1004/1135] Linking C static library esp-idf/unity/libunity.a
+[1005/1135] Linking C static library esp-idf/esp_hal_twai/libesp_hal_twai.a
+[1006/1135] Building C object esp-idf/cmock/CMakeFiles/__idf_cmock.dir/CMock/src/cmock.c.obj
+[1007/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX127x/SX127x.cpp.obj
+In file included from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:10,
+                 from /Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.cpp:1:
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/../../protocols/PhysicalLayer/PhysicalLayer.h:553:19: warning: 'virtual float PhysicalLayer::getRSSI()' was hidden [-Woverloaded-virtual=]
+  553 |     virtual float getRSSI();
+      |                   ^~~~~~~
+/Users/tn/batear/managed_components/jgromes__radiolib/src/modules/SX127x/SX127x.h:1282:11: note:   by 'float SX127x::getRSSI(bool, bool, int16_t)'
+ 1282 |     float getRSSI(bool packet, bool skipReceive, int16_t offset);
+      |           ^~~~~~~
+[1008/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/utils/FEC.cpp.obj
+[1009/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/utils/Cryptography.cpp.obj
+[1010/1135] Building C object esp-idf/esp_driver_gptimer/CMakeFiles/__idf_esp_driver_gptimer.dir/src/gptimer_common.c.obj
+[1011/1135] Linking C static library esp-idf/esp_hal_cam/libesp_hal_cam.a
+[1012/1135] Building C object esp-idf/esp_blockdev_util/CMakeFiles/__idf_esp_blockdev_util.dir/memory.c.obj
+[1013/1135] Building C object esp-idf/esp_driver_gptimer/CMakeFiles/__idf_esp_driver_gptimer.dir/src/gptimer.c.obj
+[1014/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/modules/SX128x/SX128x.cpp.obj
+[1015/1135] Building C object esp-idf/esp_blockdev_util/CMakeFiles/__idf_esp_blockdev_util.dir/generic_partition.c.obj
+[1016/1135] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/esp_cam_ctlr.c.obj
+[1017/1135] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/touch_sensor/touch_sensor_common.c.obj
+[1018/1135] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/dvp_share_ctrl.c.obj
+[1019/1135] Linking C static library esp-idf/esp_hal_ledc/libesp_hal_ledc.a
+[1020/1135] Linking C static library esp-idf/esp_driver_i2c/libesp_driver_i2c.a
+[1021/1135] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/dvp/src/esp_cam_ctlr_dvp_gdma.c.obj
+[1022/1135] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/twai/twai.c.obj
+[1023/1135] Linking C static library esp-idf/esp_hal_mcpwm/libesp_hal_mcpwm.a
+[1024/1135] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/touch_sensor/esp32s3/touch_sensor.c.obj
+[1025/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_cmpr.c.obj
+[1026/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_com.c.obj
+[1027/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_fault.c.obj
+[1028/1135] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/dvp/src/esp_cam_ctlr_dvp_cam.c.obj
+[1029/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_cap.c.obj
+[1030/1135] Linking C static library esp-idf/esp_hal_pcnt/libesp_hal_pcnt.a
+[1031/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_gen.c.obj
+[1032/1135] Linking C static library esp-idf/esp_hal_rmt/libesp_hal_rmt.a
+[1033/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_oper.c.obj
+[1034/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_sync.c.obj
+[1035/1135] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/i2c/i2c.c.obj
+[1036/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder.c.obj
+[1037/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder_copy.c.obj
+[1038/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_common.c.obj
+[1039/1135] Building C object esp-idf/esp_driver_mcpwm/CMakeFiles/__idf_esp_driver_mcpwm.dir/src/mcpwm_timer.c.obj
+[1040/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder_bytes.c.obj
+[1041/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_encoder_simple.c.obj
+[1042/1135] Linking C static library esp-idf/esp_driver_sdmmc/libesp_driver_sdmmc.a
+[1043/1135] Linking C static library esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a
+[1044/1135] Building C object esp-idf/esp_driver_sdm/CMakeFiles/__idf_esp_driver_sdm.dir/src/sdm.c.obj
+[1045/1135] Building C object esp-idf/esp_driver_pcnt/CMakeFiles/__idf_esp_driver_pcnt.dir/src/pulse_cnt.c.obj
+[1046/1135] Building C object esp-idf/esp_driver_ledc/CMakeFiles/__idf_esp_driver_ledc.dir/src/ledc.c.obj
+[1047/1135] Building C object esp-idf/esp_driver_twai/CMakeFiles/__idf_esp_driver_twai.dir/esp_twai.c.obj
+[1048/1135] Building C object esp-idf/esp_driver_tsens/CMakeFiles/__idf_esp_driver_tsens.dir/src/temperature_sensor.c.obj
+[1049/1135] Linking C static library esp-idf/esp_hal_lcd/libesp_hal_lcd.a
+[1050/1135] Building C object esp-idf/esp_hid/CMakeFiles/__idf_esp_hid.dir/src/esp_hidd.c.obj
+[1051/1135] Building C object esp-idf/esp_driver_touch_sens/CMakeFiles/__idf_esp_driver_touch_sens.dir/hw_ver2/touch_version_specific.c.obj
+[1052/1135] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_netif_glue.c.obj
+[1053/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_rx.c.obj
+[1054/1135] Building C object esp-idf/esp_driver_touch_sens/CMakeFiles/__idf_esp_driver_touch_sens.dir/common/touch_sens_common.c.obj
+[1055/1135] Building CXX object esp-idf/jgromes__radiolib/CMakeFiles/__idf_jgromes__radiolib.dir/src/protocols/LoRaWAN/LoRaWAN.cpp.obj
+[1056/1135] Linking C static library esp-idf/esp_https_server/libesp_https_server.a
+[1057/1135] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_802_3.c.obj
+[1058/1135] Building C object esp-idf/esp_driver_twai/CMakeFiles/__idf_esp_driver_twai.dir/esp_twai_onchip.c.obj
+[1059/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/src/esp_lcd_panel_io.c.obj
+[1060/1135] Building C object esp-idf/esp_hid/CMakeFiles/__idf_esp_hid.dir/src/esp_hidh.c.obj
+[1061/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/src/esp_lcd_common.c.obj
+[1062/1135] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth.c.obj
+[1063/1135] Building C object esp-idf/esp_driver_rmt/CMakeFiles/__idf_esp_driver_rmt.dir/src/rmt_tx.c.obj
+[1064/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/src/esp_lcd_panel_ssd1306.c.obj
+[1065/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/src/esp_lcd_panel_st7789.c.obj
+[1066/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/src/esp_lcd_panel_ops.c.obj
+[1067/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/i2c/esp_lcd_panel_io_i2c.c.obj
+[1068/1135] Linking C static library esp-idf/protocomm/libprotocomm.a
+[1069/1135] Linking C static library esp-idf/wear_levelling/libwear_levelling.a
+[1070/1135] Building C object esp-idf/esp_hid/CMakeFiles/__idf_esp_hid.dir/src/esp_hid_common.c.obj
+[1071/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/spi/esp_lcd_panel_io_spi.c.obj
+[1072/1135] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/src/esp_local_ctrl_handler.c.obj
+[1073/1135] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/src/esp_local_ctrl_transport_httpd.c.obj
+[1074/1135] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/proto-c/esp_local_ctrl.pb-c.c.obj
+[1075/1135] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/src/esp_local_ctrl.c.obj
+[1076/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/diskio/diskio.c.obj
+[1077/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/diskio/diskio_rawflash.c.obj
+[1078/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/port/freertos/ffsystem.c.obj
+[1079/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/diskio/diskio_wl.c.obj
+[1080/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/src/ffunicode.c.obj
+[1081/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/diskio/diskio_sdmmc.c.obj
+[1082/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/i80/esp_lcd_panel_io_i80.c.obj
+[1083/1135] Building C object esp-idf/perfmon/CMakeFiles/__idf_perfmon.dir/xtensa_perfmon_access.c.obj
+[1084/1135] Building C object esp-idf/perfmon/CMakeFiles/__idf_perfmon.dir/xtensa_perfmon_masks.c.obj
+[1085/1135] Building C object esp-idf/perfmon/CMakeFiles/__idf_perfmon.dir/xtensa_perfmon_apis.c.obj
+[1086/1135] Building C object esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/rgb/esp_lcd_panel_rgb.c.obj
+[1087/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs_api.c.obj
+[1088/1135] Building C object esp-idf/rt/CMakeFiles/__idf_rt.dir/FreeRTOS_POSIX_utils.c.obj
+[1089/1135] Building C object esp-idf/rt/CMakeFiles/__idf_rt.dir/FreeRTOS_POSIX_mqueue.c.obj
+[1090/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_cache.c.obj
+[1091/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/vfs/vfs_fat_spiflash.c.obj
+[1092/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_gc.c.obj
+[1093/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/vfs/vfs_fat_sdmmc.c.obj
+[1094/1135] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/main.cpp.obj
+[1095/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_check.c.obj
+[1096/1135] Linking C static library esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a
+[1097/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/vfs/vfs_fat.c.obj
+[1098/1135] Linking C static library esp-idf/cmock/libcmock.a
+[1099/1135] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/EspIdfHal.cpp.obj
+[1100/1135] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/oled.c.obj
+[1101/1135] Linking C static library esp-idf/jgromes__radiolib/libjgromes__radiolib.a
+[1102/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_hydrogen.c.obj
+[1103/1135] Linking C static library esp-idf/driver/libdriver.a
+[1104/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/esp_spiffs.c.obj
+[1105/1135] Linking C static library esp-idf/esp_blockdev_util/libesp_blockdev_util.a
+[1106/1135] Linking C static library esp-idf/esp_driver_cam/libesp_driver_cam.a
+[1107/1135] Linking C static library esp-idf/esp_driver_ledc/libesp_driver_ledc.a
+[1108/1135] Linking C static library esp-idf/esp_driver_pcnt/libesp_driver_pcnt.a
+[1109/1135] Linking C static library esp-idf/esp_driver_mcpwm/libesp_driver_mcpwm.a
+[1110/1135] Linking C static library esp-idf/esp_driver_sdm/libesp_driver_sdm.a
+[1111/1135] Linking C static library esp-idf/esp_driver_touch_sens/libesp_driver_touch_sens.a
+[1112/1135] Linking C static library esp-idf/esp_driver_rmt/libesp_driver_rmt.a
+[1113/1135] Linking C static library esp-idf/esp_driver_tsens/libesp_driver_tsens.a
+[1114/1135] Linking C static library esp-idf/esp_eth/libesp_eth.a
+[1115/1135] Linking C static library esp-idf/esp_driver_twai/libesp_driver_twai.a
+[1116/1135] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/gateway_task.cpp.obj
+[1117/1135] Linking C static library esp-idf/esp_hid/libesp_hid.a
+[1118/1135] Linking C static library esp-idf/perfmon/libperfmon.a
+[1119/1135] Linking C static library esp-idf/esp_local_ctrl/libesp_local_ctrl.a
+[1120/1135] Linking C static library esp-idf/rt/librt.a
+[1121/1135] Linking C static library esp-idf/esp_lcd/libesp_lcd.a
+[1122/1135] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_nucleus.c.obj
+[1123/1135] Linking C static library esp-idf/main/libmain.a
+[1124/1135] Building C object esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/src/ff.c.obj
+[1125/1135] Linking C static library esp-idf/spiffs/libspiffs.a
+[1126/1135] Linking C static library esp-idf/fatfs/libfatfs.a
+[1127/1135] Performing configure step for 'bootloader'
+-- Found Git: /usr/bin/git (found version "2.50.1 (Apple Git-155)")
+-- Component directory /Users/tn/esp/esp-idf/components/idf_test does not contain a CMakeLists.txt file. No component will be added
+-- Minimal build - OFF
+-- The C compiler identification is GNU 15.2.0
+-- The CXX compiler identification is GNU 15.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /Users/tn/.espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/tn/.espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/tn/.espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32s3
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5;esp32c61 SoCs
+-- KCONFIG_REPORT_VERBOSITY not set, using default
+-- Project sdkconfig file /Users/tn/batear/build_gateway/sdkconfig
+Configuration Report               
+ ───────────────────────────────── 
+   Parser Version: 1               
+   Verbosity: default              
+   Defaults policy: sdkconfig      
+   Status: Finished successfully   
+                                   
+ ───────────────────────────────── 
+-- Compiler supported targets: xtensa-esp-elf
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Adding linker script /Users/tn/esp/esp-idf/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_hal_regi2c/esp32s3/rom.regi2c.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_hal_wdt/esp32s3/rom.wdt.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.bt_funcs.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script /Users/tn/esp/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libc.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_blockdev esp_bootloader_format esp_common esp_hal_ana_conv esp_hal_clock esp_hal_dma esp_hal_gpio esp_hal_gpspi esp_hal_mspi esp_hal_pmu esp_hal_regi2c esp_hal_rtc_timer esp_hal_security esp_hal_systimer esp_hal_timg esp_hal_uart esp_hal_usb esp_hal_wdt esp_hw_support esp_libc esp_rom esp_security esp_stdio esp_system esptool_py freertos hal log main micro-ecc partition_table soc spi_flash xtensa
+-- Component paths: /Users/tn/esp/esp-idf/components/bootloader /Users/tn/esp/esp-idf/components/bootloader_support /Users/tn/esp/esp-idf/components/efuse /Users/tn/esp/esp-idf/components/esp_app_format /Users/tn/esp/esp-idf/components/esp_blockdev /Users/tn/esp/esp-idf/components/esp_bootloader_format /Users/tn/esp/esp-idf/components/esp_common /Users/tn/esp/esp-idf/components/esp_hal_ana_conv /Users/tn/esp/esp-idf/components/esp_hal_clock /Users/tn/esp/esp-idf/components/esp_hal_dma /Users/tn/esp/esp-idf/components/esp_hal_gpio /Users/tn/esp/esp-idf/components/esp_hal_gpspi /Users/tn/esp/esp-idf/components/esp_hal_mspi /Users/tn/esp/esp-idf/components/esp_hal_pmu /Users/tn/esp/esp-idf/components/esp_hal_regi2c /Users/tn/esp/esp-idf/components/esp_hal_rtc_timer /Users/tn/esp/esp-idf/components/esp_hal_security /Users/tn/esp/esp-idf/components/esp_hal_systimer /Users/tn/esp/esp-idf/components/esp_hal_timg /Users/tn/esp/esp-idf/components/esp_hal_uart /Users/tn/esp/esp-idf/components/esp_hal_usb /Users/tn/esp/esp-idf/components/esp_hal_wdt /Users/tn/esp/esp-idf/components/esp_hw_support /Users/tn/esp/esp-idf/components/esp_libc /Users/tn/esp/esp-idf/components/esp_rom /Users/tn/esp/esp-idf/components/esp_security /Users/tn/esp/esp-idf/components/esp_stdio /Users/tn/esp/esp-idf/components/esp_system /Users/tn/esp/esp-idf/components/esptool_py /Users/tn/esp/esp-idf/components/freertos /Users/tn/esp/esp-idf/components/hal /Users/tn/esp/esp-idf/components/log /Users/tn/esp/esp-idf/components/bootloader/subproject/main /Users/tn/esp/esp-idf/components/bootloader/subproject/components/micro-ecc /Users/tn/esp/esp-idf/components/partition_table /Users/tn/esp/esp-idf/components/soc /Users/tn/esp/esp-idf/components/spi_flash /Users/tn/esp/esp-idf/components/xtensa
+-- Adding linker script /Users/tn/esp/esp-idf/components/bootloader/subproject/main/ld/esp32s3/bootloader.ld.in
+--   -> Preprocessing .in script: /Users/tn/esp/esp-idf/components/bootloader/subproject/main/ld/esp32s3/bootloader.ld.in
+-- Configuring done (5.3s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/tn/batear/build_gateway/bootloader
+[1128/1135] Performing build step for 'bootloader'
+[1/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/util.c.obj
+[2/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_timestamp_common.c.obj
+[3/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_timestamp.c.obj
+[4/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_lock.c.obj
+[5/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/util.c.obj
+[6/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj
+[7/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj
+[8/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_print.c.obj
+[9/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log.c.obj
+[10/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_format_text.c.obj
+[11/155] Building ASM object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_longjmp.S.obj
+[12/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_gpio.c.obj
+[13/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj
+[14/155] Building ASM object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_cache_writeback_esp32s3.S.obj
+[15/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_serial_output.c.obj
+[16/155] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/buffer/log_buffers.c.obj
+[17/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_cache_esp32s2_esp32s3.c.obj
+[18/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/esp_cpu_intr.c.obj
+[19/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_spiflash.c.obj
+[20/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/cpu_region_protect.c.obj
+[21/155] Linking C static library esp-idf/log/liblog.a
+[22/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_memory_utils.c.obj
+[23/155] Building C object esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj
+[24/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_clk_init.c.obj
+[25/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/chip_info.c.obj
+[26/155] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj
+[27/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_table.c.obj
+[28/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_fields.c.obj
+[29/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu.c.obj
+[30/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_rtc_calib.c.obj
+[31/155] Building C object esp-idf/esp_hal_systimer/CMakeFiles/__idf_esp_hal_systimer.dir/systimer_hal.c.obj
+[32/155] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_print.c.obj
+[33/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_utility.c.obj
+[34/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj
+[35/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_init.c.obj
+[36/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj
+[37/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_time.c.obj
+[38/155] Linking C static library esp-idf/esp_rom/libesp_rom.a
+[39/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_sleep.c.obj
+[40/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj
+[41/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj
+[42/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj
+[43/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c.obj
+[44/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj
+[45/155] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32s3/rtc_clk.c.obj
+[46/155] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj
+[47/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj
+[48/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj
+[49/155] Linking C static library esp-idf/esp_common/libesp_common.a
+[50/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj
+[51/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj
+[52/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32s3.c.obj
+[53/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj
+[54/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_sha.c.obj
+[55/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_loader.c.obj
+[56/155] Linking C static library esp-idf/esp_hw_support/libesp_hw_support.a
+[57/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32s3.c.obj
+[58/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj
+[59/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console_loader.c.obj
+[60/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32s3/bootloader_soc.c.obj
+[61/155] Linking C static library esp-idf/esp_system/libesp_system.a
+[62/155] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_lock.c.obj
+[63/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_panic.c.obj
+[64/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console.c.obj
+[65/155] Building C object esp-idf/esp_hal_security/CMakeFiles/__idf_esp_hal_security.dir/mpu_hal.c.obj
+[66/155] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/esp32s3/adc_periph.c.obj
+[67/155] Building C object esp-idf/esp_security/CMakeFiles/__idf_esp_security.dir/src/esp_crypto_periph_clk.c.obj
+[68/155] Linking C static library esp-idf/esp_hal_systimer/libesp_hal_systimer.a
+[69/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_init.c.obj
+[70/155] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/esp32s3/temperature_sensor_periph.c.obj
+[71/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32s3/bootloader_esp32s3.c.obj
+[72/155] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_oneshot_hal.c.obj
+[73/155] Linking C static library esp-idf/efuse/libefuse.a
+[74/155] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/temperature_sensor_hal.c.obj
+[75/155] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uart_hal_iram.c.obj
+[76/155] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/esp32s3/uart_periph.c.obj
+[77/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj
+[78/155] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uhci_hal.c.obj
+[79/155] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/esp32s3/mwdt_periph.c.obj
+[80/155] Building C object esp-idf/esp_hal_uart/CMakeFiles/__idf_esp_hal_uart.dir/uart_hal.c.obj
+[81/155] Building C object esp-idf/esp_hal_timg/CMakeFiles/__idf_esp_hal_timg.dir/esp32s3/timer_periph.c.obj
+[82/155] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/rom_patch.c.obj
+[83/155] Building C object esp-idf/esp_hal_wdt/CMakeFiles/__idf_esp_hal_wdt.dir/xt_wdt_hal.c.obj
+[84/155] Building C object esp-idf/esp_hal_timg/CMakeFiles/__idf_esp_hal_timg.dir/timer_hal.c.obj
+[85/155] Building C object esp-idf/esp_bootloader_format/CMakeFiles/__idf_esp_bootloader_format.dir/esp_bootloader_desc.c.obj
+[86/155] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_hal_common.c.obj
+[87/155] Building C object esp-idf/esp_hal_ana_conv/CMakeFiles/__idf_esp_hal_ana_conv.dir/adc_hal.c.obj
+[88/155] Building C object esp-idf/esp_hal_mspi/CMakeFiles/__idf_esp_hal_mspi.dir/esp32s3/mspi_periph.c.obj
+[89/155] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/esp32s3/spi_periph.c.obj
+[90/155] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_wrap.c.obj
+[91/155] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hal.c.obj
+[92/155] Building C object esp-idf/esp_hal_clock/CMakeFiles/__idf_esp_hal_clock.dir/esp32s3/clk_tree_hal.c.obj
+[93/155] Building C object esp-idf/esp_hal_dma/CMakeFiles/__idf_esp_hal_dma.dir/esp32s3/gdma_periph.c.obj
+[94/155] Building C object esp-idf/esp_hal_dma/CMakeFiles/__idf_esp_hal_dma.dir/gdma_hal_top.c.obj
+[95/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj
+[96/155] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_hal.c.obj
+[97/155] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hal_iram.c.obj
+[98/155] Building C object esp-idf/esp_hal_pmu/CMakeFiles/__idf_esp_hal_pmu.dir/brownout_hal.c.obj
+[99/155] Building C object esp-idf/esp_hal_pmu/CMakeFiles/__idf_esp_hal_pmu.dir/esp32s3/rtc_cntl_hal.c.obj
+[100/155] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/esp32s3/usb_dwc_periph.c.obj
+[101/155] Building C object esp-idf/esp_hal_dma/CMakeFiles/__idf_esp_hal_dma.dir/gdma_hal_ahb_v1.c.obj
+[102/155] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/usb_wrap_hal.c.obj
+[103/155] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj
+[104/155] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/usb_serial_jtag_hal.c.obj
+[105/155] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32s3/dedic_gpio_periph.c.obj
+[106/155] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32s3/rtc_io_periph.c.obj
+[107/155] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/gpio_hal.c.obj
+[108/155] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/rtc_io_hal.c.obj
+[109/155] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/esp32s3/sdm_periph.c.obj
+[110/155] Building C object esp-idf/esp_hal_gpio/CMakeFiles/__idf_esp_hal_gpio.dir/sdm_hal.c.obj
+[111/155] Linking C static library esp-idf/bootloader_support/libbootloader_support.a
+[112/155] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj
+[113/155] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/hal_utils.c.obj
+[114/155] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/dport_access_common.c.obj
+[115/155] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/lldesc.c.obj
+[116/155] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mmu_hal.c.obj
+[117/155] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32s3/efuse_hal.c.obj
+[118/155] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_slave_hd_hal.c.obj
+[119/155] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/interrupts.c.obj
+[120/155] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/gpio_periph.c.obj
+[121/155] Linking C static library esp-idf/esp_security/libesp_security.a
+[122/155] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/power_supply_periph.c.obj
+[123/155] Generating project_elf_src_esp32s3.c
+[124/155] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/mpi_periph.c.obj
+[125/155] Preprocessing linker script /Users/tn/esp/esp-idf/components/bootloader/subproject/main/ld/esp32s3/bootloader.ld.in -> /Users/tn/batear/build_gateway/bootloader/ld/bootloader.ld
+[126/155] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/eri.c.obj
+[127/155] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/cache_hal.c.obj
+[128/155] Building C object esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/xt_trax.c.obj
+[129/155] Building C object CMakeFiles/bootloader.elf.dir/project_elf_src_esp32s3.c.obj
+[130/155] Building C object esp-idf/esp_hal_usb/CMakeFiles/__idf_esp_hal_usb.dir/usb_dwc_hal.c.obj
+[131/155] Linking C static library esp-idf/esp_hal_security/libesp_hal_security.a
+[132/155] Building C object esp-idf/esp_hal_gpspi/CMakeFiles/__idf_esp_hal_gpspi.dir/spi_hal_iram.c.obj
+[133/155] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/bootloader_start.c.obj
+[134/155] Linking C static library esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
+[135/155] Linking C static library esp-idf/esp_hal_uart/libesp_hal_uart.a
+[136/155] Linking C static library esp-idf/esp_hal_wdt/libesp_hal_wdt.a
+[137/155] Linking C static library esp-idf/esp_hal_timg/libesp_hal_timg.a
+[138/155] Building C object esp-idf/micro-ecc/CMakeFiles/__idf_micro-ecc.dir/uECC_verify_antifault.c.obj
+[139/155] Linking C static library esp-idf/micro-ecc/libmicro-ecc.a
+[140/155] Linking C static library esp-idf/esp_bootloader_format/libesp_bootloader_format.a
+[141/155] Linking C static library esp-idf/spi_flash/libspi_flash.a
+[142/155] Linking C static library esp-idf/esp_hal_mspi/libesp_hal_mspi.a
+[143/155] Linking C static library esp-idf/esp_hal_clock/libesp_hal_clock.a
+[144/155] Linking C static library esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
+[145/155] Linking C static library esp-idf/esp_hal_dma/libesp_hal_dma.a
+[146/155] Linking C static library esp-idf/esp_hal_pmu/libesp_hal_pmu.a
+[147/155] Linking C static library esp-idf/esp_hal_usb/libesp_hal_usb.a
+[148/155] Linking C static library esp-idf/esp_hal_gpio/libesp_hal_gpio.a
+[149/155] Linking C static library esp-idf/hal/libhal.a
+[150/155] Linking C static library esp-idf/soc/libsoc.a
+[151/155] Linking C static library esp-idf/xtensa/libxtensa.a
+[152/155] Linking C static library esp-idf/main/libmain.a
+[153/155] Linking C executable bootloader.elf
+[154/155] Generating binary image from built executable
+esptool v5.2.0
+Creating ESP32-S3 image...
+Merged 2 ELF sections.
+Successfully created ESP32-S3 image.
+Generated /Users/tn/batear/build_gateway/bootloader/bootloader.bin
+[155/155] cd /Users/tn/batear/build_gateway/bootloader && /Users/tn/.espressif/python_env/idf6.1_py3.14_env/bin/python /Users/tn/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /Users/tn/batear/build_gateway/bootloader/bootloader.bin
+Bootloader binary size 0x5240 bytes. 0x2dc0 bytes (36%) free.
+[1129/1135] No install step for 'bootloader'
+[1130/1135] Completed 'bootloader'
+[1131/1135] Generating esp-idf/esp_system/ld/sections.ld
+[1132/1135] Building C object CMakeFiles/batear.elf.dir/project_elf_src_esp32s3.c.obj
+[1133/1135] Linking CXX executable batear.elf
+[1134/1135] Generating binary image from built executable
+esptool v5.2.0
+Creating ESP32-S3 image...
+Merged 3 ELF sections.
+Successfully created ESP32-S3 image.
+Generated /Users/tn/batear/build_gateway/batear.bin
+[1135/1135] cd /Users/tn/batear/build_gateway && /Users/tn/.espressif/python_env/idf6.1_py3.14_env/bin/python /Users/tn/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/tn/batear/build_gateway/partition_table/partition-table.bin /Users/tn/batear/build_gateway/batear.bin
+batear.bin binary size 0x50320 bytes. Smallest app partition is 0x100000 bytes. 0xafce0 bytes (69%) free.

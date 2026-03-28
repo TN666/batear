@@ -1,0 +1,5 @@
+"-specs=/Users/tn/batear/build_gateway/bootloader/specs/picolibc.specs"
+-mlongcalls
+-fno-builtin-memcpy
+-fno-builtin-memset
+-fno-builtin-bzero

@@ -1,0 +1,10 @@
+## IDF Component Manager manifest for the Batear main component.
+## Run `idf.py update-dependencies` after cloning to fetch RadioLib.
+
+dependencies:
+  idf: ">=5.0"
+
+  ## RadioLib — SX1262 / LoRa driver (https://github.com/jgromes/RadioLib)
+  ## Component registry: https://components.espressif.com/components/jgromes/radiolib
+  jgromes/radiolib:
+    version: ">=6.6.0"

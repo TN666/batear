@@ -1,0 +1,58 @@
+menu "Batear"
+
+choice BATEAR_BOARD
+    prompt "Board"
+    default BATEAR_BOARD_HELTEC_V3
+
+    config BATEAR_BOARD_HELTEC_V3
+        bool "Heltec WiFi LoRa 32 V3 (ESP32-S3 + SX1262 + SSD1306)"
+endchoice
+
+choice BATEAR_ROLE
+    prompt "Device role"
+    default BATEAR_ROLE_DETECTOR
+
+    config BATEAR_ROLE_DETECTOR
+        bool "Detector (mic + LoRa TX)"
+
+    config BATEAR_ROLE_GATEWAY
+        bool "Gateway (LoRa RX + OLED + LED)"
+endchoice
+
+config BATEAR_DEVICE_ID
+    int "Device ID (0-255)"
+    default 1
+    range 0 255
+    depends on BATEAR_ROLE_DETECTOR
+    help
+        Unique identifier for this detector. The gateway displays
+        which device triggered an alarm.
+
+config BATEAR_NET_KEY
+    string "AES-128 network key (32 hex chars)"
+    default "DEADBEEFCAFEBABE13374200F00DAA55"
+    help
+        128-bit pre-shared key for AES-GCM encryption, as 32 hex
+        characters. Must match between all detectors and the gateway.
+        Generate: python3 -c "import os;print(os.urandom(16).hex().upper())"
+
+config BATEAR_LORA_FREQ
+    int "LoRa frequency (kHz)"
+    default 915000
+    help
+        Centre frequency in kHz. Common values:
+          915000 = 915.0 MHz (US/TW ISM)
+          868000 = 868.0 MHz (EU ISM)
+          923000 = 923.0 MHz (AS ISM)
+        Must match between detector and gateway.
+
+config BATEAR_LORA_SYNC_WORD
+    hex "LoRa sync word"
+    default 0x12
+    range 0x00 0xFF
+    help
+        Network isolation. Devices with different sync words
+        cannot hear each other. 0x12 = LoRa private network,
+        0x34 = LoRaWAN. Pick any unused value for your network.
+
+endmenu

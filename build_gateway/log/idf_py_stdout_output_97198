@@ -1,0 +1,8 @@
+Command: ninja all
+[1/4] cd /Users/tn/batear/build_gateway && /Users/tn/.espressif/python_env/idf6.1_py3.14_env/bin/python /Users/tn/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/tn/batear/build_gateway/partition_table/partition-table.bin /Users/tn/batear/build_gateway/batear.bin
+batear.bin binary size 0x50320 bytes. Smallest app partition is 0x100000 bytes. 0xafce0 bytes (69%) free.
+[2/4] Performing build step for 'bootloader'
+[1/1] cd /Users/tn/batear/build_gateway/bootloader && /Users/tn/.espressif/python_env/idf6.1_py3.14_env/bin/python /Users/tn/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /Users/tn/batear/build_gateway/bootloader/bootloader.bin
+Bootloader binary size 0x5240 bytes. 0x2dc0 bytes (36%) free.
+[3/4] No install step for 'bootloader'
+[4/4] Completed 'bootloader'

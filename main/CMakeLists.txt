@@ -1,5 +1,25 @@
+set(SRCS "main.cpp" "EspIdfHal.cpp")
+
+if(CONFIG_BATEAR_ROLE_DETECTOR)
+    list(APPEND SRCS "audio_task.c" "lora_task.cpp")
+endif()
+
+if(CONFIG_BATEAR_ROLE_GATEWAY)
+    list(APPEND SRCS "oled.c" "gateway_task.cpp")
+endif()
+
 idf_component_register(
-    SRCS "main.c"
+    SRCS ${SRCS}
     INCLUDE_DIRS "."
-    PRIV_REQUIRES esp_driver_i2s esp_timer
+    PRIV_REQUIRES
+        esp_driver_i2s
+        esp_driver_i2c
+        esp_driver_spi
+        esp_driver_gpio
+        esp_timer
+        jgromes__radiolib
+        mbedtls
 )
+
+# Suppress RadioLib upstream warnings about overloaded virtuals (C++ only)
+target_compile_options(${COMPONENT_LIB} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-Wno-overloaded-virtual>)

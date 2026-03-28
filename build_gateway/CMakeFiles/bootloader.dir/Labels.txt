@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/tn/batear/build_gateway/CMakeFiles/bootloader
+/Users/tn/batear/build_gateway/CMakeFiles/bootloader.rule
+/Users/tn/batear/build_gateway/CMakeFiles/bootloader-complete.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/tn/batear/build_gateway/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

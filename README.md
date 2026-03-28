@@ -2,7 +2,7 @@
   <img src="icon.png" alt="Batear Logo" width="200"/>
   
   <h1>Batear</h1>
-  <p><strong>A sub-$15, edge-only acoustic drone detector on ESP32-S3.</strong></p>
+  <p><strong>A sub-$15, edge-only acoustic drone detector on ESP32-S3 with encrypted LoRa alerting.</strong></p>
 
 <p align="center">
   <a href="https://hackaday.com/2026/03/23/acoustic-drone-detection-on-the-cheap-with-esp32/"><img src="https://img.shields.io/badge/Featured%20on-Hackaday-black?logo=hackaday" alt="Featured on Hackaday" style="display:inline-block;"></a><a href="https://github.com/TN666/batear/stargazers"><img src="https://img.shields.io/github/stars/TN666/batear?style=flat-square" alt="Stars" style="display:inline-block;"></a><a href="https://github.com/TN666/batear/blob/main/LICENSE"><img src="https://img.shields.io/github/license/TN666/batear?style=flat-square" alt="License" style="display:inline-block;"></a>
@@ -28,6 +28,8 @@ Drones are an increasing threat to homes, farms, and communities — and effecti
 
 For under $15 in hardware, Batear turns a tiny ESP32-S3 microcontroller and a MEMS microphone into an always-on acoustic drone detector. It runs entirely at the edge — **no cloud subscription, no internet connection, no ongoing cost.** Deploy one at a window, a fence line, or a rooftop and it will alert you the moment drone rotor harmonics are detected nearby.
 
+The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoRa RX + OLED + LED), selectable at build time.
+
 ---
 
 ## 🧠 The "Hack": Why Goertzel over FFT?
@@ -40,73 +42,233 @@ Batear takes a different approach. It reads audio from an ICS-43434 I2S MEMS mic
 * **Tiny Footprint:** It fits entirely within the ESP32-S3's 512 KB SRAM.
 * **Low Power:** Consumes negligible power — making it practical for battery-powered or solar deployments.
 
-It triggers an alarm when the tonal/broadband energy ratio exceeds a threshold.
+It triggers an alarm when the tonal/broadband energy ratio exceeds a threshold, then transmits an **AES-128-GCM encrypted** alert over LoRa.
 
 ---
 
-## 🚀 Current Status & Call for Contributors (Help Needed!)
+## 🏗️ System Architecture
 
-**Batear is currently functioning as a flashable baseline and has been successfully tested against prerecorded drone audio.** However, **we need real-world testing!** Acoustic drone detection in real environments depends heavily on distance, wind, background noise, and drone type. The current thresholds must be calibrated per environment.
-
-If you have a micro drone, a soldering iron, and some free time, we would love your help to test this outside! 
-* Pull Requests for threshold calibration, noise filtering, or achieving higher accuracy with ESP-NN / TensorFlow Lite Micro models are highly welcome.
-
----
-
-## 🛠️ Hardware Wiring (ICS-43434)
-
-| ICS-43434 | ESP32-S3 |
-| :--- | :--- |
-| **VDD** | 3.3V |
-| **GND** | GND |
-| **SCK** | GPIO43 (BCLK) |
-| **WS** | GPIO44 (LRCLK / WS) |
-| **SD** | GPIO1 (DIN) |
-| **L/R** | GND (left channel, matches `I2S_STD_SLOT_LEFT` in code) |
-
-*Note: Power at 3.3V only. I2S data line runs SD → MCU DIN (mic output → MCU input). If there is no audio or the clock is unstable, try changing Philips to `I2S_STD_MSB_SLOT_DEFAULT_CONFIG` in `main.c`.*
-
----
-
-## 💻 Prerequisites & Build
-
-Requires **ESP-IDF v5.x** — follow the [official installation guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/).
-
-After installing, source the environment before building:
-
-```bash
-. $IDF_PATH/export.sh
+```
+┌─────────────────────┐         LoRa 915 MHz         ┌──────────────────────┐
+│    DETECTOR (×N)    │  ────────────────────────────► │      GATEWAY (×1)    │
+│                     │   AES-128-GCM encrypted       │                      │
+│  ICS-43434 mic      │   28-byte packets             │  SSD1306 OLED display│
+│  Goertzel analysis  │                               │  LED alarm indicator │
+│  SX1262 LoRa TX     │                               │  SX1262 LoRa RX      │
+└─────────────────────┘                               └──────────────────────┘
+   Heltec WiFi LoRa 32 V3                               Heltec WiFi LoRa 32 V3
 ```
 
-**Build & Flash:**
+Multiple detectors can report to one gateway. Each detector has a unique device ID (0–255).
+
+---
+
+## 🛠️ Hardware
+
+### Detector
+
+| Component | Notes |
+|:---|:---|
+| Heltec WiFi LoRa 32 V3 | ESP32-S3 + SX1262 on-board |
+| ICS-43434 I2S MEMS microphone | 3.3 V, L/R → GND (left channel) |
+
+**Wiring (ICS-43434 → Heltec V3):**
+
+| ICS-43434 | GPIO | Function |
+|:---|:---|:---|
+| VDD | 3.3V | Power |
+| GND | GND | Ground |
+| SCK | 4 | I2S bit clock (BCLK) |
+| WS | 5 | I2S word select (LRCLK) |
+| SD | 6 | I2S data input (DIN) |
+| L/R | GND | Left channel select |
+
+### Gateway
+
+| Component | Notes |
+|:---|:---|
+| Heltec WiFi LoRa 32 V3 | Uses on-board SX1262, SSD1306 OLED, and LED |
+
+No external wiring needed — everything is on-board.
+
+---
+
+## 💻 Prerequisites
+
+- **ESP-IDF v6.x** — follow the [official installation guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/)
+- Source the environment before building: `. $IDF_PATH/export.sh`
+
+---
+
+## 🔨 Build & Flash
+
+The same codebase builds either role. Each role has its own build directory so both can coexist.
+
+`set-target` depends on your board's chip:
+
+| Board | Chip | `set-target` | Flash |
+|:---|:---|:---|:---|
+| Heltec WiFi LoRa 32 V3 | ESP32-S3 | `esp32s3` | 8 MB |
+
+### 1. Clone & find your serial port
 
 ```bash
-idf.py set-target esp32s3
-idf.py build flash monitor
+git clone https://github.com/TN666/batear.git
+cd batear
+ls /dev/cu.usb*          # note your port, e.g. /dev/cu.usbserial-3
+```
+
+### 2. Build & flash the Detector
+
+```bash
+# First time only — set chip target (esp32s3 for Heltec V3, see table above)
+idf.py -B build_detector \
+  -DSDKCONFIG=build_detector/sdkconfig \
+  -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.detector" \
+  set-target esp32s3
+
+# Build
+idf.py -B build_detector \
+  -DSDKCONFIG=build_detector/sdkconfig \
+  build
+
+# Flash & monitor (replace PORT)
+idf.py -B build_detector \
+  -DSDKCONFIG=build_detector/sdkconfig \
+  -p PORT flash monitor
+```
+
+### 3. Build & flash the Gateway
+
+```bash
+# First time only — set chip target (esp32s3 for Heltec V3, see table above)
+idf.py -B build_gateway \
+  -DSDKCONFIG=build_gateway/sdkconfig \
+  -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.gateway" \
+  set-target esp32s3
+
+# Build
+idf.py -B build_gateway \
+  -DSDKCONFIG=build_gateway/sdkconfig \
+  build
+
+# Flash & monitor (replace PORT)
+idf.py -B build_gateway \
+  -DSDKCONFIG=build_gateway/sdkconfig \
+  -p PORT flash monitor
+```
+
+### After first setup
+
+Code changes only need rebuild + flash (no `set-target`):
+
+```bash
+# Detector
+idf.py -B build_detector -DSDKCONFIG=build_detector/sdkconfig build
+idf.py -B build_detector -DSDKCONFIG=build_detector/sdkconfig -p PORT flash monitor
+
+# Gateway
+idf.py -B build_gateway -DSDKCONFIG=build_gateway/sdkconfig build
+idf.py -B build_gateway -DSDKCONFIG=build_gateway/sdkconfig -p PORT flash monitor
+```
+
+> Replace `PORT` with your actual serial port (e.g. `/dev/cu.usbserial-3` on macOS, `/dev/ttyUSB0` on Linux).
+
+---
+
+## ⚙️ Configuration
+
+All network and role settings live in two small files — no `menuconfig` needed:
+
+**`sdkconfig.detector`**
+
+```ini
+# Board
+CONFIG_BATEAR_BOARD_HELTEC_V3=y
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+
+# Role
+CONFIG_BATEAR_ROLE_DETECTOR=y
+CONFIG_BATEAR_DEVICE_ID=1
+
+# Network
+CONFIG_BATEAR_NET_KEY="DEADBEEFCAFEBABE13374200F00DAA55"
+CONFIG_BATEAR_LORA_FREQ=915000
+CONFIG_BATEAR_LORA_SYNC_WORD=0x12
+```
+
+**`sdkconfig.gateway`**
+
+```ini
+# Board
+CONFIG_BATEAR_BOARD_HELTEC_V3=y
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+
+# Role
+CONFIG_BATEAR_ROLE_GATEWAY=y
+
+# Network
+CONFIG_BATEAR_NET_KEY="DEADBEEFCAFEBABE13374200F00DAA55"
+CONFIG_BATEAR_LORA_FREQ=915000
+CONFIG_BATEAR_LORA_SYNC_WORD=0x12
+```
+
+| Parameter | Description |
+|:---|:---|
+| `CONFIG_BATEAR_BOARD_*` | Board selection — determines GPIO mapping and `set-target` chip. |
+| `CONFIG_ESPTOOLPY_FLASHSIZE_*` | Flash size — must match your board's flash chip. |
+| `CONFIG_BATEAR_NET_KEY` | 128-bit AES-GCM key (32 hex chars). **Must match** between all devices. |
+| `CONFIG_BATEAR_LORA_FREQ` | Centre frequency in kHz: `915000` (US/TW), `868000` (EU), `923000` (AS). |
+| `CONFIG_BATEAR_LORA_SYNC_WORD` | Network isolation byte. Different values = invisible to each other. |
+| `CONFIG_BATEAR_DEVICE_ID` | Detector only. Unique ID (0–255) shown on gateway display. |
+
+**Generate a new key:**
+
+```bash
+python3 -c "import os; print(os.urandom(16).hex().upper())"
 ```
 
 ---
 
-## 🎛️ Calibration & Key Parameters
+## 🔐 LoRa Packet Protocol
 
-After boot, serial output prints `cal: active=N/6 [...ratios...] rms=... alarm=0` every second. 
-Record the ratio values with and without a drone present (or play rotor audio through a speaker). Adjust `FREQ_RATIO_ON` / `FREQ_RATIO_OFF` and `k_target_hz[]` in `main/main.c` accordingly. 
+AES-128-GCM encrypted, 28 bytes on the wire:
 
-*Rotor harmonics typically fall between a few hundred Hz and a few kHz depending on drone type.*
+```
+[4B nonce] [8B ciphertext] [16B GCM auth tag]
+```
+
+Plaintext (8 bytes):
+
+```
+[2B seq] [1B device_id] [1B event_type] [1B active_freqs] [1B rms_db] [2B reserved]
+```
+
+- **Sequence counter** prevents replay attacks
+- **GCM auth tag** ensures data integrity and authenticity
+- **Sync word** provides channel isolation at the RF level
+
+---
+
+## 🎛️ Calibration
+
+When an alarm is active, serial output prints:
+
+```
+cal: active=N/6 [r0 r1 r2 r3 r4 r5] rms=X.XXXXX
+```
+
+Record ratio values with and without a drone present (or play rotor audio through a speaker). Adjust thresholds in `main/audio_task.c`:
 
 | Symbol | Default | Description |
-| :--- | :--- | :--- |
+|:---|:---|:---|
 | `SAMPLE_RATE_HZ` | `16000` | Sample rate (Hz) |
 | `FRAME_SAMPLES` | `512` | Samples per analysis frame |
 | `HOP_MS` | `100` | Frame hop interval (ms) |
 | `k_target_hz[]` | `200, 400, 800, 1200, 2400, 4000` | Goertzel target frequencies (Hz) |
 | `FREQ_RATIO_ON` | `0.008` | Alarm-on threshold (tonal/broadband ratio) |
 | `FREQ_RATIO_OFF` | `0.004` | Alarm-off threshold |
-| `EMA_ALPHA` | `0.25` | EMA smoothing factor (higher = faster response) |
-| `FREQS_NEEDED` | `1` | Minimum active frequencies required to trigger |
-| `SUSTAIN_FRAMES_ON` | `2` | Consecutive frames to set alarm |
-| `SUSTAIN_FRAMES_OFF` | `8` | Consecutive frames to clear alarm |
-| `RMS_MIN` | `0.0003` | Minimum RMS — frames below this are skipped |
+| `RMS_MIN` | `0.001` | Minimum RMS — frames below this are skipped |
 
 ---
 
@@ -115,9 +277,120 @@ Record the ratio values with and without a drone present (or play rotor audio th
 ```text
 batear/
 ├── CMakeLists.txt
-├── sdkconfig.defaults
-├── README.md
-└── main/
-    ├── CMakeLists.txt
-    └── main.c
+├── sdkconfig.defaults          # common ESP-IDF settings
+├── sdkconfig.detector          # detector role + device ID + network
+├── sdkconfig.gateway           # gateway role + network
+├── main/
+│   ├── CMakeLists.txt          # conditional compile by role
+│   ├── Kconfig.projbuild       # role / device ID / network config
+│   ├── main.cpp                # entry point (role switch)
+│   ├── pin_config.h            # board-specific GPIO + hardware traits
+│   ├── drone_detector.h        # shared DroneEvent_t + queue
+│   ├── lora_crypto.h           # AES-128-GCM packet protocol (PSA API)
+│   ├── EspIdfHal.cpp/.h        # RadioLib HAL for ESP-IDF
+│   ├── audio_task.c/.h         # [detector] I2S mic + Goertzel
+│   ├── lora_task.cpp/.h        # [detector] LoRa TX
+│   ├── gateway_task.cpp/.h     # [gateway]  LoRa RX + OLED + LED
+│   ├── oled.c/.h               # [gateway]  SSD1306 128x64 driver
+│   └── idf_component.yml       # RadioLib dependency
 ```
+
+---
+
+## 🔧 Adding a New Board
+
+Batear uses a board abstraction layer — all board-specific GPIO and hardware traits are defined in one place (`main/pin_config.h`), selected by a Kconfig option. Here's how to port to a new board.
+
+### Step 1: Kconfig — register the board
+
+Add an entry under `BATEAR_BOARD` in `main/Kconfig.projbuild`:
+
+```kconfig
+config BATEAR_BOARD_MY_NEW_BOARD
+    bool "My New Board (ESP32 + SX1276)"
+```
+
+### Step 2: pin_config.h — define all hardware constants
+
+Add an `#elif` block in `main/pin_config.h`. Every board must define **all** of these macros:
+
+```c
+#elif defined(CONFIG_BATEAR_BOARD_MY_NEW_BOARD)
+
+#define BOARD_IDF_TARGET    "esp32"     // chip for set-target
+#define BOARD_FLASH_SIZE    "4MB"       // for documentation
+
+// I2S microphone
+#define PIN_I2S_BCLK     26
+#define PIN_I2S_WS       25
+#define PIN_I2S_DIN      34
+
+// LoRa SPI
+#define PIN_LORA_SCK      5
+#define PIN_LORA_MISO    19
+#define PIN_LORA_MOSI    27
+#define PIN_LORA_CS      18
+#define PIN_LORA_DIO1    26
+#define PIN_LORA_RST     23
+#define PIN_LORA_BUSY    -1            // SX1276 has no BUSY pin
+
+// Gateway peripherals
+#define PIN_OLED_SDA      4
+#define PIN_OLED_SCL     15
+#define PIN_OLED_RST     16
+#define PIN_LED           2
+#define PIN_VEXT         -1
+#define BOARD_HAS_VEXT    0            // no Vext power control
+#define BOARD_HAS_OLED    1
+
+// LoRa RF traits
+#define BOARD_LORA_TCXO_V       0.0f   // no TCXO
+#define BOARD_LORA_DIO2_AS_RF   false  // no DIO2 RF switch
+```
+
+### Step 3: sdkconfig files — board + flash size
+
+Copy `sdkconfig.detector` and `sdkconfig.gateway`, change the board and flash lines:
+
+```ini
+CONFIG_BATEAR_BOARD_MY_NEW_BOARD=y
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+```
+
+### Step 4: Build — use the correct chip target
+
+`set-target` must match `BOARD_IDF_TARGET` (ESP-IDF only accepts chip names, not board names):
+
+```bash
+idf.py -B build_detector \
+  -DSDKCONFIG=build_detector/sdkconfig \
+  -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.detector" \
+  set-target esp32          # ← matches BOARD_IDF_TARGET
+```
+
+### Step 5: If the LoRa chip is different
+
+If the board uses SX1276/SX1278 instead of SX1262, you'll need to update `lora_task.cpp` and `gateway_task.cpp` to instantiate the correct RadioLib class. Use `#ifdef` on your board macro for conditional compilation.
+
+### Checklist
+
+- [ ] `Kconfig.projbuild` — board entry added
+- [ ] `pin_config.h` — `#elif` block with all `PIN_*` and `BOARD_*` macros
+- [ ] `sdkconfig.detector` / `sdkconfig.gateway` — board + flash size set
+- [ ] `set-target` matches the chip (`esp32`, `esp32s3`, `esp32c3`, ...)
+- [ ] Board row added to the build table in this README
+- [ ] Build + flash tested on hardware
+
+---
+
+## 🚀 Current Status & Call for Contributors
+
+**Batear is functioning as a flashable baseline and has been successfully tested against prerecorded drone audio.** We need real-world testing! Acoustic drone detection in real environments depends heavily on distance, wind, background noise, and drone type.
+
+If you have a micro drone, a soldering iron, and some free time, we would love your help:
+
+- Real-world threshold calibration per drone type
+- Noise filtering improvements
+- ML-based detection (ESP-NN / TFLite Micro)
+- Multi-gateway mesh networking
+- Battery/solar power optimizations
