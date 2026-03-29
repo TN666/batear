@@ -1,0 +1,44 @@
+name: ESP-IDF Build CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build Batear Firmware
+    runs-on: ubuntu-latest
+    
+    # Use Espressif's official Docker image
+    container: espressif/idf:release-v5.2
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Fix git safe.directory issue inside Docker container
+      - name: Fix Git Directory Permissions
+        run: git config --global --add safe.directory /__w/batear/batear
+
+      # --- Build Detector Role ---
+      - name: Build Detector
+        run: |
+          . $IDF_PATH/export.sh
+          # Clean up any residual configurations and build cache
+          rm -rf build sdkconfig
+          # Instruct ESP-IDF to merge common defaults with detector-specific config
+          env SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.detector" idf.py set-target esp32s3
+          # Start build
+          idf.py build
+
+      # --- Build Gateway Role ---
+      - name: Build Gateway
+        run: |
+          . $IDF_PATH/export.sh
+          # CRITICAL: Completely wipe the Detector's build folder and cache
+          rm -rf build sdkconfig
+          # Instruct ESP-IDF to merge common defaults with gateway-specific config
+          env SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.gateway" idf.py set-target esp32s3
+          idf.py build
