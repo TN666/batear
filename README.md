@@ -403,3 +403,11 @@ If you have a micro drone, a soldering iron, and some free time, we would love y
 - ML-based detection (ESP-NN / TFLite Micro)
 - Multi-gateway mesh networking
 - Battery/solar power optimizations
+
+---
+
+## 👤 Author
+
+<a href="https://github.com/TN666">
+  <img src="https://images.weserv.nl/?url=https://github.com/TN666.png?v=4&w=200&h=200&fit=cover&mask=circle&maxage=7d" width="100">
+</a>
