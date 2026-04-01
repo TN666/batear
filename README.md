@@ -71,7 +71,7 @@ Full documentation is available at **[batear.io](https://docs.batear.io)**.
 
 ```bash
 # Clone
-git clone https://github.com/TN666/batear.git && cd batear
+git clone https://github.com/batear-io/batear.git && cd batear
 
 # Build detector
 idf.py -B build_detector \
