@@ -6,6 +6,10 @@ on:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
+  workflow_run:
+    workflows: ["ESP-IDF Build CI"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +24,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v5
 
@@ -29,6 +36,22 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r docs/requirements.txt
+
+      - name: Download firmware for web flasher
+        run: |
+          API="https://api.github.com/repos/${{ github.repository }}/releases?per_page=30"
+          for release in $(curl -s "$API" | python3 -c "
+          import sys, json
+          for r in json.load(sys.stdin):
+              if any(a['name'].startswith('merged_') for a in r['assets']):
+                  print(r['tag_name'])
+          "); do
+            mkdir -p "docs/flasher/firmware/$release"
+            curl -sL "https://github.com/${{ github.repository }}/releases/download/$release/merged_detector.bin" \
+              -o "docs/flasher/firmware/$release/merged_detector.bin" || true
+            curl -sL "https://github.com/${{ github.repository }}/releases/download/$release/merged_gateway.bin" \
+              -o "docs/flasher/firmware/$release/merged_gateway.bin" || true
+          done
 
       - name: Build site
         run: mkdocs build

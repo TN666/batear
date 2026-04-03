@@ -6,7 +6,7 @@
       "chipFamily": "ESP32-S3",
       "parts": [
         {
-          "path": "https://github.com/batear-io/batear/releases/download/firmware-latest/merged_detector.bin",
+          "path": "firmware/firmware-latest/merged_detector.bin",
           "offset": 0
         }
       ]

@@ -298,7 +298,6 @@
     }
 
     const REPO = "batear-io/batear";
-    const BASE = `https://github.com/${REPO}/releases/download`;
     const select = document.getElementById("versionSelect");
     const loading = document.getElementById("versionLoading");
     const btnDet = document.getElementById("btnDetector");
@@ -312,7 +311,7 @@
         new_install_prompt_erase: true,
         builds: [{
           chipFamily: "ESP32-S3",
-          parts: [{ path: `${BASE}/${tag}/merged_${role}.bin`, offset: 0 }]
+          parts: [{ path: `firmware/${tag}/merged_${role}.bin`, offset: 0 }]
         }]
       })], { type: "application/json" }));
     }
