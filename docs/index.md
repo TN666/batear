@@ -60,7 +60,7 @@ The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoR
 
     Flash firmware from your browser — no toolchain required
 
-    [:octicons-arrow-right-24: Open Web Flasher](https://batear-io.github.io/batear/){ target="_blank" }
+    [:octicons-arrow-right-24: Open Web Flasher](https://docs.batear.io/flasher/){ target="_blank" }
 
 -   :material-tools:{ .lg .middle } **Hardware Setup**
 

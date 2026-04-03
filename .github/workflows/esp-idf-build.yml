@@ -66,31 +66,28 @@ jobs:
             merged_detector.bin
             merged_gateway.bin
 
-  deploy:
-    name: Deploy Web Flasher
+  release:
+    name: Publish Firmware
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
 
     steps:
-      - uses: actions/checkout@v4
-
       - name: Download firmware
         uses: actions/download-artifact@v4
         with:
           name: firmware
-          path: deploy/firmware
 
-      - name: Assemble site
-        run: |
-          cp web/index.html deploy/
-          cp web/manifest_detector.json deploy/
-          cp web/manifest_gateway.json deploy/
-          cp web/icon.png deploy/
-
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deploy
-          force_orphan: true
+          tag_name: firmware-latest
+          name: Latest Firmware
+          body: |
+            Pre-built firmware binaries from the latest `main` branch.
+            Used by the [Web Flasher](https://docs.batear.io/flasher/).
+          prerelease: true
+          make_latest: false
+          files: |
+            merged_detector.bin
+            merged_gateway.bin

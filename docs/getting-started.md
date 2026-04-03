@@ -1,7 +1,7 @@
 # Prerequisites
 
 !!! note "Don't want to install ESP-IDF?"
-    Use the [Web Flasher](https://batear-io.github.io/batear/){ target="_blank" } to flash pre-built firmware directly from your browser. The prerequisites below are only needed if you want to build from source or customize configuration.
+    Use the [Web Flasher](https://docs.batear.io/flasher/){ target="_blank" } to flash pre-built firmware directly from your browser. The prerequisites below are only needed if you want to build from source or customize configuration.
 
 ## Requirements
 
