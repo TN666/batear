@@ -305,13 +305,15 @@
 
     let manifestUrls = {};
 
+    const pageBase = window.location.href.replace(/[^/]*$/, "");
+
     function makeManifest(name, tag, role) {
       return URL.createObjectURL(new Blob([JSON.stringify({
         name: `Batear ${name}`,
         new_install_prompt_erase: true,
         builds: [{
           chipFamily: "ESP32-S3",
-          parts: [{ path: `firmware/${tag}/merged_${role}.bin`, offset: 0 }]
+          parts: [{ path: `${pageBase}firmware/${tag}/merged_${role}.bin`, offset: 0 }]
         }]
       })], { type: "application/json" }));
     }
