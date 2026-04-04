@@ -338,6 +338,7 @@
 
     const REPO = "batear-io/batear";
     const NVS_OFFSET = 0x9000;
+    const NVS_PAGE_SIZE = 4096;
 
     const select    = document.getElementById("versionSelect");
     const loading   = document.getElementById("versionLoading");
@@ -349,9 +350,20 @@
     const keyStatus = document.getElementById("keyStatus");
 
     let manifestUrls = {};
-    let nvsUrl = null;
+    let patchedUrls  = {};
 
     const pageBase = window.location.href.replace(/[^/]*$/, "");
+
+    /* Binary cache: keyed by firmware URL → ArrayBuffer */
+    const fwCache = {};
+
+    async function fetchFirmware(url) {
+      if (fwCache[url]) return fwCache[url];
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`Fetch failed: ${resp.status}`);
+      fwCache[url] = await resp.arrayBuffer();
+      return fwCache[url];
+    }
 
     /* ---- NVS generation ---- */
 
@@ -362,47 +374,76 @@
       return raw;
     }
 
-    function buildNvsBlob(appKeyHex) {
-      const appKey = hexToBytes(appKeyHex);
-      const devEui = new Uint8Array(8);
-      const nvsImage = generateNvsImage(devEui, appKey);
-      nvsUrl = URL.createObjectURL(new Blob([nvsImage], { type: "application/octet-stream" }));
-      return nvsUrl;
+    function patchFirmware(fwBuf, nvsPage) {
+      const patched = new Uint8Array(fwBuf.slice(0));
+      if (patched.length < NVS_OFFSET + NVS_PAGE_SIZE) {
+        const extended = new Uint8Array(NVS_OFFSET + NVS_PAGE_SIZE);
+        extended.fill(0xFF);
+        extended.set(patched);
+        extended.set(nvsPage, NVS_OFFSET);
+        return extended.buffer;
+      }
+      patched.set(nvsPage, NVS_OFFSET);
+      return patched.buffer;
     }
 
     /* ---- Manifest building ---- */
 
-    function makeManifest(name, tag, role, nvsPartUrl) {
-      const fwPath = `${pageBase}firmware/${tag}/merged_${role}.bin`;
-      const parts = [{ path: fwPath, offset: 0 }];
-
-      if (nvsPartUrl) {
-        parts.push({ path: nvsPartUrl, offset: NVS_OFFSET });
-      }
-
+    function makeSimpleManifest(name, binUrl) {
       return URL.createObjectURL(new Blob([JSON.stringify({
         name: `Batear ${name}`,
         new_install_prompt_erase: true,
-        builds: [{ chipFamily: "ESP32-S3", parts }]
+        builds: [{ chipFamily: "ESP32-S3",
+                    parts: [{ path: binUrl, offset: 0 }] }]
       })], { type: "application/json" }));
     }
 
-    function updateManifests() {
-      if (manifestUrls.det) URL.revokeObjectURL(manifestUrls.det);
-      if (manifestUrls.gw)  URL.revokeObjectURL(manifestUrls.gw);
-      if (nvsUrl) { URL.revokeObjectURL(nvsUrl); nvsUrl = null; }
+    function revokeAll() {
+      for (const u of Object.values(manifestUrls)) if (u) URL.revokeObjectURL(u);
+      for (const u of Object.values(patchedUrls))  if (u) URL.revokeObjectURL(u);
+      manifestUrls = {};
+      patchedUrls  = {};
+    }
 
+    function fwUrl(tag, role) {
+      return `${pageBase}firmware/${tag}/merged_${role}.bin`;
+    }
+
+    async function updateManifests() {
+      revokeAll();
       const tag = select.value;
       const validKey = getValidKey();
-      const currentNvsUrl = validKey ? buildNvsBlob(validKey) : null;
 
-      manifestUrls.det = makeManifest("Detector " + tag, tag, "detector", currentNvsUrl);
-      manifestUrls.gw  = makeManifest("Gateway " + tag, tag, "gateway", currentNvsUrl);
+      if (!validKey) {
+        manifestUrls.det = makeSimpleManifest("Detector " + tag, fwUrl(tag, "detector"));
+        manifestUrls.gw  = makeSimpleManifest("Gateway " + tag, fwUrl(tag, "gateway"));
+      } else {
+        const nvsPage = generateNvsImage(
+          new Uint8Array(8),
+          hexToBytes(validKey)
+        );
+
+        const [detBuf, gwBuf] = await Promise.all([
+          fetchFirmware(fwUrl(tag, "detector")),
+          fetchFirmware(fwUrl(tag, "gateway"))
+        ]);
+
+        patchedUrls.det = URL.createObjectURL(
+          new Blob([patchFirmware(detBuf, nvsPage)], { type: "application/octet-stream" }));
+        patchedUrls.gw = URL.createObjectURL(
+          new Blob([patchFirmware(gwBuf, nvsPage)], { type: "application/octet-stream" }));
+
+        manifestUrls.det = makeSimpleManifest("Detector " + tag, patchedUrls.det);
+        manifestUrls.gw  = makeSimpleManifest("Gateway " + tag, patchedUrls.gw);
+      }
+
       btnDet.setAttribute("manifest", manifestUrls.det);
       btnGw.setAttribute("manifest", manifestUrls.gw);
     }
 
     /* ---- Key input validation ---- */
+
+    let updateTimer = null;
 
     function validateKeyInput() {
       const raw = inputKey.value.replace(/[:\s-]/g, "");
@@ -414,6 +455,7 @@
         keyStatus.className = "key-status default-key";
         keyStatus.querySelector("span").textContent =
           "No key entered \u2014 firmware will use the default shared key.";
+        clearTimeout(updateTimer);
         updateManifests();
         return;
       }
@@ -432,8 +474,16 @@
 
       keyStatus.className = "key-status provisioned";
       keyStatus.querySelector("span").textContent =
-        "Custom key will be flashed to NVS \u2014 use the same key for both devices.";
-      updateManifests();
+        "Preparing patched firmware\u2026";
+
+      clearTimeout(updateTimer);
+      updateTimer = setTimeout(async () => {
+        await updateManifests();
+        if (getValidKey()) {
+          keyStatus.querySelector("span").textContent =
+            "Custom key embedded in firmware \u2014 use the same key for both devices.";
+        }
+      }, 300);
     }
 
     inputKey.addEventListener("input", validateKeyInput);
@@ -445,7 +495,7 @@
 
     /* ---- Version picker ---- */
 
-    select.addEventListener("change", updateManifests);
+    select.addEventListener("change", () => updateManifests());
 
     /* Initial manifest setup */
     updateManifests();
