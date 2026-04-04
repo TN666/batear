@@ -27,3 +27,9 @@ The ESP32-S3's SIMD instructions keep the full FFT + harmonic scan well under 10
 ## Alert Transmission
 
 When a drone signature is confirmed, an **AES-128-GCM encrypted** alert is transmitted over LoRa to the gateway. See the [LoRa Protocol](protocol.md) page for packet format details.
+
+## Gateway → Home Assistant
+
+The gateway decrypts the LoRa packet and pushes a `MqttEvent_t` into a FreeRTOS queue. On a separate core, MqttTask picks up the event and publishes a JSON payload over MQTT to the broker.
+
+Home Assistant discovers the gateway automatically via MQTT Discovery — no manual YAML needed. See [Configuration → MQTT / Home Assistant](configuration.md#mqtt-home-assistant-integration) for topics, payloads, and setup.

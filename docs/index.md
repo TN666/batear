@@ -39,13 +39,14 @@ Drones are an increasing threat to homes, farms, and communities — and effecti
 
 For ultra-low-cost hardware, Batear turns a tiny ESP32-S3 microcontroller and a MEMS microphone into an always-on acoustic drone detector. It runs entirely at the edge — **no cloud subscription, no internet connection, no ongoing cost.** Deploy one at a window, a fence line, or a rooftop and it will alert you the moment drone rotor harmonics are detected nearby.
 
-The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoRa RX + OLED + LED), selectable at build time.
+The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoRa RX + OLED + LED + MQTT), selectable at build time. The gateway forwards alerts to **Home Assistant** via MQTT with automatic device discovery.
 
 ## Key Features
 
 - :microphone: **Acoustic detection** — FFT harmonic signature analysis of drone rotor noise
 - :lock: **AES-128-GCM encryption** — secure LoRa communication between devices
 - :satellite: **LoRa alerting** — long-range, low-power wireless alerts
+- :house: **Home Assistant integration** — MQTT with auto-discovery, LWT availability, per-detector topics
 - :zap: **Edge-only** — no cloud, no internet, no subscription
 - :moneybag: **Ultra-low-cost** — under $20 per node with off-the-shelf parts
 - :package: **Single codebase** — builds as Detector or Gateway via config
