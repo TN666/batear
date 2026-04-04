@@ -18,7 +18,7 @@ const HEADER_SIZE    = 32;
 const BITMAP_SIZE    = 32;
 const ENTRIES_OFFSET = HEADER_SIZE + BITMAP_SIZE;  // 0x40
 
-const PAGE_STATE_ACTIVE = 0xFFFFFFFC;  // bits cleared: active
+const PAGE_STATE_ACTIVE = 0xFFFFFFFE;
 const NVS_VERSION       = 0xFE;
 
 // NVS item types
@@ -192,7 +192,7 @@ export function generateNvsImage(devEui, appKey) {
   writeU32(page, 4, 0);          // sequence number
   page[8] = NVS_VERSION;
   // bytes 9-27: 0xFF (already filled)
-  writeU32(page, 28, crc32(page.subarray(0, 28)));
+  writeU32(page, 28, crc32(page.subarray(0, 28), 0xFFFFFFFF));
 
   // --- Entry bitmap: start all empty (0xFF already) ---
 
