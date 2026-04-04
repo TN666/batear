@@ -135,6 +135,21 @@
     .key-status{font-size:13px;padding:10px 14px;border-radius:6px;margin-top:4px;display:flex;align-items:center;gap:8px}
     .key-status.provisioned{background:rgba(26,127,55,.08);color:var(--green)}
     .key-status.default-key{background:rgba(154,103,0,.08);color:var(--yellow)}
+
+    /* --- Gateway Config --- */
+    .gw-config{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;max-width:560px;margin:0 auto 32px}
+    .gw-config .section-title{margin-bottom:16px}
+    .gw-config .hint{font-size:12px;color:var(--text-muted);margin-top:3px}
+    .gw-toggle{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:14px;cursor:pointer}
+    .gw-toggle input{accent-color:var(--accent);width:16px;height:16px}
+    .gw-fields{display:none}
+    .gw-fields.visible{display:block}
+    .gw-field{margin-bottom:12px}
+    .gw-field label{display:block;font-size:13px;font-weight:600;margin-bottom:4px;font-family:var(--font-mono)}
+    .gw-field input{width:100%;padding:8px 12px;font-size:14px;font-family:var(--font-mono);border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text)}
+    .gw-field input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+    .gw-field input[type="password"]{letter-spacing:1px}
+    .gw-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   </style>
 </head>
 <body>
@@ -201,6 +216,47 @@
       </div>
     </section>
 
+    <!-- Gateway MQTT/WiFi Config -->
+    <section class="gw-config">
+      <div class="section-title">// Gateway — MQTT / Home Assistant</div>
+      <label class="gw-toggle">
+        <input type="checkbox" id="gwEnable">
+        Provision Wi-Fi &amp; MQTT credentials for the gateway
+      </label>
+      <div class="gw-fields" id="gwFields">
+        <div class="gw-row">
+          <div class="gw-field">
+            <label>Wi-Fi SSID</label>
+            <input type="text" id="gwWifiSsid" placeholder="MyNetwork" spellcheck="false" autocomplete="off">
+          </div>
+          <div class="gw-field">
+            <label>Wi-Fi Password</label>
+            <input type="password" id="gwWifiPass" placeholder="••••••••" autocomplete="off">
+          </div>
+        </div>
+        <div class="gw-field">
+          <label>MQTT Broker URL</label>
+          <input type="text" id="gwMqttUrl" placeholder="mqtt://192.168.1.100:1883" spellcheck="false" autocomplete="off">
+          <div class="hint">Use mqtt:// or mqtts:// — e.g. mqtt://homeassistant.local:1883</div>
+        </div>
+        <div class="gw-row">
+          <div class="gw-field">
+            <label>MQTT Username</label>
+            <input type="text" id="gwMqttUser" placeholder="ha_user" spellcheck="false" autocomplete="off">
+          </div>
+          <div class="gw-field">
+            <label>MQTT Password</label>
+            <input type="password" id="gwMqttPass" placeholder="••••••••" autocomplete="off">
+          </div>
+        </div>
+        <div class="gw-field">
+          <label>Gateway Device ID</label>
+          <input type="text" id="gwDeviceId" placeholder="gw01" maxlength="31" spellcheck="false" autocomplete="off">
+          <div class="hint">Short identifier for MQTT topics — e.g. batear/nodes/gw01/status</div>
+        </div>
+      </div>
+    </section>
+
     <!-- Firmware Cards -->
     <section class="cards">
 
@@ -224,11 +280,11 @@
       <div class="card">
         <span class="card-badge gateway">Gateway</span>
         <h3>Alert Gateway</h3>
-        <p>Receives encrypted LoRa alerts from detectors, displays status on the on-board SSD1306 OLED, and drives an alert LED.</p>
+        <p>Receives encrypted LoRa alerts from detectors, displays status on OLED, and forwards events to Home Assistant via MQTT.</p>
         <div class="specs">
           <span>LoRa RX (SX1262)</span>
           <span>SSD1306 OLED</span>
-          <span>Alert LED</span>
+          <span>MQTT + HA Discovery</span>
         </div>
         <esp-web-install-button id="btnGateway" manifest="manifest_gateway.json">
           <button slot="activate" class="gate-btn">
@@ -315,6 +371,16 @@
           </div>
         </details>
         <details class="faq">
+          <summary>How do I connect the gateway to Home Assistant?</summary>
+          <div class="answer">
+            Enable the <strong>Gateway &mdash; MQTT / Home Assistant</strong> section above and fill
+            in your Wi-Fi credentials and MQTT broker URL (e.g. <code>mqtt://192.168.1.100:1883</code>).
+            These are written to NVS and the gateway will connect to Wi-Fi &amp; MQTT on boot.
+            Home Assistant discovers the gateway automatically via MQTT Discovery &mdash; no manual
+            YAML needed. The gateway publishes to <code>batear/nodes/&lt;id&gt;/status</code>.
+          </div>
+        </details>
+        <details class="faq">
           <summary>Which boards are supported?</summary>
           <div class="answer">
             Currently only the <strong>Heltec WiFi LoRa 32 V3</strong> (ESP32-S3 + SX1262) is supported.
@@ -339,7 +405,7 @@
   </footer>
 
   <script type="module">
-    import { generateNvsImage, hexToBytes, generateRandomKey } from "./nvs_gen.js";
+    import { generateNvsImage, generateGatewayNvsImage, hexToBytes, generateRandomKey } from "./nvs_gen.js";
 
     if (!("serial" in navigator)) {
       document.getElementById("notSupported").style.display = "block";
@@ -359,6 +425,23 @@
     const keyStatus = document.getElementById("keyStatus");
     const inputDevId = document.getElementById("inputDeviceId");
     const hintDevId  = document.getElementById("hintDeviceId");
+
+    const gwEnable    = document.getElementById("gwEnable");
+    const gwFields    = document.getElementById("gwFields");
+    const gwWifiSsid  = document.getElementById("gwWifiSsid");
+    const gwWifiPass  = document.getElementById("gwWifiPass");
+    const gwMqttUrl   = document.getElementById("gwMqttUrl");
+    const gwMqttUser  = document.getElementById("gwMqttUser");
+    const gwMqttPass  = document.getElementById("gwMqttPass");
+    const gwDeviceId  = document.getElementById("gwDeviceId");
+
+    gwEnable.addEventListener("change", () => {
+      gwFields.classList.toggle("visible", gwEnable.checked);
+      validateAndUpdate();
+    });
+    for (const el of [gwWifiSsid, gwWifiPass, gwMqttUrl, gwMqttUser, gwMqttPass, gwDeviceId]) {
+      el.addEventListener("input", validateAndUpdate);
+    }
 
     let manifestUrls = {};
     let patchedUrls  = {};
@@ -393,20 +476,38 @@
       return n;
     }
 
+    function getGwConfig() {
+      if (!gwEnable.checked) return null;
+      const cfg = {};
+      if (gwWifiSsid.value.trim()) cfg.wifiSsid = gwWifiSsid.value.trim();
+      if (gwWifiPass.value)        cfg.wifiPass  = gwWifiPass.value;
+      if (gwMqttUrl.value.trim())  cfg.mqttUrl   = gwMqttUrl.value.trim();
+      if (gwMqttUser.value.trim()) cfg.mqttUser  = gwMqttUser.value.trim();
+      if (gwMqttPass.value)        cfg.mqttPass  = gwMqttPass.value;
+      if (gwDeviceId.value.trim()) cfg.deviceId  = gwDeviceId.value.trim();
+      if (Object.keys(cfg).length === 0) return null;
+      return cfg;
+    }
+
     function needsNvsPatch() {
       return getValidKey() !== null || getDeviceId() !== null;
     }
 
-    function patchFirmware(fwBuf, nvsPage) {
+    function needsGwPatch() {
+      return getGwConfig() !== null;
+    }
+
+    function patchFirmware(fwBuf, nvsImage) {
+      const nvsLen = nvsImage.length;
       const patched = new Uint8Array(fwBuf.slice(0));
-      if (patched.length < NVS_OFFSET + NVS_PAGE_SIZE) {
-        const extended = new Uint8Array(NVS_OFFSET + NVS_PAGE_SIZE);
+      if (patched.length < NVS_OFFSET + nvsLen) {
+        const extended = new Uint8Array(NVS_OFFSET + nvsLen);
         extended.fill(0xFF);
         extended.set(patched);
-        extended.set(nvsPage, NVS_OFFSET);
+        extended.set(nvsImage, NVS_OFFSET);
         return extended.buffer;
       }
-      patched.set(nvsPage, NVS_OFFSET);
+      patched.set(nvsImage, NVS_OFFSET);
       return patched.buffer;
     }
 
@@ -437,30 +538,42 @@
       const tag = select.value;
       const validKey = getValidKey();
       const devId    = getDeviceId();
-      const patch    = needsNvsPatch();
+      const gwCfg    = getGwConfig();
+      const patchDet = needsNvsPatch();
+      const patchGw  = patchDet || needsGwPatch();
 
-      if (!patch) {
+      const appKey = validKey ? hexToBytes(validKey) : hexToBytes("DEADBEEFCAFEBABE13374200F00DAA55");
+      const devEui = new Uint8Array(8);
+
+      if (!patchDet && !patchGw) {
         manifestUrls.det = makeSimpleManifest("Detector " + tag, fwUrl(tag, "detector"));
         manifestUrls.gw  = makeSimpleManifest("Gateway " + tag, fwUrl(tag, "gateway"));
       } else {
-        const appKey = validKey ? hexToBytes(validKey) : hexToBytes("DEADBEEFCAFEBABE13374200F00DAA55");
-        const devEui = new Uint8Array(8);
+        const fetches = [];
+        if (patchDet) fetches.push(fetchFirmware(fwUrl(tag, "detector")));
+        if (patchGw)  fetches.push(fetchFirmware(fwUrl(tag, "gateway")));
+        const buffers = await Promise.all(fetches);
+        let bufIdx = 0;
 
-        const nvsDetector = generateNvsImage(devEui, appKey, devId);
-        const nvsGateway  = generateNvsImage(devEui, appKey, null);
+        if (patchDet) {
+          const nvsDetector = generateNvsImage(devEui, appKey, devId);
+          patchedUrls.det = URL.createObjectURL(
+            new Blob([patchFirmware(buffers[bufIdx++], nvsDetector)], { type: "application/octet-stream" }));
+          manifestUrls.det = makeSimpleManifest("Detector " + tag, patchedUrls.det);
+        } else {
+          manifestUrls.det = makeSimpleManifest("Detector " + tag, fwUrl(tag, "detector"));
+        }
 
-        const [detBuf, gwBuf] = await Promise.all([
-          fetchFirmware(fwUrl(tag, "detector")),
-          fetchFirmware(fwUrl(tag, "gateway"))
-        ]);
-
-        patchedUrls.det = URL.createObjectURL(
-          new Blob([patchFirmware(detBuf, nvsDetector)], { type: "application/octet-stream" }));
-        patchedUrls.gw = URL.createObjectURL(
-          new Blob([patchFirmware(gwBuf, nvsGateway)], { type: "application/octet-stream" }));
-
-        manifestUrls.det = makeSimpleManifest("Detector " + tag, patchedUrls.det);
-        manifestUrls.gw  = makeSimpleManifest("Gateway " + tag, patchedUrls.gw);
+        if (patchGw) {
+          const nvsGateway = gwCfg
+            ? generateGatewayNvsImage(devEui, appKey, gwCfg)
+            : generateNvsImage(devEui, appKey, null);
+          patchedUrls.gw = URL.createObjectURL(
+            new Blob([patchFirmware(buffers[bufIdx++], nvsGateway)], { type: "application/octet-stream" }));
+          manifestUrls.gw = makeSimpleManifest("Gateway " + tag, patchedUrls.gw);
+        } else {
+          manifestUrls.gw = makeSimpleManifest("Gateway " + tag, fwUrl(tag, "gateway"));
+        }
       }
 
       btnDet.setAttribute("manifest", manifestUrls.det);
@@ -502,7 +615,9 @@
         }
       }
 
-      if (!hasKey && devId === null) {
+      const gwCfg = getGwConfig();
+
+      if (!hasKey && devId === null && !gwCfg) {
         keyStatus.className = "key-status default-key";
         keyStatus.querySelector("span").textContent =
           "No key or device ID entered \u2014 firmware uses compile-time defaults.";
@@ -518,10 +633,11 @@
       clearTimeout(updateTimer);
       updateTimer = setTimeout(async () => {
         await updateManifests();
-        if (needsNvsPatch()) {
+        if (needsNvsPatch() || gwCfg) {
           const parts = [];
           if (hasKey) parts.push("custom key");
           if (devId !== null) parts.push(`device ID ${devId}`);
+          if (gwCfg) parts.push("MQTT/WiFi config");
           keyStatus.querySelector("span").textContent =
             `Firmware patched with ${parts.join(" + ")} \u2014 ready to flash.`;
         }
