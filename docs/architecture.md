@@ -7,11 +7,34 @@
 │  ICS-43434 mic       │  28-byte packets             │  SSD1306 OLED display│
 │  FFT harmonic detect │                              │  LED alarm indicator │
 │  SX1262 LoRa TX      │                              │  SX1262 LoRa RX      │
-└──────────────────────┘                              └──────────────────────┘
-   Heltec WiFi LoRa 32 V3                               Heltec WiFi LoRa 32 V3
+└──────────────────────┘                              │  WiFi + MQTT TX      │
+   Heltec WiFi LoRa 32 V3                             └──────────┬───────────┘
+                                                        Heltec WiFi LoRa 32 V3
+                                                                  │
+                                                           WiFi / MQTT
+                                                                  │
+                                                                  ▼
+                                                      ┌──────────────────────┐
+                                                      │   HOME ASSISTANT     │
+                                                      │                      │
+                                                      │  Mosquitto broker    │
+                                                      │  MQTT Discovery      │
+                                                      │  binary_sensor +     │
+                                                      │  RSSI / SNR sensors  │
+                                                      └──────────────────────┘
 ```
 
 Multiple detectors can report to one gateway. Each detector has a unique device ID (0–255).
+The gateway forwards detection events to Home Assistant via MQTT over Wi-Fi (see [Configuration](configuration.md) for setup).
+
+## Task Layout (dual-core)
+
+| Role | Core 0 | Core 1 |
+|:---|:---|:---|
+| Detector | AudioTask — I2S mic + FFT + detection | LoRaTask — encrypt + SX1262 TX |
+| Gateway | GatewayTask — LoRa RX + decrypt + OLED + LED | MqttTask — Wi-Fi + MQTT publish + HA Discovery |
+
+GatewayTask sends `MqttEvent_t` items to MqttTask via a FreeRTOS queue, so LoRa reception is never blocked by network I/O.
 
 ## Project Structure
 
@@ -20,10 +43,10 @@ batear/
 ├── CMakeLists.txt
 ├── sdkconfig.defaults          # common ESP-IDF settings
 ├── sdkconfig.detector          # detector role + device ID + network
-├── sdkconfig.gateway           # gateway role + network
+├── sdkconfig.gateway           # gateway role + network + MQTT/WiFi
 ├── main/
 │   ├── CMakeLists.txt          # conditional compile by role
-│   ├── Kconfig.projbuild       # role / device ID / network / debug config
+│   ├── Kconfig.projbuild       # role / device ID / network / MQTT config
 │   ├── main.cpp                # entry point (role switch)
 │   ├── pin_config.h            # board-specific GPIO + hardware traits
 │   ├── drone_detector.h        # shared DroneEvent_t + queue
@@ -33,6 +56,7 @@ batear/
 │   ├── audio_task.c/.h         # [detector] I2S mic + detection state machine
 │   ├── lora_task.cpp/.h        # [detector] LoRa TX
 │   ├── gateway_task.cpp/.h     # [gateway]  LoRa RX + OLED + LED
+│   ├── mqtt_task.cpp/.h        # [gateway]  WiFi + MQTT + HA Discovery
 │   ├── oled.c/.h               # [gateway]  SSD1306 128x64 driver
 │   └── idf_component.yml       # RadioLib + ESP-DSP dependencies
 ```

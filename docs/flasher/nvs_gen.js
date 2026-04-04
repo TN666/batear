@@ -7,6 +7,14 @@
  *     blob "app_key"   (16 bytes)
  *     u8   "device_id" (1 byte, detector only)
  *
+ *   namespace "gateway_cfg"  (gateway only)
+ *     str  "wifi_ssid"
+ *     str  "wifi_pass"
+ *     str  "mqtt_url"
+ *     str  "mqtt_user"
+ *     str  "mqtt_pass"
+ *     str  "device_id"
+ *
  * The output can be flashed to the NVS partition offset (0x9000 for
  * default single-app partition table) via esptool / esp-web-tools.
  *
@@ -24,6 +32,7 @@ const NVS_VERSION       = 0xFE;
 
 // NVS item types (from ESP-IDF nvs.h / nvs_handle.hpp)
 const TYPE_U8         = 0x01;
+const TYPE_STR        = 0x21;  // NVS_TYPE_STR
 const TYPE_BLOB_DATA  = 0x42;  // NVS_TYPE_BLOB
 const TYPE_BLOB_IDX   = 0x48;
 
@@ -178,6 +187,41 @@ function writeU8Entry(page, entryIdx, nsIdx, key, value) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Write a NVS string entry (TYPE_STR = 0x21)                         */
+/*  Stored as multi-span entry: header + ceil((len+1)/32) data spans.  */
+/*  No blob-index entry (strings use the legacy single-entry format).  */
+/* ------------------------------------------------------------------ */
+
+function writeStringEntry(page, entryIdx, nsIdx, key, str) {
+  const enc = new TextEncoder();
+  const strBytes = enc.encode(str);
+  const dataLen = strBytes.length + 1;  // includes null terminator
+  const dataSpan = 1 + Math.ceil(dataLen / ENTRY_SIZE);
+
+  const off = writeEntryHeader(page, entryIdx, nsIdx, TYPE_STR, dataSpan, 0xFF, key);
+
+  writeU16(page, off + 24, dataLen);
+  // bytes 26-27 stay 0xFF from page.fill()
+
+  // raw string bytes (with null terminator) in subsequent entry slots
+  const rawOff = off + ENTRY_SIZE;
+  page.set(strBytes, rawOff);
+  page[rawOff + strBytes.length] = 0;  // explicit null terminator
+
+  // CRC over the string data (including null)
+  const dataBuf = page.subarray(rawOff, rawOff + dataLen);
+  writeU32(page, off + 28, crc32(dataBuf, 0xFFFFFFFF));
+
+  writeU32(page, off + 4, entryItemCrc(page, off));
+
+  for (let i = 0; i < dataSpan; i++) {
+    setEntryState(page.subarray(HEADER_SIZE, HEADER_SIZE + BITMAP_SIZE), entryIdx + i, ES_WRITTEN);
+  }
+
+  return entryIdx + dataSpan;
+}
+
+/* ------------------------------------------------------------------ */
 /*  Public API                                                         */
 /* ------------------------------------------------------------------ */
 
@@ -255,4 +299,69 @@ export function generateRandomKey(bytes = 16) {
   const arr = new Uint8Array(bytes);
   crypto.getRandomValues(arr);
   return Array.from(arr, b => b.toString(16).toUpperCase().padStart(2, "0")).join("");
+}
+
+/**
+ * Generate a multi-page NVS image with both lora_cfg and gateway_cfg.
+ *
+ * Page 0: "lora_cfg"    — dev_eui, app_key (same as generateNvsImage)
+ * Page 1: "gateway_cfg" — wifi_ssid, wifi_pass, mqtt_url, mqtt_user,
+ *                          mqtt_pass, device_id (all strings)
+ *
+ * @param {Uint8Array}  devEui   - 8-byte DevEUI
+ * @param {Uint8Array}  appKey   - 16-byte AppKey / network key
+ * @param {Object}      gwCfg    - Gateway config strings
+ * @param {string}      gwCfg.wifiSsid
+ * @param {string}      gwCfg.wifiPass
+ * @param {string}      gwCfg.mqttUrl
+ * @param {string}      gwCfg.mqttUser
+ * @param {string}      gwCfg.mqttPass
+ * @param {string}      gwCfg.deviceId
+ * @returns {Uint8Array} 8192-byte NVS image (2 pages)
+ */
+export function generateGatewayNvsImage(devEui, appKey, gwCfg) {
+  if (devEui.length !== 8)  throw new Error("dev_eui must be 8 bytes");
+  if (appKey.length !== 16) throw new Error("app_key must be 16 bytes");
+
+  const image = new Uint8Array(NVS_PAGE_SIZE * 2);
+  image.fill(0xFF);
+
+  // ---- Page 0: lora_cfg ----
+  const p0 = image.subarray(0, NVS_PAGE_SIZE);
+
+  writeU32(p0, 0, PAGE_STATE_ACTIVE);
+  writeU32(p0, 4, 0);
+  p0[8] = NVS_VERSION;
+  writeU32(p0, 28, crc32(p0.subarray(4, 28), 0xFFFFFFFF));
+
+  const ns0Off = writeEntryHeader(p0, 0, 0, TYPE_U8, 1, 0xFF, "lora_cfg");
+  p0[ns0Off + 24] = 1;
+  writeU32(p0, ns0Off + 4, entryItemCrc(p0, ns0Off));
+  setEntryState(p0.subarray(HEADER_SIZE, HEADER_SIZE + BITMAP_SIZE), 0, ES_WRITTEN);
+
+  let idx = writeBlobEntries(p0, 1, 1, "dev_eui", devEui);
+  writeBlobEntries(p0, idx, 1, "app_key", appKey);
+
+  // ---- Page 1: gateway_cfg ----
+  const p1 = image.subarray(NVS_PAGE_SIZE, NVS_PAGE_SIZE * 2);
+
+  writeU32(p1, 0, PAGE_STATE_ACTIVE);
+  writeU32(p1, 4, 1);  // sequence number = 1
+  p1[8] = NVS_VERSION;
+  writeU32(p1, 28, crc32(p1.subarray(4, 28), 0xFFFFFFFF));
+
+  const ns1Off = writeEntryHeader(p1, 0, 0, TYPE_U8, 1, 0xFF, "gateway_cfg");
+  p1[ns1Off + 24] = 2;  // namespace index = 2
+  writeU32(p1, ns1Off + 4, entryItemCrc(p1, ns1Off));
+  setEntryState(p1.subarray(HEADER_SIZE, HEADER_SIZE + BITMAP_SIZE), 0, ES_WRITTEN);
+
+  idx = 1;
+  if (gwCfg.wifiSsid) idx = writeStringEntry(p1, idx, 2, "wifi_ssid", gwCfg.wifiSsid);
+  if (gwCfg.wifiPass) idx = writeStringEntry(p1, idx, 2, "wifi_pass", gwCfg.wifiPass);
+  if (gwCfg.mqttUrl)  idx = writeStringEntry(p1, idx, 2, "mqtt_url",  gwCfg.mqttUrl);
+  if (gwCfg.mqttUser) idx = writeStringEntry(p1, idx, 2, "mqtt_user", gwCfg.mqttUser);
+  if (gwCfg.mqttPass) idx = writeStringEntry(p1, idx, 2, "mqtt_pass", gwCfg.mqttPass);
+  if (gwCfg.deviceId) idx = writeStringEntry(p1, idx, 2, "device_id", gwCfg.deviceId);
+
+  return image;
 }

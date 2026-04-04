@@ -11,3 +11,7 @@ dependencies:
   ## Component registry: https://components.espressif.com/components/jgromes/radiolib
   jgromes/radiolib:
     version: ">=6.6.0"
+
+  ## ESP-MQTT — moved out of ESP-IDF core in v6.0
+  espressif/mqtt:
+    version: "*"

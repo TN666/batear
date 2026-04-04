@@ -48,6 +48,12 @@ Key parameters in `sdkconfig.detector` / `sdkconfig.gateway`:
 | `CONFIG_BATEAR_LORA_FREQ` | Frequency in kHz (915000 / 868000 / 923000) |
 | `CONFIG_BATEAR_LORA_SYNC_WORD` | Network isolation (0x12 = private) |
 | `CONFIG_BATEAR_DEVICE_ID` | Detector only, 0–255 |
+| `CONFIG_BATEAR_WIFI_SSID` | Gateway Wi-Fi SSID (overridden by NVS) |
+| `CONFIG_BATEAR_WIFI_PASS` | Gateway Wi-Fi password (overridden by NVS) |
+| `CONFIG_BATEAR_MQTT_BROKER_URL` | MQTT broker URI, e.g. `mqtt://ha.local:1883` |
+| `CONFIG_BATEAR_MQTT_USER` | MQTT username (overridden by NVS) |
+| `CONFIG_BATEAR_MQTT_PASS` | MQTT password (overridden by NVS) |
+| `CONFIG_BATEAR_GW_DEVICE_ID` | Gateway ID for MQTT topics (overridden by NVS) |
 
 ## Project Structure
 
@@ -69,6 +75,7 @@ batear/
 │   ├── audio_task.c/.h         # [detector] I2S mic + detection state machine
 │   ├── lora_task.cpp/.h        # [detector] LoRa TX
 │   ├── gateway_task.cpp/.h     # [gateway]  LoRa RX + OLED + LED
+│   ├── mqtt_task.cpp/.h        # [gateway]  WiFi + MQTT + HA Discovery
 │   ├── oled.c/.h               # [gateway]  SSD1306 128x64 driver
 │   └── idf_component.yml       # RadioLib + ESP-DSP dependencies
 ```

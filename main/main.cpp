@@ -9,6 +9,7 @@
  *
  * Gateway mode (CONFIG_BATEAR_ROLE_GATEWAY):
  *   Core 0 │ GatewayTask — LoRa RX + decrypt + OLED + LED
+ *   Core 1 │ MqttTask    — WiFi + MQTT publish + HA Discovery
  */
 
 #include <stdio.h>
@@ -29,6 +30,7 @@
 
 #ifdef CONFIG_BATEAR_ROLE_GATEWAY
 #include "gateway_task.h"
+#include "mqtt_task.h"
 #endif
 
 static const char *TAG = "main";
@@ -92,7 +94,13 @@ extern "C" void app_main(void)
 
     ESP_LOGI(TAG, "Batear GATEWAY");
 
-    static TaskHandle_t gw_h;
+    g_mqtt_event_queue = xQueueCreate(8, sizeof(MqttEvent_t));
+    if (g_mqtt_event_queue == NULL) {
+        ESP_LOGE(TAG, "Failed to create MQTT event queue — halting");
+        return;
+    }
+
+    static TaskHandle_t gw_h, mqtt_h;
 
     BaseType_t ret = xTaskCreatePinnedToCore(
         GatewayTask, "GatewayTask",
@@ -104,7 +112,18 @@ extern "C" void app_main(void)
         return;
     }
 
-    ESP_LOGI(TAG, "Gateway running — GatewayTask(Core0)");
+    ret = xTaskCreatePinnedToCore(
+        MqttTask, "MqttTask",
+        6 * 1024 / sizeof(StackType_t),
+        NULL, configMAX_PRIORITIES - 3,
+        &mqtt_h, 1);
+    if (ret != pdPASS) {
+        ESP_LOGE(TAG, "MqttTask create failed — halting");
+        vTaskDelete(gw_h);
+        return;
+    }
+
+    ESP_LOGI(TAG, "Gateway running — GatewayTask(Core0) + MqttTask(Core1)");
 
 #else
     #error "Select a role in menuconfig: Batear → Device role"

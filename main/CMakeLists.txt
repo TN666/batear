@@ -5,7 +5,7 @@ if(CONFIG_BATEAR_ROLE_DETECTOR)
 endif()
 
 if(CONFIG_BATEAR_ROLE_GATEWAY)
-    list(APPEND SRCS "oled.c" "gateway_task.cpp")
+    list(APPEND SRCS "oled.c" "gateway_task.cpp" "mqtt_task.cpp")
 endif()
 
 idf_component_register(
@@ -17,6 +17,10 @@ idf_component_register(
         esp_driver_spi
         esp_driver_gpio
         esp_timer
+        esp_wifi
+        esp_netif
+        esp_event
+        espressif__mqtt
         espressif__esp-dsp
         jgromes__radiolib
         mbedtls

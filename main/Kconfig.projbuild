@@ -71,4 +71,47 @@ config BATEAR_LORA_SYNC_WORD
         cannot hear each other. 0x12 = LoRa private network,
         0x34 = LoRaWAN. Pick any unused value for your network.
 
+menu "MQTT / Home Assistant"
+    depends on BATEAR_ROLE_GATEWAY
+
+    config BATEAR_WIFI_SSID
+        string "Wi-Fi SSID"
+        default "MyNetwork"
+        help
+            Default Wi-Fi SSID. Overridden by NVS "gateway_cfg" → "wifi_ssid".
+
+    config BATEAR_WIFI_PASS
+        string "Wi-Fi password"
+        default ""
+        help
+            Default Wi-Fi password. Overridden by NVS "gateway_cfg" → "wifi_pass".
+
+    config BATEAR_MQTT_BROKER_URL
+        string "MQTT broker URL"
+        default "mqtt://homeassistant.local:1883"
+        help
+            Mosquitto / MQTT broker URI (mqtt:// or mqtts://).
+            Overridden by NVS "gateway_cfg" → "mqtt_url".
+
+    config BATEAR_MQTT_USER
+        string "MQTT username"
+        default ""
+        help
+            MQTT broker username. Overridden by NVS "gateway_cfg" → "mqtt_user".
+
+    config BATEAR_MQTT_PASS
+        string "MQTT password"
+        default ""
+        help
+            MQTT broker password. Overridden by NVS "gateway_cfg" → "mqtt_pass".
+
+    config BATEAR_GW_DEVICE_ID
+        string "Gateway device ID (for MQTT topics)"
+        default "gw01"
+        help
+            Short identifier used in MQTT topics: batear/nodes/<id>/status.
+            Overridden by NVS "gateway_cfg" → "device_id".
+
+endmenu
+
 endmenu

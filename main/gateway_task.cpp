@@ -8,6 +8,7 @@
  */
 
 #include "gateway_task.h"
+#include "mqtt_task.h"
 #include "lora_crypto.h"
 #include "lorawan_provision.h"
 #include "EspIdfHal.h"
@@ -199,5 +200,19 @@ extern "C" void GatewayTask(void *pvParameters)
 
         update_led();
         display_event(&pt, rssi, snr);
+
+        if (g_mqtt_event_queue) {
+            MqttEvent_t mev = {};
+            mev.device_id = pt.device_id;
+            mev.alarm     = (pt.event_type == 0x01);
+            mev.rssi      = rssi;
+            mev.snr       = snr;
+            mev.rms_db    = pt.rms_db;
+            mev.f0_bin    = pt.f0_bin;
+            mev.seq       = pt.seq;
+            if (xQueueSend(g_mqtt_event_queue, &mev, 0) != pdTRUE) {
+                ESP_LOGW(TAG, "MQTT queue full — event dropped");
+            }
+        }
     }
 }

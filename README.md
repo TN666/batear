@@ -32,7 +32,7 @@ Drones are an increasing threat to homes, farms, and communities — and effecti
 
 For ultra-low-cost hardware, Batear turns a tiny ESP32-S3 microcontroller and a MEMS microphone into an always-on acoustic drone detector. It runs entirely at the edge — **no cloud subscription, no internet connection, no ongoing cost.** Deploy one at a window, a fence line, or a rooftop and it will alert you the moment drone rotor harmonics are detected nearby.
 
-The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoRa RX + OLED + LED), selectable at build time.
+The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoRa RX + OLED + LED + MQTT), selectable at build time. The gateway forwards alerts to **Home Assistant** via MQTT with automatic device discovery.
 
 ---
 
@@ -45,7 +45,7 @@ Full documentation is available at **[batear.io](https://docs.batear.io)**.
 | [**Getting Started**](https://docs.batear.io/getting-started/) | Prerequisites and supported boards |
 | [**Hardware**](https://docs.batear.io/hardware/) | Parts list, wiring diagrams, pin map |
 | [**Build & Flash**](https://docs.batear.io/build-flash/) | Compile and flash the firmware |
-| [**Configuration**](https://docs.batear.io/configuration/) | Encryption keys, frequencies, device IDs |
+| [**Configuration**](https://docs.batear.io/configuration/) | Encryption keys, frequencies, MQTT, device IDs |
 | [**How It Works**](https://docs.batear.io/how-it-works/) | FFT harmonic detection algorithm |
 | [**Calibration**](https://docs.batear.io/calibration/) | Tuning detection thresholds |
 | [**Adding a Board**](https://docs.batear.io/adding-boards/) | Porting to new hardware |
@@ -61,8 +61,15 @@ Full documentation is available at **[batear.io](https://docs.batear.io)**.
 │  ICS-43434 mic       │  28-byte packets             │  SSD1306 OLED display│
 │  FFT harmonic detect │                              │  LED alarm indicator │
 │  SX1262 LoRa TX      │                              │  SX1262 LoRa RX      │
-└──────────────────────┘                              └──────────────────────┘
-   Heltec WiFi LoRa 32 V3                               Heltec WiFi LoRa 32 V3
+└──────────────────────┘                              │  WiFi + MQTT TX      │
+   Heltec WiFi LoRa 32 V3                             └──────────┬───────────┘
+                                                        Heltec WiFi LoRa 32 V3
+                                                                  │ MQTT
+                                                                  ▼
+                                                      ┌──────────────────────┐
+                                                      │   HOME ASSISTANT     │
+                                                      │   (auto-discovery)   │
+                                                      └──────────────────────┘
 ```
 
 ---
