@@ -36,6 +36,33 @@ The same codebase builds as a **Detector** (mic + LoRa TX) or a **Gateway** (LoR
 
 ---
 
+---
+
+## 🌐 Web Flasher — Zero Install
+
+Flash firmware directly from your browser — no toolchain needed:
+
+**[Open Web Flasher](https://docs.batear.io/flasher/)**
+
+> Requires Chrome or Edge on desktop. Just connect your Heltec V3 via USB-C and click Install.
+
+---
+
+## 🏠 Smart Home Integration (Home Assistant)
+
+Stop checking serial monitors. Batear brings drone detection directly to your dashboard.
+
+<img width="1851" height="1047" alt="image" src="https://github.com/user-attachments/assets/d57e30c3-9cc5-46db-8cb8-4a87c0076ae3" />
+
+### Features:
+- **Plug & Play**: Auto-Discovery via MQTT.
+- **Rich Diagnostics**: Monitor signal strength (RSSI/SNR) in real-time.
+- **Automations Ready**: Trigger your smart lights, alarms, or notifications when a drone is detected.
+- **Historical Logs**: Analyze drone activity patterns in your area.
+
+> "Batear bridges the gap between complex signal processing and simple home automation."
+
+
 ## 📖 Documentation
 
 Full documentation is available at **[batear.io](https://docs.batear.io)**.
@@ -71,18 +98,6 @@ Full documentation is available at **[batear.io](https://docs.batear.io)**.
                                                       │   (auto-discovery)   │
                                                       └──────────────────────┘
 ```
-
----
-
-## 🌐 Web Flasher — Zero Install
-
-Flash firmware directly from your browser — no toolchain needed:
-
-**[Open Web Flasher](https://docs.batear.io/flasher/)**
-
-> Requires Chrome or Edge on desktop. Just connect your Heltec V3 via USB-C and click Install.
-
----
 
 ## ⚡ Quick Start (Build from Source)
 
