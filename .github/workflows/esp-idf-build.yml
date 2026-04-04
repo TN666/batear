@@ -84,8 +84,8 @@ jobs:
         with:
           tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'firmware-latest' }}
           name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'Latest Firmware' }}
-          body: |
-            Pre-built firmware binaries. Flash via the [Web Flasher](https://docs.batear.io/flasher/).
+          generate_release_notes: ${{ startsWith(github.ref, 'refs/tags/') }}
+          body: ${{ !startsWith(github.ref, 'refs/tags/') && 'Pre-built firmware binaries. Flash via the [Web Flasher](https://docs.batear.io/flasher/).' || '' }}
           prerelease: ${{ !startsWith(github.ref, 'refs/tags/') }}
           make_latest: ${{ startsWith(github.ref, 'refs/tags/') }}
           files: |
