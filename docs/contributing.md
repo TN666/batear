@@ -21,7 +21,7 @@ If you have a micro drone, a soldering iron, and some free time, we would love y
 3. Make your changes
 4. Submit a pull request
 
-See the [Build & Flash](build-flash.md) guide to set up your development environment.
+See the [Build & Flash](https://docs.batear.io/build-flash/) guide to set up your development environment.
 
 ## 📊 Datasets & Benchmarking
 
