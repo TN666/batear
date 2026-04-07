@@ -14,10 +14,12 @@ permissions:
 
 jobs:
   build:
-    name: Build Batear Firmware
+    name: Build ${{ matrix.role }}
     runs-on: ubuntu-latest
-
     container: espressif/idf:release-v6.0
+    strategy:
+      matrix:
+        role: [detector, gateway]
 
     steps:
       - name: Checkout code
@@ -26,59 +28,50 @@ jobs:
       - name: Fix Git Directory Permissions
         run: git config --global --add safe.directory /__w/batear/batear
 
-      # --- Build Detector Role ---
-      - name: Build Detector
+      - name: Build
         run: |
           . $IDF_PATH/export.sh
           rm -rf build sdkconfig
-          env SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.detector" idf.py set-target esp32s3
+          env SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.${{ matrix.role }}" idf.py set-target esp32s3
           idf.py build
 
-      - name: Detector size
-        id: detector_size
+      - name: Capture size
         run: |
           . $IDF_PATH/export.sh
-          SIZE_OUTPUT=$(idf.py size 2>&1)
-          TOTAL_LINE=$(echo "$SIZE_OUTPUT" | grep -E "^Total ")
-          echo "total=$TOTAL_LINE" >> $GITHUB_OUTPUT
+          idf.py size 2>&1 | grep -E "^Total " > size_${{ matrix.role }}.txt
 
-      - name: Merge Detector binary
+      - name: Merge binary
         run: |
           . $IDF_PATH/export.sh
-          esptool.py --chip esp32s3 merge_bin -o merged_detector.bin \
+          esptool.py --chip esp32s3 merge_bin -o merged_${{ matrix.role }}.bin \
             --flash_mode dio --flash_size 8MB \
             0x0    build/bootloader/bootloader.bin \
             0x8000 build/partition_table/partition-table.bin \
             0x10000 build/batear.bin
 
-      # --- Build Gateway Role ---
-      - name: Build Gateway
-        run: |
-          . $IDF_PATH/export.sh
-          rm -rf build sdkconfig
-          env SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.gateway" idf.py set-target esp32s3
-          idf.py build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ matrix.role }}
+          path: |
+            merged_${{ matrix.role }}.bin
+            size_${{ matrix.role }}.txt
 
-      - name: Gateway size
-        id: gateway_size
-        run: |
-          . $IDF_PATH/export.sh
-          SIZE_OUTPUT=$(idf.py size 2>&1)
-          TOTAL_LINE=$(echo "$SIZE_OUTPUT" | grep -E "^Total ")
-          echo "total=$TOTAL_LINE" >> $GITHUB_OUTPUT
+  size-report:
+    name: Firmware Size Report
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
 
-      - name: Merge Gateway binary
-        run: |
-          . $IDF_PATH/export.sh
-          esptool.py --chip esp32s3 merge_bin -o merged_gateway.bin \
-            --flash_mode dio --flash_size 8MB \
-            0x0    build/bootloader/bootloader.bin \
-            0x8000 build/partition_table/partition-table.bin \
-            0x10000 build/batear.bin
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: firmware-*
+          merge-multiple: true
 
       - name: Generate size report
         id: size_report
-        if: github.event_name == 'pull_request'
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
@@ -119,8 +112,8 @@ jobs:
           echo "" >> "$R"
           echo "<details><summary>idf.py size details</summary>" >> "$R"
           echo "" >> "$R"
-          echo "**Detector:** \`${{ steps.detector_size.outputs.total }}\`" >> "$R"
-          echo "**Gateway:** \`${{ steps.gateway_size.outputs.total }}\`" >> "$R"
+          echo "**Detector:** \`$(cat size_detector.txt)\`" >> "$R"
+          echo "**Gateway:** \`$(cat size_gateway.txt)\`" >> "$R"
           echo "" >> "$R"
           echo "</details>" >> "$R"
 
@@ -131,18 +124,9 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Comment PR with firmware sizes
-        if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: ${{ steps.size_report.outputs.body }}
-
-      - name: Upload firmware artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: |
-            merged_detector.bin
-            merged_gateway.bin
 
   release:
     name: Publish Firmware
@@ -171,7 +155,8 @@ jobs:
       - name: Download firmware
         uses: actions/download-artifact@v4
         with:
-          name: firmware
+          pattern: firmware-*
+          merge-multiple: true
 
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
