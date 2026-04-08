@@ -462,7 +462,7 @@ extern "C" void EthMqttTask(void *pvParameters)
                 .drone_detected = (ev.type == DRONE_EVENT_ALARM),
                 .detector_id    = det_id,
                 .rms_db         = rms_to_db(ev.rms),
-                .f0_bin         = ev.f0_bin,
+                .f0_bin         = static_cast<uint16_t>(ev.f0_bin),
                 .confidence     = ev.peak_ratio,
                 .timestamp      = ts,
             };
