@@ -48,7 +48,7 @@ static void get_status_snapshot(HttpDroneStatus_t *out)
         *out = s_status;
         xSemaphoreGive(s_status_mutex);
     } else {
-        memset(out, 0, sizeof(*out));
+        *out = HttpDroneStatus_t{};
     }
 }
 
@@ -269,7 +269,7 @@ static esp_err_t handle_config(httpd_req_t *req)
         return ESP_OK;
     }
 
-    char *body = (char *)malloc(req->content_len + 1);
+    char *body = static_cast<char *>(malloc(req->content_len + 1));
     if (!body) {
         httpd_resp_set_status(req, "500 Internal Server Error");
         httpd_resp_sendstr(req, "{\"error\":\"out of memory\"}");
@@ -381,7 +381,7 @@ static esp_err_t handle_reboot(httpd_req_t *req)
 void http_api_start(void)
 {
     s_status_mutex = xSemaphoreCreateMutex();
-    memset(&s_status, 0, sizeof(s_status));
+    s_status = HttpDroneStatus_t{};
 
     load_auth_token();
     if (s_auth_token[0]) {
