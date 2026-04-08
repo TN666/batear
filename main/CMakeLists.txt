@@ -31,6 +31,7 @@ set(PRIV_DEPS
     esp_driver_i2c
     esp_driver_spi
     esp_driver_gpio
+    esp_adc
     esp_timer
     esp_wifi
     esp_netif
@@ -41,22 +42,17 @@ set(PRIV_DEPS
     mbedtls
     nvs_flash
     console
+    app_update
+    esp_app_format
+    esp_http_server
 )
 
 if(CONFIG_BATEAR_ROLE_DETECTOR OR CONFIG_BATEAR_ROLE_GATEWAY)
     list(APPEND PRIV_DEPS jgromes__radiolib)
 endif()
 
-# battery.c uses adc_oneshot + adc_cali; lora_task.cpp uses esp_app_get_description().
-if(CONFIG_BATEAR_ROLE_DETECTOR)
-    list(APPEND PRIV_DEPS esp_adc esp_app_format)
-endif()
-
-if(CONFIG_BATEAR_ROLE_WIRED_DETECTOR)
-    list(APPEND PRIV_DEPS esp_http_server app_update)
-    if(W5500_COMPONENT)
-        list(APPEND PRIV_DEPS ${W5500_COMPONENT})
-    endif()
+if(CONFIG_BATEAR_ROLE_WIRED_DETECTOR AND W5500_COMPONENT)
+    list(APPEND PRIV_DEPS ${W5500_COMPONENT})
 endif()
 
 idf_component_register(
