@@ -156,4 +156,37 @@ menu "MQTT / Home Assistant"
 
 endmenu
 
+menu "Ethernet (static IP)"
+    depends on BATEAR_ROLE_WIRED_DETECTOR
+
+    config BATEAR_ETH_STATIC_IP
+        string "Static IP address (empty = DHCP)"
+        default ""
+        help
+            Leave blank to use DHCP.  Set e.g. "192.168.1.50" for a fixed address.
+            Overridden by NVS "wired_cfg" → "eth_ip".
+
+    config BATEAR_ETH_GATEWAY
+        string "Default gateway"
+        default ""
+        help
+            Gateway address, e.g. "192.168.1.1".  Required when using static IP.
+            Overridden by NVS "wired_cfg" → "eth_gw".
+
+    config BATEAR_ETH_NETMASK
+        string "Subnet mask"
+        default "255.255.255.0"
+        help
+            Subnet mask for static IP.
+            Overridden by NVS "wired_cfg" → "eth_mask".
+
+    config BATEAR_ETH_DNS
+        string "DNS server (optional)"
+        default ""
+        help
+            Primary DNS server.  If blank, the gateway address is used.
+            Overridden by NVS "wired_cfg" → "eth_dns".
+
+endmenu
+
 endmenu

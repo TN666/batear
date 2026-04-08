@@ -193,6 +193,10 @@ static int cmd_show(int argc, char **argv)
             print_nvs_str(h, "mqtt_user", "mqtt_user");
             print_nvs_str(h, "mqtt_pass", "mqtt_pass");
             print_nvs_str(h, "device_id", "device_id");
+            print_nvs_str(h, "eth_ip",    "eth_ip");
+            print_nvs_str(h, "eth_gw",    "eth_gw");
+            print_nvs_str(h, "eth_mask",  "eth_mask");
+            print_nvs_str(h, "eth_dns",   "eth_dns");
             nvs_close(h);
         } else {
             printf("  (namespace not found — using Kconfig defaults)\n");
@@ -201,6 +205,12 @@ static int cmd_show(int argc, char **argv)
     printf("  Kconfig defaults:\n");
     printf("    mqtt_url   = %s\n", CONFIG_BATEAR_MQTT_BROKER_URL);
     printf("    device_id  = %s\n", CONFIG_BATEAR_WIRED_DEVICE_ID);
+    printf("    eth_ip     = %s\n",
+           CONFIG_BATEAR_ETH_STATIC_IP[0] ? CONFIG_BATEAR_ETH_STATIC_IP : "(DHCP)");
+    printf("    eth_gw     = %s\n", CONFIG_BATEAR_ETH_GATEWAY);
+    printf("    eth_mask   = %s\n", CONFIG_BATEAR_ETH_NETMASK);
+    printf("    eth_dns    = %s\n",
+           CONFIG_BATEAR_ETH_DNS[0] ? CONFIG_BATEAR_ETH_DNS : "(auto)");
 #endif
 
     printf("\n");
@@ -334,6 +344,10 @@ static int cmd_set(int argc, char **argv)
         printf("  mqtt_user   — MQTT username\n");
         printf("  mqtt_pass   — MQTT password\n");
         printf("  mqtt_device_id — wired detector ID for MQTT topics\n");
+        printf("  eth_ip      — static IP (empty string = DHCP)\n");
+        printf("  eth_gw      — default gateway\n");
+        printf("  eth_mask    — subnet mask (default 255.255.255.0)\n");
+        printf("  eth_dns     — DNS server (empty = use gateway)\n");
 #endif
         return 1;
     }
@@ -406,6 +420,14 @@ static int cmd_set(int argc, char **argv)
         return set_nvs_str("wired_cfg", "mqtt_pass", value);
     if (strcmp(key, "mqtt_device_id") == 0)
         return set_nvs_str("wired_cfg", "device_id", value);
+    if (strcmp(key, "eth_ip") == 0)
+        return set_nvs_str("wired_cfg", "eth_ip", value);
+    if (strcmp(key, "eth_gw") == 0)
+        return set_nvs_str("wired_cfg", "eth_gw", value);
+    if (strcmp(key, "eth_mask") == 0)
+        return set_nvs_str("wired_cfg", "eth_mask", value);
+    if (strcmp(key, "eth_dns") == 0)
+        return set_nvs_str("wired_cfg", "eth_dns", value);
 #endif
 
     printf("Error: unknown key '%s'\n", key);

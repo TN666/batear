@@ -62,7 +62,11 @@ Key parameters in sdkconfig role files:
 | `CONFIG_BATEAR_MQTT_PASS` | MQTT password (overridden by NVS) |
 | `CONFIG_BATEAR_GW_DEVICE_ID` | Gateway ID for MQTT topics (overridden by NVS) |
 | `CONFIG_BATEAR_WIRED_DEVICE_ID` | Wired detector ID for MQTT topics (overridden by NVS) |
-| `CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN` | Detector only, 1–60. Silent-period telemetry interval in minutes (default 30). Jittered ±10% in firmware. |
+| `CONFIG_BATEAR_ETH_STATIC_IP` | Static IP address (empty = DHCP). (overridden by NVS) |
+| `CONFIG_BATEAR_ETH_GATEWAY` | Default gateway for static IP. (overridden by NVS) |
+| `CONFIG_BATEAR_ETH_NETMASK` | Subnet mask (default 255.255.255.0). (overridden by NVS) |
+| `CONFIG_BATEAR_ETH_DNS` | DNS server (empty = use gateway). (overridden by NVS) |
+| `CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN` | LoRa detector only, 1–60. Silent-period telemetry interval in minutes (default 30). Jittered ±10% in firmware. |
 
 ## Project Structure
 

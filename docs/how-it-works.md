@@ -37,6 +37,6 @@ The gateway decrypts the LoRa packet and pushes a `MqttEvent_t` into a FreeRTOS 
 
 ## Wired Detector → Home Assistant
 
-The wired detector's EthMqttTask receives `DroneEvent_t` items directly from AudioTask via a FreeRTOS queue and publishes them as JSON over MQTT. No gateway is needed — the detector connects directly to the MQTT broker over Ethernet (optionally via PoE for single-cable deployment).
+The wired detector's EthMqttTask receives `DroneEvent_t` items directly from AudioTask via a FreeRTOS queue and publishes them as JSON over MQTT. No gateway is needed — the detector connects directly to the MQTT broker over Ethernet (optionally via PoE for single-cable deployment). The network interface supports both DHCP (default) and static IP — see [Configuration](configuration.md#wired-detector-config) for setup.
 
 Home Assistant discovers both device types automatically via MQTT Discovery — no manual YAML needed. See [Configuration → MQTT / Home Assistant](configuration.md#mqtt-home-assistant-integration) for topics, payloads, and setup.

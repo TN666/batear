@@ -32,6 +32,9 @@
 #include "nvs.h"
 #include "mqtt_client.h"
 
+#include "esp_netif_ip_addr.h"
+#include "lwip/ip4_addr.h"
+
 #include <cstring>
 #include <cstdio>
 #include <cmath>
@@ -46,6 +49,12 @@ static char s_mqtt_url[CFG_STR_MAX];
 static char s_mqtt_user[CFG_STR_MAX];
 static char s_mqtt_pass[CFG_STR_MAX];
 static char s_device_id[DEVID_MAX];
+
+#define IP_STR_MAX 16
+static char s_eth_ip[IP_STR_MAX];
+static char s_eth_gw[IP_STR_MAX];
+static char s_eth_mask[IP_STR_MAX];
+static char s_eth_dns[IP_STR_MAX];
 
 /* ---- Ethernet event synchronisation ---- */
 static EventGroupHandle_t s_eth_eg;
@@ -88,12 +97,24 @@ static void load_config(void)
                      CONFIG_BATEAR_MQTT_PASS);
         load_nvs_str(h, "device_id", s_device_id, DEVID_MAX,
                      CONFIG_BATEAR_WIRED_DEVICE_ID);
+        load_nvs_str(h, "eth_ip",   s_eth_ip,   sizeof(s_eth_ip),
+                     CONFIG_BATEAR_ETH_STATIC_IP);
+        load_nvs_str(h, "eth_gw",   s_eth_gw,   sizeof(s_eth_gw),
+                     CONFIG_BATEAR_ETH_GATEWAY);
+        load_nvs_str(h, "eth_mask", s_eth_mask,  sizeof(s_eth_mask),
+                     CONFIG_BATEAR_ETH_NETMASK);
+        load_nvs_str(h, "eth_dns",  s_eth_dns,   sizeof(s_eth_dns),
+                     CONFIG_BATEAR_ETH_DNS);
         nvs_close(h);
     } else {
         strncpy(s_mqtt_url,  CONFIG_BATEAR_MQTT_BROKER_URL, sizeof(s_mqtt_url) - 1);
         strncpy(s_mqtt_user, CONFIG_BATEAR_MQTT_USER, sizeof(s_mqtt_user) - 1);
         strncpy(s_mqtt_pass, CONFIG_BATEAR_MQTT_PASS, sizeof(s_mqtt_pass) - 1);
         strncpy(s_device_id, CONFIG_BATEAR_WIRED_DEVICE_ID, sizeof(s_device_id) - 1);
+        strncpy(s_eth_ip,    CONFIG_BATEAR_ETH_STATIC_IP,   sizeof(s_eth_ip) - 1);
+        strncpy(s_eth_gw,    CONFIG_BATEAR_ETH_GATEWAY,     sizeof(s_eth_gw) - 1);
+        strncpy(s_eth_mask,  CONFIG_BATEAR_ETH_NETMASK,     sizeof(s_eth_mask) - 1);
+        strncpy(s_eth_dns,   CONFIG_BATEAR_ETH_DNS,         sizeof(s_eth_dns) - 1);
         ESP_LOGW(TAG, "NVS namespace 'wired_cfg' not found — using Kconfig defaults");
     }
 
@@ -193,19 +214,52 @@ static bool eth_init(void)
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP,
                                                 ip_event_handler, NULL));
 
+    /* Apply static IP or fall back to DHCP */
+    bool use_static = (s_eth_ip[0] != '\0');
+    if (use_static) {
+        ESP_ERROR_CHECK(esp_netif_dhcpc_stop(netif));
+
+        esp_netif_ip_info_t ip_info = {};
+        esp_netif_str_to_ip4(s_eth_ip, &ip_info.ip);
+        esp_netif_str_to_ip4(s_eth_mask[0] ? s_eth_mask : "255.255.255.0",
+                             &ip_info.netmask);
+        if (s_eth_gw[0]) {
+            esp_netif_str_to_ip4(s_eth_gw, &ip_info.gw);
+        }
+        ESP_ERROR_CHECK(esp_netif_set_ip_info(netif, &ip_info));
+
+        /* DNS: use explicit value, or fall back to gateway */
+        esp_netif_dns_info_t dns_info = {};
+        const char *dns_src = s_eth_dns[0] ? s_eth_dns : s_eth_gw;
+        if (dns_src[0]) {
+            esp_netif_str_to_ip4(dns_src, &dns_info.ip.u_addr.ip4);
+            dns_info.ip.type = ESP_IPADDR_TYPE_V4;
+            ESP_ERROR_CHECK(esp_netif_set_dns_info(netif, ESP_NETIF_DNS_MAIN,
+                                                    &dns_info));
+        }
+
+        ESP_LOGI(TAG, "Static IP: %s  GW: %s  Mask: %s  DNS: %s",
+                 s_eth_ip,
+                 s_eth_gw[0] ? s_eth_gw : "(none)",
+                 s_eth_mask[0] ? s_eth_mask : "255.255.255.0",
+                 dns_src[0] ? dns_src : "(none)");
+    }
+
     ESP_ERROR_CHECK(esp_eth_start(eth_handle));
 
-    /* Wait for IP */
-    ESP_LOGI(TAG, "Waiting for Ethernet link + DHCP...");
+    ESP_LOGI(TAG, "Waiting for Ethernet link%s...",
+             use_static ? "" : " + DHCP");
     EventBits_t bits = xEventGroupWaitBits(
         s_eth_eg, ETH_CONNECTED_BIT | ETH_FAIL_BIT,
         pdFALSE, pdFALSE, pdMS_TO_TICKS(30000));
 
     if (bits & ETH_CONNECTED_BIT) {
-        ESP_LOGI(TAG, "Ethernet connected");
+        ESP_LOGI(TAG, "Ethernet connected%s",
+                 use_static ? " (static IP)" : " (DHCP)");
         return true;
     }
-    ESP_LOGE(TAG, "Ethernet FAILED — no link or DHCP timeout");
+    ESP_LOGE(TAG, "Ethernet FAILED — no link%s",
+             use_static ? "" : " or DHCP timeout");
     return false;
 }
 

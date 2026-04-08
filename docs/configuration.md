@@ -71,10 +71,19 @@ CONFIG_BATEAR_MQTT_BROKER_URL="mqtt://{BROKER_IP}:1883"
 CONFIG_BATEAR_MQTT_USER=""
 CONFIG_BATEAR_MQTT_PASS=""
 CONFIG_BATEAR_WIRED_DEVICE_ID="wd01"
+
+# Ethernet — static IP (leave empty for DHCP)
+CONFIG_BATEAR_ETH_STATIC_IP=""
+CONFIG_BATEAR_ETH_GATEWAY=""
+CONFIG_BATEAR_ETH_NETMASK="255.255.255.0"
+CONFIG_BATEAR_ETH_DNS=""
 ```
 
 !!! note
     The wired detector does not use LoRa, Wi-Fi, or a gateway. It connects directly to the MQTT broker over Ethernet.
+
+!!! tip
+    To use a static IP, set `CONFIG_BATEAR_ETH_STATIC_IP` at build time or use `set eth_ip 192.168.1.50` via the serial console.  Leave it blank for DHCP (the default).
 
 ## Parameter Reference
 
@@ -94,6 +103,10 @@ CONFIG_BATEAR_WIRED_DEVICE_ID="wd01"
 | `CONFIG_BATEAR_MQTT_PASS` | MQTT password. Overridden by NVS. |
 | `CONFIG_BATEAR_GW_DEVICE_ID` | Gateway ID used in MQTT topics. Overridden by NVS. |
 | `CONFIG_BATEAR_WIRED_DEVICE_ID` | Wired detector ID used in MQTT topics. Overridden by NVS. |
+| `CONFIG_BATEAR_ETH_STATIC_IP` | Static IP address for wired detector (empty = DHCP). Overridden by NVS. |
+| `CONFIG_BATEAR_ETH_GATEWAY` | Default gateway for static IP. Overridden by NVS. |
+| `CONFIG_BATEAR_ETH_NETMASK` | Subnet mask (default `255.255.255.0`). Overridden by NVS. |
+| `CONFIG_BATEAR_ETH_DNS` | DNS server. If blank, gateway address is used. Overridden by NVS. |
 
 ## Serial Console
 
@@ -156,6 +169,10 @@ batear>
 | `mqtt_user` | string | `set mqtt_user ha_user` | `wired_cfg` |
 | `mqtt_pass` | string | `set mqtt_pass ha_pass` | `wired_cfg` |
 | `mqtt_device_id` | string | `set mqtt_device_id wd01` | `wired_cfg` |
+| `eth_ip` | IP address | `set eth_ip 192.168.1.50` (empty = DHCP) | `wired_cfg` |
+| `eth_gw` | IP address | `set eth_gw 192.168.1.1` | `wired_cfg` |
+| `eth_mask` | IP address | `set eth_mask 255.255.255.0` | `wired_cfg` |
+| `eth_dns` | IP address | `set eth_dns 8.8.8.8` (empty = use gateway) | `wired_cfg` |
 
 ### Example Session
 
@@ -234,6 +251,10 @@ This lets you set defaults at compile time and override per-device via the [seri
 | `wired_cfg` | `mqtt_user` | `CONFIG_BATEAR_MQTT_USER` | Wired | Broker username |
 | `wired_cfg` | `mqtt_pass` | `CONFIG_BATEAR_MQTT_PASS` | Wired | Broker password |
 | `wired_cfg` | `device_id` | `CONFIG_BATEAR_WIRED_DEVICE_ID` | Wired | Wired detector ID for MQTT topics |
+| `wired_cfg` | `eth_ip` | `CONFIG_BATEAR_ETH_STATIC_IP` | Wired | Static IP (empty = DHCP) |
+| `wired_cfg` | `eth_gw` | `CONFIG_BATEAR_ETH_GATEWAY` | Wired | Default gateway |
+| `wired_cfg` | `eth_mask` | `CONFIG_BATEAR_ETH_NETMASK` | Wired | Subnet mask |
+| `wired_cfg` | `eth_dns` | `CONFIG_BATEAR_ETH_DNS` | Wired | DNS server (empty = gateway) |
 
 ### MQTT Topics
 
