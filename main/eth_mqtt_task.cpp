@@ -137,6 +137,7 @@ static void eth_event_handler(void *arg, esp_event_base_t base,
         ESP_LOGI(TAG, "Ethernet link up");
     } else if (id == ETHERNET_EVENT_DISCONNECTED) {
         ESP_LOGW(TAG, "Ethernet link down");
+        xEventGroupClearBits(s_eth_eg, ETH_CONNECTED_BIT);
         xEventGroupSetBits(s_eth_eg, ETH_FAIL_BIT);
     } else if (id == ETHERNET_EVENT_START) {
         ESP_LOGI(TAG, "Ethernet started");
@@ -151,7 +152,11 @@ static void ip_event_handler(void *arg, esp_event_base_t base,
     if (id == IP_EVENT_ETH_GOT_IP) {
         auto *ev = static_cast<ip_event_got_ip_t *>(data);
         ESP_LOGI(TAG, "IP: " IPSTR, IP2STR(&ev->ip_info.ip));
+        xEventGroupClearBits(s_eth_eg, ETH_FAIL_BIT);
         xEventGroupSetBits(s_eth_eg, ETH_CONNECTED_BIT);
+    } else if (id == IP_EVENT_ETH_LOST_IP) {
+        ESP_LOGW(TAG, "IP lost");
+        xEventGroupClearBits(s_eth_eg, ETH_CONNECTED_BIT);
     }
 }
 
@@ -212,6 +217,8 @@ static bool eth_init(void)
     ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ESP_EVENT_ANY_ID,
                                                 eth_event_handler, NULL));
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP,
+                                                ip_event_handler, NULL));
+    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_LOST_IP,
                                                 ip_event_handler, NULL));
 
     /* Apply static IP or fall back to DHCP */
@@ -393,6 +400,26 @@ static uint8_t rms_to_db(float rms)
  * Task entry
  * ================================================================ */
 
+/* ---- helpers for link state ---- */
+
+static bool eth_is_connected(void)
+{
+    return (xEventGroupGetBits(s_eth_eg) & ETH_CONNECTED_BIT) != 0;
+}
+
+static void wait_for_link(void)
+{
+    while (!eth_is_connected()) {
+        ESP_LOGW(TAG, "Ethernet down — waiting for link...");
+        xEventGroupWaitBits(s_eth_eg, ETH_CONNECTED_BIT,
+                            pdFALSE, pdFALSE, pdMS_TO_TICKS(5000));
+    }
+}
+
+/* ================================================================
+ * Task entry
+ * ================================================================ */
+
 extern "C" void EthMqttTask(void *pvParameters)
 {
     (void)pvParameters;
@@ -401,9 +428,11 @@ extern "C" void EthMqttTask(void *pvParameters)
     load_config();
 
     if (!eth_init()) {
-        ESP_LOGE(TAG, "Ethernet failed — EthMqttTask suspending");
-        vTaskSuspend(NULL);
-        return;
+        ESP_LOGE(TAG, "Ethernet init failed — retrying every 30s");
+        for (;;) {
+            vTaskDelay(pdMS_TO_TICKS(30000));
+            if (eth_is_connected()) break;
+        }
     }
 
     mqtt_start();
@@ -414,6 +443,11 @@ extern "C" void EthMqttTask(void *pvParameters)
 
     for (;;) {
         if (xQueueReceive(g_drone_event_queue, &ev, pdMS_TO_TICKS(5000)) == pdTRUE) {
+            if (!eth_is_connected()) {
+                ESP_LOGW(TAG, "Ethernet down — waiting for reconnect");
+                wait_for_link();
+            }
+
             if (!s_mqtt_connected) {
                 ESP_LOGW(TAG, "MQTT not connected — dropping event");
                 continue;
