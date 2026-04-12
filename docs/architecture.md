@@ -8,8 +8,8 @@
 │  FFT harmonic detect │                              │  LED alarm indicator │
 │  SX1262 LoRa TX      │                              │  SX1262 LoRa RX      │
 └──────────────────────┘                              │  WiFi + MQTT TX      │
-   Heltec WiFi LoRa 32 V3                             └──────────┬───────────┘
-                                                        Heltec WiFi LoRa 32 V3
+   Heltec WiFi LoRa 32 V3/V4                          └──────────┬───────────┘
+                                                        Heltec WiFi LoRa 32 V3/V4
                                                                   │
                                                            WiFi / MQTT
                                                                   │

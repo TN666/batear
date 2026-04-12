@@ -16,7 +16,7 @@ ls /dev/cu.usb*          # note your port, e.g. /dev/cu.usbserial-3
 ## 2. Build & flash the Detector
 
 ```bash
-# First time only — set chip target (esp32s3 for Heltec V3)
+# First time only — set chip target (esp32s3 for Heltec V3/V4)
 idf.py -B build_detector \
   -DSDKCONFIG=build_detector/sdkconfig \
   -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.detector" \
@@ -36,7 +36,7 @@ idf.py -B build_detector \
 ## 3. Build & flash the Gateway
 
 ```bash
-# First time only — set chip target (esp32s3 for Heltec V3)
+# First time only — set chip target (esp32s3 for Heltec V3/V4)
 idf.py -B build_gateway \
   -DSDKCONFIG=build_gateway/sdkconfig \
   -DSDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.gateway" \

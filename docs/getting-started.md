@@ -17,6 +17,7 @@
 | Board | Chip | `set-target` | Flash |
 |:---|:---|:---|:---|
 | Heltec WiFi LoRa 32 V3 | ESP32-S3 | `esp32s3` | 8 MB |
+| Heltec WiFi LoRa 32 V4 | ESP32-S3 | `esp32s3` | 16 MB |
 
 ## Next Steps
 

@@ -7,7 +7,7 @@ All network and role settings live in two small files — no `menuconfig` needed
 **`sdkconfig.detector`**
 
 ```ini
-# Board
+# Board (use HELTEC_V4 + FLASHSIZE_16MB for V4)
 CONFIG_BATEAR_BOARD_HELTEC_V3=y
 CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
 
@@ -26,7 +26,7 @@ CONFIG_BATEAR_LORA_SYNC_WORD=0x12
 **`sdkconfig.gateway`**
 
 ```ini
-# Board
+# Board (use HELTEC_V4 + FLASHSIZE_16MB for V4)
 CONFIG_BATEAR_BOARD_HELTEC_V3=y
 CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
 

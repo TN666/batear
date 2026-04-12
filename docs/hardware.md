@@ -4,10 +4,10 @@
 
 | Component | Notes |
 |:---|:---|
-| Heltec WiFi LoRa 32 V3 | ESP32-S3 + SX1262 on-board |
+| Heltec WiFi LoRa 32 V3 / V4 | ESP32-S3 + SX1262 on-board |
 | ICS-43434 I2S MEMS microphone | 3.3 V, L/R → GND (left channel) |
 
-### Wiring (ICS-43434 → Heltec V3)
+### Wiring (ICS-43434 → Heltec V3 / V4)
 
 | ICS-43434 | GPIO | Function |
 |:---|:---|:---|
@@ -22,7 +22,7 @@
 
 | Component | Notes |
 |:---|:---|
-| Heltec WiFi LoRa 32 V3 | Uses on-board SX1262, SSD1306 OLED, and LED |
+| Heltec WiFi LoRa 32 V3 / V4 | Uses on-board SX1262, SSD1306 OLED, and LED |
 
 No external wiring needed — everything is on-board.
 
