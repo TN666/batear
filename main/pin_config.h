@@ -14,8 +14,11 @@
 #pragma once
 
 /* =====================================================================
- * Board: Heltec WiFi LoRa 32 V3  (ESP32-S3 + SX1262 + SSD1306)
+ * Board: Heltec WiFi LoRa 32 V3 / V4  (ESP32-S3 + SX1262 + SSD1306)
  * =====================================================================
+ *
+ * V4 is pin-compatible with V3 (adds GC1109 FEM, 16 MB flash, solar
+ * input).  The same GPIO map works for both boards.
  *
  * Occupied by on-board hardware — do NOT use for I2S:
  *   GPIO 8..14  — SX1262 SPI + control
@@ -28,7 +31,7 @@
  * Free pins for I2S mic:
  *   GPIO 2..7, 26, 33..34, 37..42, 45..48
  * ===================================================================== */
-#if defined(CONFIG_BATEAR_BOARD_HELTEC_V3)
+#if defined(CONFIG_BATEAR_BOARD_HELTEC_V3) || defined(CONFIG_BATEAR_BOARD_HELTEC_V4)
 
 #define BOARD_IDF_TARGET    "esp32s3"
 #define BOARD_FLASH_SIZE    "8MB"

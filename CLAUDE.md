@@ -1,6 +1,6 @@
 # batear
 
-ESP32-S3 (Heltec WiFi LoRa 32 V3) acoustic drone detection with encrypted LoRa alerting. ESP-IDF 6.x.
+ESP32-S3 (Heltec WiFi LoRa 32 V3 / V4) acoustic drone detection with encrypted LoRa alerting. ESP-IDF 6.x.
 
 Same codebase builds as **Detector** or **Gateway** via sdkconfig files.
 
@@ -9,6 +9,7 @@ Same codebase builds as **Detector** or **Gateway** via sdkconfig files.
 | Board | `set-target` | Flash |
 |---|---|---|
 | Heltec WiFi LoRa 32 V3 | `esp32s3` | 8 MB |
+| Heltec WiFi LoRa 32 V4 | `esp32s3` | 16 MB |
 
 ## Build & Flash
 
@@ -81,7 +82,7 @@ batear/
 │   └── idf_component.yml       # RadioLib + ESP-DSP dependencies
 ```
 
-## Pin Map (pin_config.h, Heltec V3)
+## Pin Map (pin_config.h, Heltec V3 / V4)
 
 | Function | GPIO | Notes |
 |---|---|---|

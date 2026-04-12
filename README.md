@@ -58,7 +58,7 @@ Flash firmware directly from your browser — no toolchain needed:
 
 **[Open Web Flasher](https://docs.batear.io/flasher/)**
 
-> Requires Chrome or Edge on desktop. Just connect your Heltec V3 via USB-C and click Install.
+> Requires Chrome or Edge on desktop. Just connect your Heltec V3 or V4 via USB-C and click Install.
 
 ---
 
@@ -104,8 +104,8 @@ Full documentation is available at **[batear.io](https://docs.batear.io)**.
 │  FFT harmonic detect │                              │  LED alarm indicator │
 │  SX1262 LoRa TX      │                              │  SX1262 LoRa RX      │
 └──────────────────────┘                              │  WiFi + MQTT TX      │
-   Heltec WiFi LoRa 32 V3                             └──────────┬───────────┘
-                                                        Heltec WiFi LoRa 32 V3
+   Heltec WiFi LoRa 32 V3/V4                          └──────────┬───────────┘
+                                                        Heltec WiFi LoRa 32 V3/V4
                                                                   │ MQTT
                                                                   ▼
                                                       ┌──────────────────────┐
