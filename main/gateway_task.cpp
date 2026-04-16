@@ -30,6 +30,8 @@ static const char *TAG = "gw";
 #define LORA_CR             5
 #define LORA_TX_DBM         22
 
+#define GW_MAX_CONSECUTIVE_ERRORS  5
+
 /* Per-device state */
 typedef struct {
     bool     seen;
@@ -41,6 +43,49 @@ typedef struct {
 static device_state_t s_devices[MAX_DEVICES];
 static uint32_t s_rx_count;
 static uint32_t s_reject_count;
+
+/* ---- radio management ---- */
+
+static EspIdfHal *s_hal   = nullptr;
+static Module    *s_mod   = nullptr;
+static SX1262    *s_radio = nullptr;
+
+static bool gw_radio_init(void)
+{
+    const lorawan_keys_t *keys = lorawan_get_keys();
+    float freq_mhz = keys->lora_freq_khz / 1000.0f;
+    uint8_t sync_word = keys->lora_sync_word;
+
+    s_hal   = new EspIdfHal(PIN_LORA_SCK, PIN_LORA_MISO, PIN_LORA_MOSI);
+    s_mod   = new Module(s_hal, PIN_LORA_CS, PIN_LORA_DIO1,
+                         PIN_LORA_RST, PIN_LORA_BUSY);
+    s_radio = new SX1262(s_mod);
+
+    int16_t state = s_radio->begin(freq_mhz, LORA_BW_KHZ, LORA_SF, LORA_CR,
+                                    sync_word, LORA_TX_DBM);
+    if (state != RADIOLIB_ERR_NONE) {
+        ESP_LOGE(TAG, "begin() failed: %d", state);
+        return false;
+    }
+    s_radio->setTCXO(BOARD_LORA_TCXO_V);
+    s_radio->setDio2AsRfSwitch(BOARD_LORA_DIO2_AS_RF);
+
+    ESP_LOGI(TAG, "SX1262 ready  freq=%.1f MHz  SF=%d  BW=%.0f kHz  sw=0x%02X",
+             freq_mhz, LORA_SF, LORA_BW_KHZ, sync_word);
+    return true;
+}
+
+static bool gw_radio_reinit(void)
+{
+    ESP_LOGW(TAG, "attempting radio reinit after consecutive errors");
+
+    delete s_radio; s_radio = nullptr;
+    delete s_mod;   s_mod   = nullptr;
+    delete s_hal;   s_hal   = nullptr;
+
+    vTaskDelay(pdMS_TO_TICKS(100));
+    return gw_radio_init();
+}
 
 /* ---- display helpers ---- */
 
@@ -123,50 +168,46 @@ extern "C" void GatewayTask(void *pvParameters)
     gpio_set_level((gpio_num_t)PIN_LED, 0);
 
     /* LoRa */
-    const lorawan_keys_t *keys = lorawan_get_keys();
-    float freq_mhz = keys->lora_freq_khz / 1000.0f;
-    uint8_t sync_word = keys->lora_sync_word;
-
-    EspIdfHal *hal   = new EspIdfHal(PIN_LORA_SCK, PIN_LORA_MISO, PIN_LORA_MOSI);
-    Module    *mod   = new Module(hal, PIN_LORA_CS, PIN_LORA_DIO1,
-                                 PIN_LORA_RST, PIN_LORA_BUSY);
-    SX1262    *radio = new SX1262(mod);
-
-    int16_t state = radio->begin(freq_mhz, LORA_BW_KHZ, LORA_SF, LORA_CR,
-                                  sync_word, LORA_TX_DBM);
-    if (state != RADIOLIB_ERR_NONE) {
-        ESP_LOGE(TAG, "begin() failed: %d — suspending", state);
+    if (!gw_radio_init()) {
         oled_clear();
         oled_print(0, 0, "RADIO FAIL");
-        char err[22]; snprintf(err, sizeof(err), "error: %d", state);
-        oled_print(0, 2, err);
         oled_flush();
         vTaskSuspend(NULL);
         return;
     }
-    radio->setTCXO(BOARD_LORA_TCXO_V);
-    radio->setDio2AsRfSwitch(BOARD_LORA_DIO2_AS_RF);
 
-    ESP_LOGI(TAG, "SX1262 ready — RX loop");
     display_idle();
 
     uint8_t rx_buf[64];
+    int consecutive_errors = 0;
 
     for (;;) {
-        state = radio->receive(rx_buf, sizeof(rx_buf));
+        int16_t state = s_radio->receive(rx_buf, sizeof(rx_buf));
 
-        if (state == RADIOLIB_ERR_RX_TIMEOUT) continue;
+        if (state == RADIOLIB_ERR_RX_TIMEOUT) {
+            consecutive_errors = 0;
+            continue;
+        }
 
         if (state != RADIOLIB_ERR_NONE) {
             ESP_LOGW(TAG, "receive error: %d", state);
             s_reject_count++;
+            consecutive_errors++;
+            if (consecutive_errors >= GW_MAX_CONSECUTIVE_ERRORS) {
+                if (gw_radio_reinit()) {
+                    consecutive_errors = 0;
+                    display_idle();
+                }
+            }
             vTaskDelay(pdMS_TO_TICKS(100));
             continue;
         }
 
-        size_t len  = radio->getPacketLength();
-        float  rssi = radio->getRSSI();
-        float  snr  = radio->getSNR();
+        consecutive_errors = 0;
+
+        size_t len  = s_radio->getPacketLength();
+        float  rssi = s_radio->getRSSI();
+        float  snr  = s_radio->getSNR();
 
         if (len != sizeof(lora_packet_t)) {
             s_reject_count++;

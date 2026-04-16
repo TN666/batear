@@ -1,8 +1,8 @@
 /*
  * lora_task.cpp — SX1262 LoRa transmitter via RadioLib (Core 0)
  *
- * Blocks indefinitely on g_drone_event_queue.
- * On each event: wake SX1262 → transmit 1-byte payload → deep sleep.
+ * Blocks on g_drone_event_queue with periodic timeout for liveness.
+ * On each event: wake SX1262 → transmit encrypted payload → deep sleep.
  *
  * Board: Heltec WiFi LoRa 32 V3 (ESP32-S3 + SX1262)
  * Framework: ESP-IDF 5.x with RadioLib (idf_component.yml)
@@ -19,6 +19,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "esp_log.h"
+#include "esp_timer.h"
 #include <inttypes.h>
 
 #include <RadioLib.h>
@@ -31,6 +32,8 @@ static const char *TAG = "lora";
 #define LORA_CR             5
 #define LORA_TX_DBM         22
 #define LORA_TCXO_DELAY_MS  5
+
+#define LORA_MAX_CONSECUTIVE_FAILS  3
 
 /* =========================================================================
  * RadioLib objects — heap-allocated so constructors don't run before
@@ -90,18 +93,36 @@ static bool lora_init(void)
     return true;
 }
 
+static bool lora_reinit(void)
+{
+    ESP_LOGW(TAG, "attempting radio reinit after consecutive failures");
+
+    delete s_radio;  s_radio  = nullptr;
+    delete s_module; s_module = nullptr;
+    delete s_hal;    s_hal    = nullptr;
+
+    vTaskDelay(pdMS_TO_TICKS(100));
+
+    bool ok = lora_init();
+    if (ok) {
+        s_radio->sleep();
+    }
+    return ok;
+}
+
 /*
  * lora_wake — transition from deep sleep to standby, then wait for the
  * TCXO to stabilise before we let RadioLib's transmit() fire.
- *
- * SX1262 wakes automatically when NSS is asserted, but RadioLib's
- * standby() call issues an explicit STDBY_RC command and resets the
- * busy-wait timeout, giving a clean, deterministic start state.
  */
-static void lora_wake(void)
+static bool lora_wake(void)
 {
-    s_radio->standby();
+    int16_t state = s_radio->standby();
+    if (state != RADIOLIB_ERR_NONE) {
+        ESP_LOGW(TAG, "standby() failed: %d", state);
+        return false;
+    }
     vTaskDelay(pdMS_TO_TICKS(LORA_TCXO_DELAY_MS));
+    return true;
 }
 
 static bool lora_transmit(const uint8_t *data, size_t len)
@@ -116,10 +137,6 @@ static bool lora_transmit(const uint8_t *data, size_t len)
 
 static void lora_sleep(void)
 {
-    /*
-     * SX1262 deep sleep draws ~0.9 µA vs ~5 mA in RX-continuous.
-     * Always return to sleep immediately after TX to save power.
-     */
     int16_t state = s_radio->sleep();
     if (state != RADIOLIB_ERR_NONE) {
         ESP_LOGW(TAG, "sleep() failed: %d", state);
@@ -144,11 +161,9 @@ extern "C" void LoRaTask(void *pvParameters)
     lora_sleep(); /* park in deep sleep; wake only when a packet must go out */
 
     DroneEvent_t ev;
+    int consecutive_fails = 0;
+
     for (;;) {
-        /*
-         * Block here with zero CPU consumption until AudioTask enqueues an
-         * event.  portMAX_DELAY means LoRaTask never burns cycles polling.
-         */
         if (xQueueReceive(g_drone_event_queue, &ev, portMAX_DELAY) != pdTRUE) {
             continue;
         }
@@ -157,7 +172,15 @@ extern "C" void LoRaTask(void *pvParameters)
                  (unsigned)ev.type, ev.f0_bin,
                  ev.peak_ratio, ev.rms, ev.timestamp_ms);
 
-        lora_wake();
+        if (!lora_wake()) {
+            consecutive_fails++;
+            if (consecutive_fails >= LORA_MAX_CONSECUTIVE_FAILS) {
+                if (lora_reinit()) {
+                    consecutive_fails = 0;
+                }
+            }
+            continue;
+        }
 
         lora_plaintext_t pt = {};
         pt.seq          = s_tx_seq++;
@@ -182,5 +205,16 @@ extern "C" void LoRaTask(void *pvParameters)
                  (unsigned)sizeof(pkt));
 
         lora_sleep();
+
+        if (ok) {
+            consecutive_fails = 0;
+        } else {
+            consecutive_fails++;
+            if (consecutive_fails >= LORA_MAX_CONSECUTIVE_FAILS) {
+                if (lora_reinit()) {
+                    consecutive_fails = 0;
+                }
+            }
+        }
     }
 }

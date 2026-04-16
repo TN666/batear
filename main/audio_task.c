@@ -138,6 +138,7 @@ static bool read_pcm_chunk_bytes(uint8_t *dst, size_t need_bytes)
             return false;
         }
         if (chunk == 0) {
+            vTaskDelay(1);
             continue;
         }
         got += chunk;
