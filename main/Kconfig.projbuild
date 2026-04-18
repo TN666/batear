@@ -22,6 +22,23 @@ choice BATEAR_ROLE
         bool "Gateway (LoRa RX + OLED + LED)"
 endchoice
 
+config BATEAR_TELEMETRY_HEARTBEAT_MIN
+    int "LoRa telemetry heartbeat interval (minutes)"
+    default 30
+    range 1 60
+    depends on BATEAR_ROLE_DETECTOR
+    help
+        How often the detector transmits a TELEMETRY packet (battery, uptime,
+        firmware version, free heap, TX failure counter) when no alarm/clear
+        event has occurred in the meantime. Set lower for faster battery
+        visibility at the cost of more TX bursts (and thus more LoRa airtime
+        and current draw). Alarm/clear events always carry the same telemetry
+        piggybacked, so heartbeat is only the silent-period fallback.
+
+        A uniform ±10% jitter is applied per cycle so a fleet of detectors
+        booted together does not lock into synchronised heartbeats and
+        collide on the shared LoRa channel.
+
 config BATEAR_AUDIO_PERF_LOG
     bool "Log DSP timing (FFT+PSD, harmonics, us min/max/avg every ~10s)"
     default n

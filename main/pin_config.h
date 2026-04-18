@@ -63,6 +63,15 @@
 #define BOARD_LORA_TCXO_V       1.8f
 #define BOARD_LORA_DIO2_AS_RF   true
 
+/* Battery monitor — Heltec V3/V4 route VBAT through a resistor divider to GPIO1.
+ * The divider is gated by GPIO37 (ADC_Ctrl): drive LOW to read, HIGH to disconnect
+ * (prevents the divider from idling ~100 µA off the cell). Ratio measured at 4.9×.
+ */
+#define PIN_VBAT_ADC              1
+#define PIN_VBAT_CTRL            37
+#define BOARD_HAS_VBAT            1
+#define BOARD_VBAT_DIVIDER_RATIO  4.9f
+
 /* =====================================================================
  * Add new boards here.  Example:
  *
@@ -74,6 +83,9 @@
  *   #define BOARD_HAS_VEXT  0
  *   #define BOARD_LORA_TCXO_V      0.0f
  *   #define BOARD_LORA_DIO2_AS_RF  false
+ *   #define BOARD_HAS_VBAT  0         // set 1 and define PIN_VBAT_ADC/CTRL
+ *                                     // + BOARD_VBAT_DIVIDER_RATIO if battery
+ *                                     // monitoring is wired up.
  * ===================================================================== */
 
 #else

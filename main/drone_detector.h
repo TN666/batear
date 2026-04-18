@@ -18,8 +18,9 @@ extern "C" {
  * Values are also the literal LoRa payload byte, so keep them ≤ 0xFF.
  * ---------------------------------------------------------------------- */
 typedef enum {
-    DRONE_EVENT_ALARM = 0x01,   /* state transition SAFE  → ALARM */
-    DRONE_EVENT_CLEAR = 0x00,   /* state transition ALARM → SAFE  */
+    DRONE_EVENT_CLEAR     = 0x00,   /* state transition ALARM → SAFE       */
+    DRONE_EVENT_ALARM     = 0x01,   /* state transition SAFE  → ALARM      */
+    DRONE_EVENT_TELEMETRY = 0x02,   /* periodic heartbeat — no audio fields */
 } DroneEventType;
 
 typedef struct {

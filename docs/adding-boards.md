@@ -47,6 +47,12 @@ Add an `#elif` block in `main/pin_config.h`. Every board must define **all** of 
 // LoRa RF traits
 #define BOARD_LORA_TCXO_V       0.0f   // no TCXO
 #define BOARD_LORA_DIO2_AS_RF   false  // no DIO2 RF switch
+
+// Battery monitor — set to 0 if the board has no VBAT divider.
+// When set to 1 you must also define PIN_VBAT_ADC (ADC1 channel pin),
+// PIN_VBAT_CTRL (active-low gate for the divider), and
+// BOARD_VBAT_DIVIDER_RATIO (float, VBAT / V_at_ADC).
+#define BOARD_HAS_VBAT          0
 ```
 
 ## Step 3: sdkconfig files — board + flash size
@@ -76,7 +82,7 @@ If the board uses SX1276/SX1278 instead of SX1262, you'll need to update `lora_t
 ## Checklist
 
 - [ ] `Kconfig.projbuild` — board entry added
-- [ ] `pin_config.h` — `#elif` block with all `PIN_*` and `BOARD_*` macros
+- [ ] `pin_config.h` — `#elif` block with all `PIN_*` and `BOARD_*` macros (including `BOARD_HAS_VBAT`)
 - [ ] `sdkconfig.detector` / `sdkconfig.gateway` — board + flash size set
 - [ ] `set-target` matches the chip (`esp32`, `esp32s3`, `esp32c3`, ...)
 - [ ] Board row added to the build table in docs

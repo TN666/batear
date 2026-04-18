@@ -19,6 +19,9 @@ CONFIG_BATEAR_DEVICE_ID=1
 CONFIG_BATEAR_NET_KEY="DEADBEEFCAFEBABE13374200F00DAA55"
 CONFIG_BATEAR_LORA_FREQ=915000
 CONFIG_BATEAR_LORA_SYNC_WORD=0x12
+
+# Telemetry heartbeat (jittered ±10% in firmware)
+CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN=30
 ```
 
 ## Gateway config
@@ -57,6 +60,7 @@ CONFIG_BATEAR_GW_DEVICE_ID="gw01"
 | `CONFIG_BATEAR_LORA_FREQ` | Centre frequency in kHz: `915000` (US/TW), `868000` (EU), `923000` (AS). Overridden by NVS. |
 | `CONFIG_BATEAR_LORA_SYNC_WORD` | Network isolation byte. Different values = invisible to each other. Overridden by NVS. |
 | `CONFIG_BATEAR_DEVICE_ID` | Detector only. Unique ID (0–255) shown on gateway display. Overridden by NVS. |
+| `CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN` | Detector only. Silent-period telemetry interval in minutes (1–60, default 30). Firmware adds ±10% jitter per cycle to avoid fleet-wide sync. Not NVS-overridable (compile-time). |
 | `CONFIG_BATEAR_WIFI_SSID` | Gateway Wi-Fi SSID. Overridden by NVS. |
 | `CONFIG_BATEAR_WIFI_PASS` | Gateway Wi-Fi password. Overridden by NVS. |
 | `CONFIG_BATEAR_MQTT_BROKER_URL` | MQTT broker URI, e.g. `mqtt://192.168.1.100:1883`. |
@@ -190,36 +194,72 @@ This lets you set defaults at compile time and override per-device via the [seri
 
 | Topic | QoS | Retained | Description |
 |:---|:---|:---|:---|
-| `batear/nodes/<id>/status` | 1 | No | Detection events (JSON) |
-| `batear/nodes/<id>/det/<XX>/status` | 1 | No | Per-detector events (`XX` = hex detector ID) |
+| `batear/nodes/<id>/status` | 1 | No | Gateway-wide event stream (same JSON as per-detector) |
+| `batear/nodes/<id>/det/<XX>/status` | 1 | Yes | Per-detector events, retained so HA picks up the last known state on reconnect (`XX` = hex detector ID) |
 | `batear/nodes/<id>/availability` | 1 | Yes | `online` / `offline` (LWT) |
 
 ### Status Payload (JSON)
 
+Every published event — `alarm`, `clear`, or `heartbeat` — carries the same schema. Telemetry fields are piggybacked on alarm/clear events at no extra airtime.
+
 ```json
 {
   "drone_detected": true,
+  "event": "alarm",
   "detector_id": 1,
   "rssi": -90,
   "snr": 5.2,
   "rms_db": 45,
   "f0_bin": 12,
   "seq": 42,
+  "battery_v": 3.82,
+  "fw_version": "2.0.0",
+  "uptime_min": 123,
+  "free_heap_kb": 187,
+  "tx_fails": 0,
+  "flags": 0,
   "timestamp": 1234567
 }
 ```
 
+| Field | Description |
+|:---|:---|
+| `drone_detected` | `true` for ALARM, `false` otherwise. Heartbeats preserve the last known alarm state, so a detector that armed an alarm and then silently sends heartbeats keeps `drone_detected: true` until a CLEAR event arrives. |
+| `event` | `"alarm"`, `"clear"`, or `"heartbeat"` — the raw packet type. |
+| `rssi` / `snr` | Received-signal quality at the gateway for this specific packet (dBm / dB). |
+| `rms_db` / `f0_bin` | Acoustic signature fields; zero on heartbeat. |
+| `seq` | Monotonic packet counter per detector. |
+| `battery_v` | Detector battery voltage decoded from `vbat_cv` (0.01 V resolution). |
+| `fw_version` | Detector firmware version parsed from its `esp_app_desc` git tag. |
+| `uptime_min` / `free_heap_kb` / `tx_fails` / `flags` | Detector health metrics. See [LoRa Protocol](protocol.md) for the full field map. |
+| `timestamp` | Gateway wall-clock seconds when the event was published. |
+
 ### Home Assistant Discovery
 
-On MQTT connect, the gateway publishes retained config messages to HA's discovery prefix:
+The gateway publishes two layers of HA MQTT Discovery:
+
+**Gateway-wide (at MQTT connect)** — for backwards compatibility with earlier setups:
 
 | Entity | Discovery topic | Type |
 |:---|:---|:---|
-| Drone Detected | `homeassistant/binary_sensor/batear_<id>/drone/config` | `binary_sensor` (`safety`) |
-| RSSI | `homeassistant/sensor/batear_<id>/rssi/config` | `sensor` (`signal_strength`, dBm) |
-| SNR | `homeassistant/sensor/batear_<id>/snr/config` | `sensor` (dB) |
+| Drone Detected | `homeassistant/binary_sensor/batear_<gw>/drone/config` | `binary_sensor` (`safety`) |
+| RSSI | `homeassistant/sensor/batear_<gw>/rssi/config` | `sensor` (`signal_strength`, dBm) |
+| SNR | `homeassistant/sensor/batear_<gw>/snr/config` | `sensor` (dB) |
 
-All entities are grouped under a single HA device: **Batear Gateway &lt;id&gt;**.
+**Per-detector (lazy, on first packet from each detector ID)** — each detector appears as a distinct HA device (`batear_<gw>_det_<XX>`) linked back to the gateway via `via_device`:
+
+| Entity | Topic suffix | HA device class / unit |
+|:---|:---|:---|
+| Drone Detected | `.../drone/config` | `binary_sensor` (`safety`) |
+| Battery | `.../battery_v/config` | `voltage`, V |
+| Firmware Version | `.../fw_version/config` | diagnostic string |
+| Uptime | `.../uptime_min/config` | `duration`, min |
+| Free Heap | `.../free_heap_kb/config` | kB, measurement |
+| TX Failures | `.../tx_fails/config` | total_increasing |
+| RSSI | `.../rssi/config` | `signal_strength`, dBm |
+| SNR | `.../snr/config` | dB, measurement |
+
+On MQTT reconnect, the gateway clears its internal "already discovered" cache and republishes the per-detector configs, so a broker that purged retained messages (or a freshly started HA) recovers automatically.
 
 !!! tip
-    Make sure your Home Assistant MQTT integration has **discovery enabled** (the default). The gateway entities will appear automatically under **Settings → Devices & Services → MQTT**.
+    Make sure your Home Assistant MQTT integration has **discovery enabled** (the default). Gateway entities appear under a device named `Batear Gateway <id>`; each detector appears under its own device `Batear Detector <XX>` with the gateway set as its parent in HA's device registry.

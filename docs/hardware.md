@@ -18,6 +18,12 @@
 | SD | 6 | I2S data input (DIN) |
 | L/R | GND | Left channel select |
 
+### Battery monitoring (optional)
+
+Heltec V3 / V4 ship with an on-board LiPo jack, charger, and a resistor divider that taps VBAT onto **GPIO1 (ADC1_CH0)**, gated by **GPIO37 (ADC_Ctrl, active low)**. The firmware drives the gate low only during a ~2 ms measurement window on every LoRa TX, so the divider's ~100 µA current drain is effectively eliminated between reads.
+
+No extra wiring is required — plug a 1S LiPo into the JST connector and the detector reports `battery_v` (plus a low-battery flag below 3.4 V) in every telemetry packet. Boards without this divider can simply leave `BOARD_HAS_VBAT` at `0` in `pin_config.h` and the battery module compiles down to no-ops (readings are reported as 0 V).
+
 ## Gateway
 
 | Component | Notes |

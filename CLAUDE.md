@@ -55,6 +55,7 @@ Key parameters in `sdkconfig.detector` / `sdkconfig.gateway`:
 | `CONFIG_BATEAR_MQTT_USER` | MQTT username (overridden by NVS) |
 | `CONFIG_BATEAR_MQTT_PASS` | MQTT password (overridden by NVS) |
 | `CONFIG_BATEAR_GW_DEVICE_ID` | Gateway ID for MQTT topics (overridden by NVS) |
+| `CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN` | Detector only, 1–60. Silent-period telemetry interval in minutes (default 30). Jittered ±10% in firmware. |
 
 ## Project Structure
 
@@ -75,7 +76,8 @@ batear/
 │   ├── config_console.c/.h     # serial console (show/set/reboot)
 │   ├── audio_processor.c/.h    # [detector] ESP-DSP FFT + PSD + harmonic analysis
 │   ├── audio_task.c/.h         # [detector] I2S mic + detection state machine
-│   ├── lora_task.cpp/.h        # [detector] LoRa TX
+│   ├── battery.c/.h            # [detector] VBAT ADC + divider gating
+│   ├── lora_task.cpp/.h        # [detector] LoRa TX (event + heartbeat, jittered)
 │   ├── gateway_task.cpp/.h     # [gateway]  LoRa RX + OLED + LED
 │   ├── mqtt_task.cpp/.h        # [gateway]  WiFi + MQTT + HA Discovery
 │   ├── oled.c/.h               # [gateway]  SSD1306 128x64 driver
@@ -101,6 +103,8 @@ batear/
 | OLED RST | 21 | gateway only |
 | LED | 35 | gateway only |
 | Vext | 36 | 3.3V power control (active low) |
+| VBAT ADC | 1 | detector only, ADC1_CH0, read through ~4.9× divider |
+| VBAT ADC Ctrl | 37 | detector only, active low to enable the divider |
 
 ## Calibration
 
@@ -110,6 +114,22 @@ When alarm is active, serial prints:
 Tune detection in `audio_task.c` (`HARM_F0_MIN/MAX_HZ`, `CONF_ON/OFF`, `SUSTAIN_FRAMES_*`, `RMS_MIN`, `EMA_ALPHA`)
 and `audio_processor.c` (`AUDIO_PROC_HARM_PEAK_MIN_SNR`, `AUDIO_PROC_HARM_MIN_H2/H3`).
 Enable `BATEAR_AUDIO_PERF_LOG` in menuconfig for per-frame DSP timing.
+
+## Telemetry & LoRa protocol
+
+The detector transmits AES-128-GCM encrypted packets to the gateway on three triggers:
+
+| Event type | Byte | Trigger |
+|---|---|---|
+| `CLEAR` | `0x00` | audio state machine ALARM → SAFE transition |
+| `ALARM` | `0x01` | audio state machine SAFE → ALARM transition |
+| `TELEMETRY` | `0x02` | silent-period heartbeat (`BATEAR_TELEMETRY_HEARTBEAT_MIN`, ±10% jitter) |
+
+Every packet carries the same telemetry fields (battery voltage, firmware version, uptime, free heap, cumulative TX failure counter, flags) so alarm/clear events piggyback diagnostics without extra airtime.
+
+Wire format is 36 bytes: `[4B nonce][16B ciphertext][16B GCM tag]`. See `main/lora_crypto.h` for the plaintext struct. **Packet format is not backward compatible** with the pre-2.x 28-byte layout — detectors and gateways must be upgraded together.
+
+Alarm/clear events get **one local retry** with a 150–300 ms randomised backoff if `SX1262->transmit()` reports a local error. Heartbeats are fire-and-forget (the next interval refreshes the same snapshot). There is **no ACK** — the gateway uses `pt.seq <= dev->last_seq` as a replay counter to dedup duplicate RX from retries.
 
 ## Release Tagging
 
