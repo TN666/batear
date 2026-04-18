@@ -104,6 +104,12 @@ void battery_init(void)
         return;
     }
 
+    /* cppcheck cannot see ESP-IDF's ADC_CALI_SCHEME_*_SUPPORTED macros
+     * (defined via soc_caps.h from sdkconfig), so under its preprocessor
+     * view both #if branches in cali_init() compile out and it concludes
+     * the function always returns false. On real builds at least one
+     * scheme is available. */
+    // cppcheck-suppress knownConditionTrueFalse
     if (!cali_init()) {
         ESP_LOGW(TAG, "ADC calibration unavailable — readings will be rough");
     }
