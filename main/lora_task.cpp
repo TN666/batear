@@ -12,15 +12,21 @@
 #include "drone_detector.h"
 #include "lora_crypto.h"
 #include "lorawan_provision.h"
+#include "battery.h"
 #include "EspIdfHal.h"
 #include "pin_config.h"
+#include "sdkconfig.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include "esp_system.h"
+#include "esp_random.h"
+#include "esp_app_desc.h"
 #include <inttypes.h>
+#include <cstdio>
 
 #include <RadioLib.h>
 
@@ -35,6 +41,34 @@ static const char *TAG = "lora";
 
 #define LORA_MAX_CONSECUTIVE_FAILS  3
 
+/* One local retry for alarm/clear on a randomised 150–300 ms backoff. The
+ * second attempt reuses the same seq + ciphertext so the gateway's replay
+ * counter dedupes if the first packet actually made it over the air. */
+#define LORA_EVENT_RETRIES          1
+#define LORA_RETRY_BACKOFF_MIN_MS  150
+#define LORA_RETRY_BACKOFF_MAX_MS  300
+
+/* Low-battery flag threshold (LiPo knee) */
+#define LORA_LOW_BATT_MV  3400
+
+#ifndef CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN
+#define CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN  30
+#endif
+#define LORA_HEARTBEAT_BASE_MS \
+    ((uint32_t)CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN * 60U * 1000U)
+/* ±10% uniform jitter so a fleet booted together desynchronises over time. */
+#define LORA_HEARTBEAT_JITTER_MS  (LORA_HEARTBEAT_BASE_MS / 10U)
+
+/* Returns a jittered heartbeat interval in the range
+ *   [base - 10%, base + 10%]
+ * using ESP32's HW RNG (cheap, non-blocking). */
+static uint32_t heartbeat_next_ms(void)
+{
+    uint32_t span = 2U * LORA_HEARTBEAT_JITTER_MS + 1U;
+    uint32_t offset = esp_random() % span;
+    return LORA_HEARTBEAT_BASE_MS - LORA_HEARTBEAT_JITTER_MS + offset;
+}
+
 /* =========================================================================
  * RadioLib objects — heap-allocated so constructors don't run before
  * esp-idf initialises the SPI peripheral.
@@ -44,6 +78,61 @@ static Module    *s_module = nullptr;
 static SX1262    *s_radio  = nullptr;
 
 static uint16_t s_tx_seq = 0;
+static uint32_t s_tx_fail_total = 0;   /* monotonic, clamped to 255 on the wire */
+static uint32_t s_boot_ms = 0;
+
+static uint8_t s_fw_major = 0;
+static uint8_t s_fw_minor = 0;
+static uint8_t s_fw_patch = 0;
+
+/* Parse app version string (expected "vX.Y.Z" or "X.Y.Z" — git-describe output
+ * may append "-gHASH" or "-dirty" which we ignore). Failure → 0.0.0. */
+static void parse_fw_version(void)
+{
+    const esp_app_desc_t *desc = esp_app_get_description();
+    if (!desc) return;
+
+    const char *s = desc->version;
+    if (!s) return;
+    if (*s == 'v' || *s == 'V') s++;
+
+    unsigned a = 0, b = 0, c = 0;
+    if (sscanf(s, "%u.%u.%u", &a, &b, &c) >= 1) {
+        s_fw_major = (a > 255) ? 255 : (uint8_t)a;
+        s_fw_minor = (b > 255) ? 255 : (uint8_t)b;
+        s_fw_patch = (c > 255) ? 255 : (uint8_t)c;
+    }
+    ESP_LOGI(TAG, "firmware version %u.%u.%u (from \"%s\")",
+             s_fw_major, s_fw_minor, s_fw_patch, desc->version);
+}
+
+/* Fill every telemetry field in the plaintext. Called for every TX so that
+ * alarm/clear packets piggyback the same diagnostics as heartbeat packets. */
+static void fill_telemetry(lora_plaintext_t *pt)
+{
+    uint32_t vbat_mv = battery_read_mv();
+    pt->vbat_cv = lora_vbat_encode(vbat_mv);
+
+    pt->fw_major = s_fw_major;
+    pt->fw_minor = s_fw_minor;
+    pt->fw_patch = s_fw_patch;
+
+    uint64_t now_ms  = (uint64_t)esp_timer_get_time() / 1000ULL;
+    uint64_t up_ms   = (now_ms > s_boot_ms) ? (now_ms - s_boot_ms) : 0ULL;
+    uint64_t up_min  = up_ms / 60000ULL;
+    pt->uptime_min = (up_min > 0xFFFFULL) ? 0xFFFFU : (uint16_t)up_min;
+
+    uint32_t heap_kb = esp_get_free_heap_size() / 1024U;
+    pt->free_heap_kb = (heap_kb > 0xFFFFU) ? 0xFFFFU : (uint16_t)heap_kb;
+
+    pt->tx_fail_count = (s_tx_fail_total > 255U) ? 255U : (uint8_t)s_tx_fail_total;
+
+    uint8_t flags = 0;
+    if (vbat_mv > 0 && vbat_mv < LORA_LOW_BATT_MV) {
+        flags |= LORA_FLAG_LOW_BATT;
+    }
+    pt->flags = flags;
+}
 
 /* =========================================================================
  * Internal helpers
@@ -152,6 +241,10 @@ extern "C" void LoRaTask(void *pvParameters)
 
     ESP_LOGI(TAG, "LoRaTask start (core %d)", xPortGetCoreID());
 
+    s_boot_ms = (uint32_t)((uint64_t)esp_timer_get_time() / 1000ULL);
+    parse_fw_version();
+    battery_init();
+
     if (!lora_init()) {
         ESP_LOGE(TAG, "FATAL: radio init failed — suspending LoRaTask");
         vTaskSuspend(NULL);
@@ -160,19 +253,54 @@ extern "C" void LoRaTask(void *pvParameters)
 
     lora_sleep(); /* park in deep sleep; wake only when a packet must go out */
 
+    ESP_LOGI(TAG, "telemetry heartbeat every %u min (±10%% jitter)",
+             (unsigned)CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN);
+
     DroneEvent_t ev;
     int consecutive_fails = 0;
 
     for (;;) {
-        if (xQueueReceive(g_drone_event_queue, &ev, portMAX_DELAY) != pdTRUE) {
-            continue;
+        /*
+         * Block on the event queue up to one heartbeat interval. If no audio
+         * event arrives in time we synthesise a TELEMETRY heartbeat so the
+         * gateway (and HA) keep seeing fresh battery / uptime / heap numbers
+         * even during silent periods.
+         */
+        if (xQueueReceive(g_drone_event_queue, &ev,
+                          pdMS_TO_TICKS(heartbeat_next_ms())) != pdTRUE) {
+            ev = {};
+            ev.type         = DRONE_EVENT_TELEMETRY;
+            ev.timestamp_ms = (uint32_t)(esp_timer_get_time() / 1000LL);
         }
 
-        ESP_LOGI(TAG, "event 0x%02X  f0bin=%d  conf=%.4f  rms=%.5f  t=%" PRIu32 "ms",
-                 (unsigned)ev.type, ev.f0_bin,
-                 ev.peak_ratio, ev.rms, ev.timestamp_ms);
+        const bool is_heartbeat = (ev.type == DRONE_EVENT_TELEMETRY);
 
-        if (!lora_wake()) {
+        if (is_heartbeat) {
+            ESP_LOGI(TAG, "heartbeat tick");
+        } else {
+            ESP_LOGI(TAG, "event 0x%02X  f0bin=%d  conf=%.4f  rms=%.5f  t=%" PRIu32 "ms",
+                     (unsigned)ev.type, ev.f0_bin,
+                     ev.peak_ratio, ev.rms, ev.timestamp_ms);
+        }
+
+        /* Prepare the payload once — seq, plaintext and ciphertext are all
+         * reused across the retry, so a successful over-air delivery that was
+         * mis-reported locally is dedup'd by the gateway's replay counter. */
+        lora_plaintext_t pt = {};
+        pt.seq        = s_tx_seq++;
+        pt.device_id  = lorawan_get_keys()->device_id;
+        pt.event_type = static_cast<uint8_t>(ev.type);
+        pt.f0_bin     = is_heartbeat ? 0 : static_cast<uint8_t>(ev.f0_bin);
+        pt.rms_db     = is_heartbeat ? 0 : lora_rms_to_db(ev.rms);
+        fill_telemetry(&pt);
+
+        lora_packet_t pkt;
+        const uint8_t *net_key = lorawan_get_keys()->app_key;
+        if (!lora_encrypt(net_key, pt.seq, &pt, &pkt)) {
+            /* Encrypt failures are software-level (PSA init, key import) —
+             * retrying will not help and burns airtime budget. Bail early. */
+            ESP_LOGE(TAG, "encrypt failed — dropping seq=%u", (unsigned)pt.seq);
+            s_tx_fail_total++;
             consecutive_fails++;
             if (consecutive_fails >= LORA_MAX_CONSECUTIVE_FAILS) {
                 if (lora_reinit()) {
@@ -182,33 +310,46 @@ extern "C" void LoRaTask(void *pvParameters)
             continue;
         }
 
-        lora_plaintext_t pt = {};
-        pt.seq          = s_tx_seq++;
-        pt.device_id    = lorawan_get_keys()->device_id;
-        pt.event_type   = static_cast<uint8_t>(ev.type);
-        pt.f0_bin       = static_cast<uint8_t>(ev.f0_bin);
-        pt.rms_db       = lora_rms_to_db(ev.rms);
+        const int max_attempts = is_heartbeat ? 1 : (1 + LORA_EVENT_RETRIES);
+        bool ok       = false;
+        int  attempts = 0;
 
-        lora_packet_t pkt;
-        bool ok = false;
-        const uint8_t *net_key = lorawan_get_keys()->app_key;
-        if (lora_encrypt(net_key, pt.seq, &pt, &pkt)) {
+        for (int a = 0; a < max_attempts; a++) {
+            if (a > 0) {
+                uint32_t span    = LORA_RETRY_BACKOFF_MAX_MS - LORA_RETRY_BACKOFF_MIN_MS + 1U;
+                uint32_t backoff = LORA_RETRY_BACKOFF_MIN_MS + (esp_random() % span);
+                ESP_LOGW(TAG, "retry seq=%u attempt=%d after %ums",
+                         (unsigned)pt.seq, a, (unsigned)backoff);
+                vTaskDelay(pdMS_TO_TICKS(backoff));
+            }
+
+            attempts++;
+
+            if (!lora_wake()) {
+                continue;  /* loop back to retry (if any attempts left) */
+            }
+
             ok = lora_transmit(reinterpret_cast<const uint8_t *>(&pkt), sizeof(pkt));
-        } else {
-            ESP_LOGE(TAG, "encrypt failed");
+            lora_sleep();
+
+            if (ok) break;
         }
 
-        ESP_LOGI(TAG, "TX %s  seq=%u  dev=%u  type=0x%02X  rms_db=%u  (%u bytes)",
+        ESP_LOGI(TAG,
+                 "TX %s  seq=%u  dev=%u  type=0x%02X  rms_db=%u  attempts=%d  "
+                 "vbat=%umV  fw=%u.%u.%u  up=%umin  heap=%ukB  txfail=%u",
                  ok ? "OK" : "FAIL",
                  (unsigned)pt.seq, (unsigned)pt.device_id,
-                 (unsigned)pt.event_type, (unsigned)pt.rms_db,
-                 (unsigned)sizeof(pkt));
-
-        lora_sleep();
+                 (unsigned)pt.event_type, (unsigned)pt.rms_db, attempts,
+                 (unsigned)lora_vbat_decode_mv(pt.vbat_cv),
+                 (unsigned)pt.fw_major, (unsigned)pt.fw_minor, (unsigned)pt.fw_patch,
+                 (unsigned)pt.uptime_min, (unsigned)pt.free_heap_kb,
+                 (unsigned)pt.tx_fail_count);
 
         if (ok) {
             consecutive_fails = 0;
         } else {
+            s_tx_fail_total++;
             consecutive_fails++;
             if (consecutive_fails >= LORA_MAX_CONSECUTIVE_FAILS) {
                 if (lora_reinit()) {

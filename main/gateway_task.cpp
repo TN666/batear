@@ -37,6 +37,7 @@ typedef struct {
     bool     seen;
     bool     alarm;
     uint16_t last_seq;
+    uint16_t last_vbat_mv;
 } device_state_t;
 
 #define MAX_DEVICES 256
@@ -101,25 +102,42 @@ static void display_idle(void)
     oled_flush();
 }
 
+static const char *event_label(uint8_t ev)
+{
+    switch (ev) {
+        case LORA_EVENT_ALARM:     return "!! ALARM !!";
+        case LORA_EVENT_CLEAR:     return "CLEAR";
+        case LORA_EVENT_TELEMETRY: return "heartbeat";
+        default:                   return "??";
+    }
+}
+
 static void display_event(const lora_plaintext_t *pt, float rssi, float snr)
 {
-    char line[22];
+    char line[32];
     oled_clear();
     oled_print(0, 0, "BATEAR GATEWAY");
 
     snprintf(line, sizeof(line), "Dev %02X: %s",
-             pt->device_id,
-             pt->event_type == 0x01 ? "!! ALARM !!" : "CLEAR");
+             pt->device_id, event_label(pt->event_type));
     oled_print(0, 2, line);
 
     snprintf(line, sizeof(line), "RSSI:%d  SNR:%.1f", (int)rssi, snr);
     oled_print(0, 4, line);
 
-    snprintf(line, sizeof(line), "rms:%udB  f0bin:%u",
-             pt->rms_db, pt->f0_bin);
+    uint32_t vbat_mv = lora_vbat_decode_mv(pt->vbat_cv);
+    if (pt->event_type == LORA_EVENT_TELEMETRY) {
+        snprintf(line, sizeof(line), "vbat:%u.%02uV up:%um",
+                 (unsigned)(vbat_mv / 1000), (unsigned)((vbat_mv / 10) % 100),
+                 (unsigned)pt->uptime_min);
+    } else {
+        snprintf(line, sizeof(line), "rms:%udB  f0bin:%u",
+                 pt->rms_db, pt->f0_bin);
+    }
     oled_print(0, 5, line);
 
-    snprintf(line, sizeof(line), "seq:%u", pt->seq);
+    snprintf(line, sizeof(line), "seq:%u v%u.%u.%u",
+             pt->seq, pt->fw_major, pt->fw_minor, pt->fw_patch);
     oled_print(0, 6, line);
 
     snprintf(line, sizeof(line), "rx:%lu bad:%lu",
@@ -235,24 +253,48 @@ extern "C" void GatewayTask(void *pvParameters)
         s_rx_count++;
         dev->seen     = true;
         dev->last_seq = pt.seq;
-        dev->alarm    = (pt.event_type == 0x01);
+        /* Heartbeat packets carry telemetry only — never clobber the cached
+         * alarm state with them, so an ALARM→heartbeat sequence keeps the
+         * LED and MQTT discovery binary_sensor in the ALARM state. */
+        if (pt.event_type == LORA_EVENT_ALARM) {
+            dev->alarm = true;
+        } else if (pt.event_type == LORA_EVENT_CLEAR) {
+            dev->alarm = false;
+        }
+        uint32_t vbat_mv32 = lora_vbat_decode_mv(pt.vbat_cv);
+        dev->last_vbat_mv = (vbat_mv32 > 0xFFFFU) ? 0xFFFFU : (uint16_t)vbat_mv32;
 
-        ESP_LOGI(TAG, "dev=0x%02X %s seq=%u f0bin=%u rms=%udB RSSI=%.0f SNR=%.1f",
-                 pt.device_id, dev->alarm ? "ALARM" : "CLEAR",
-                 pt.seq, pt.f0_bin, pt.rms_db, rssi, snr);
+        ESP_LOGI(TAG,
+                 "dev=0x%02X %s seq=%u f0bin=%u rms=%udB RSSI=%.0f SNR=%.1f  "
+                 "vbat=%umV fw=%u.%u.%u up=%umin heap=%ukB txfail=%u fl=0x%02X",
+                 pt.device_id, event_label(pt.event_type),
+                 pt.seq, pt.f0_bin, pt.rms_db, rssi, snr,
+                 (unsigned)vbat_mv32,
+                 pt.fw_major, pt.fw_minor, pt.fw_patch,
+                 pt.uptime_min, pt.free_heap_kb,
+                 pt.tx_fail_count, pt.flags);
 
         update_led();
         display_event(&pt, rssi, snr);
 
         if (g_mqtt_event_queue) {
             MqttEvent_t mev = {};
-            mev.device_id = pt.device_id;
-            mev.alarm     = (pt.event_type == 0x01);
-            mev.rssi      = rssi;
-            mev.snr       = snr;
-            mev.rms_db    = pt.rms_db;
-            mev.f0_bin    = pt.f0_bin;
-            mev.seq       = pt.seq;
+            mev.device_id     = pt.device_id;
+            mev.event_type    = pt.event_type;
+            mev.alarm         = dev->alarm;
+            mev.rssi          = rssi;
+            mev.snr           = snr;
+            mev.rms_db        = pt.rms_db;
+            mev.f0_bin        = pt.f0_bin;
+            mev.seq           = pt.seq;
+            mev.vbat_mv       = dev->last_vbat_mv;
+            mev.fw_major      = pt.fw_major;
+            mev.fw_minor      = pt.fw_minor;
+            mev.fw_patch      = pt.fw_patch;
+            mev.uptime_min    = pt.uptime_min;
+            mev.free_heap_kb  = pt.free_heap_kb;
+            mev.tx_fail_count = pt.tx_fail_count;
+            mev.flags         = pt.flags;
             if (xQueueSend(g_mqtt_event_queue, &mev, 0) != pdTRUE) {
                 ESP_LOGW(TAG, "MQTT queue full — event dropped");
             }
